@@ -26,12 +26,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            jump = true;
-        }
+        //if (Input.GetButtonDown("Jump")) //&& grounded)
+        //{
+        //    jump = true;
+        //}
     }
 
     void FixedUpdate()
@@ -46,15 +46,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (h > 0 && !facingRight)
             Flip();
+
         else if (h < 0 && facingRight)
             Flip();
 
-        if (jump)
-        {
-            anim.SetTrigger("Jump");
-            rb.AddForce(new Vector2(0f, jumpForce));
-            jump = false;
-        }
+        //if (jump)
+        //{
+        //    rb.AddForce(new Vector2(0f, jumpForce));
+        //    jump = false;
+        //}
     }
 
 

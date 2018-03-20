@@ -241,6 +241,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVelocity: 20
+--- !u!95 &1002668137
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1002668130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ad5b1fe2813d10042a306e3d00c77945, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1116106475
 Prefab:
   m_ObjectHideFlags: 0
@@ -284,8 +301,12 @@ Prefab:
       propertyPath: m_Name
       value: Platform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1374314430283010, guid: ac3b4392695dab64983ed7da201af2ab, type: 2}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 61956203970008436, guid: ac3b4392695dab64983ed7da201af2ab, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ac3b4392695dab64983ed7da201af2ab, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1119034272
@@ -443,6 +464,51 @@ Prefab:
       propertyPath: m_GravityScale
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 212719571458160220, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dc8add860f0f6f645aa11090b23923a5,
+        type: 3}
+    - target: {fileID: 61602626071923664, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 61602626071923664, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942280953171860, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 61602626071923664, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.0002322346
+      objectReference: {fileID: 0}
+    - target: {fileID: 61602626071923664, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.18216074
+      objectReference: {fileID: 0}
+    - target: {fileID: 61602626071923664, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.0003870055
+      objectReference: {fileID: 0}
+    - target: {fileID: 61602626071923664, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.29607695
+      objectReference: {fileID: 0}
+    - target: {fileID: 114014285578395920, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1002668137}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
   m_IsPrefabParent: 0
@@ -516,7 +582,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 61956203970008436, guid: ac3b4392695dab64983ed7da201af2ab, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac3b4392695dab64983ed7da201af2ab, type: 2}
   m_IsPrefabParent: 0

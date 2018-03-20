@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     private bool grounded = false;
-    private Animator anim;
+    public Animator anim;
     private Rigidbody2D rb;
 
 
@@ -39,10 +39,22 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
 
         if (h * rb.velocity.x < maxSpeed)
+        {
             rb.AddForce(Vector2.right * h * moveForce);
+            anim.SetBool("Walking", true);
+        }
 
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+        {
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+            anim.SetBool("Walking", true);
+
+        }
+
+        if(h == 0)
+        {
+            anim.SetBool("Walking", false);
+        }
 
         if (h > 0 && !facingRight)
             Flip();
@@ -50,11 +62,7 @@ public class PlayerMovement : MonoBehaviour
         else if (h < 0 && facingRight)
             Flip();
 
-        //if (jump)
-        //{
-        //    rb.AddForce(new Vector2(0f, jumpForce));
-        //    jump = false;
-        //}
+        
     }
 
 

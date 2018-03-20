@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     private bool grounded = false;
-    public Animator anim;
+    private Animator anim;
     private Rigidbody2D rb;
 
 
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame

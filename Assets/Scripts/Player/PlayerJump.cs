@@ -7,12 +7,23 @@ public class PlayerJump : MonoBehaviour
     public float jumpVelocity = 500.0f;
     private bool canJump = true;
     private Rigidbody2D rb;
+    private Animator anim;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
+
+    private void Update()
+    {
+        if (!canJump)
+            anim.SetBool("Jumping", true);
+        else
+            anim.SetBool("Jumping", false);
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()

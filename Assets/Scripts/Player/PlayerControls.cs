@@ -15,7 +15,10 @@ public class PlayerControls : MonoBehaviour
     private Rigidbody2D rb;
 
     public Vector2 uppercutForce;
-    public Vector2 sideKickForce;
+
+    public Vector2 sideKickForceR;
+    public Vector2 sideKickForceL;
+
 
     private int clickCount = 0;
     private float timer = 0;
@@ -44,7 +47,7 @@ public class PlayerControls : MonoBehaviour
 
         //}
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             OneTwoCombo();
         }
@@ -83,7 +86,7 @@ public class PlayerControls : MonoBehaviour
         //}
 
         // Flying Uppercut - W K
-        if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             FlyingUppercut();
         }
@@ -95,7 +98,7 @@ public class PlayerControls : MonoBehaviour
         }
 
         // Spinning Kick - A K
-        if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             SpinKickLeft();
         }
@@ -116,29 +119,15 @@ public class PlayerControls : MonoBehaviour
 
     void OneTwoCombo()
     {
-            //if(clickCounter == 1)
-            //{
-            //    Debug.Log(clickCounter);
-            //    anim.SetBool("OneTwoCombo1", true);
-
-            //}
-
-            //if (clickCounter == 2)
-            //{
-
-            //    Debug.Log(clickCounter);
-            //    anim.SetBool("OneTwoCombo2", true);
-            //    StopCoroutine(comboTimer());
-
-            //}
-            if (clickCount == 0)//Number of tabs you want minus one
+            
+            if (clickCount == 1)//Number of tabs you want minus one
             {
-                anim.SetTrigger("OneTwoCombo1");
+                anim.SetTrigger("1-2Combo(1)");
             }
 
-            if (timer > 0 && clickCount == 1)//Number of tabs you want minus one
+            if (timer > 0 && clickCount == 2)//Number of tabs you want minus one
             {
-                anim.SetTrigger("OneTwoCombo2");
+                anim.SetTrigger("1-2Combo(2)");
             }
 
             else
@@ -172,13 +161,13 @@ public class PlayerControls : MonoBehaviour
     void SpinKickLeft()
     {
         anim.SetTrigger("SpinKick");
-        rb.AddForce(-sideKickForce);
+        rb.AddForce(sideKickForceL);
     }
 
     void SpinKickRight()
     {
         anim.SetTrigger("SpinKick");
-        rb.AddForce(sideKickForce);
+        rb.AddForce(sideKickForceR);
     }
 
     //IEnumerator ComboTimer()

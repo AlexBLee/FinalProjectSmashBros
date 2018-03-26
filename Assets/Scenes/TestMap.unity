@@ -509,6 +509,31 @@ Prefab:
       propertyPath: m_Size.y
       value: 0.29607695
       objectReference: {fileID: 0}
+    - target: {fileID: 114012303702555526, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: uppercutForce.y
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 114012303702555526, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: sideKickForceR.x
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114012303702555526, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: sideKickForceR.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114012303702555526, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: sideKickForceL.x
+      value: -2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114012303702555526, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: sideKickForceL.y
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
   m_IsPrefabParent: 0

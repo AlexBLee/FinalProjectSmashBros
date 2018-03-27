@@ -19,17 +19,46 @@ public class PlayerHealth : MonoBehaviour
     {
         if(collision.gameObject.tag == TAG_CHARACTER)
         {
-            HitTaken();
+            if (collision.transform.position.x > transform.position.x)
+            {
+                HitTakenRight();
+                Debug.Log("hit right!");
+            }
+
+            if (collision.transform.position.x < transform.position.x)
+            {
+                HitTakenLeft();
+                Debug.Log("hit left!");
+            }
         }
+        
+
+        
     }
 
-    void HitTaken()
+    void HitTakenRight()
+    {
+        health += 10.0f;
+        Debug.Log("hit!");
+        Debug.Log(health);
+
+        damage = new Vector2(health * -10, health * -10);
+
+        
+        Debug.Log(damage);
+
+        rb.AddForce(damage);
+    }
+
+    void HitTakenLeft()
     {
         health += 10.0f;
         Debug.Log("hit!");
         Debug.Log(health);
 
         damage = new Vector2(health * 10, health * 10);
+
+        Debug.Log(damage);
 
         rb.AddForce(damage);
     }

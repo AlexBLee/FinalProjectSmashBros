@@ -500,7 +500,12 @@ Prefab:
     - target: {fileID: 50887689652664318, guid: 503c913cd33e4b24b8da74728def380f,
         type: 2}
       propertyPath: m_GravityScale
-      value: 0.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50887689652664318, guid: 503c913cd33e4b24b8da74728def380f,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 503c913cd33e4b24b8da74728def380f, type: 2}

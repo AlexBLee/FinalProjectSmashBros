@@ -9,6 +9,7 @@ public class PlayerJump : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+
     // Use this for initialization
     void Start()
     {

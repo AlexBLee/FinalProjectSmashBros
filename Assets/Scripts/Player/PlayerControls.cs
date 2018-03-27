@@ -4,52 +4,51 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    int clickCounter = 0;
-    float comboCounter = 1.0f;
 
-    private float timeBetweenClicks;
-    bool buttonPressed = false;
+    float lastClicked = 0.0f;
 
-    public float tapSpeed = 1.0f;
     private Animator anim;
     private Rigidbody2D rb;
 
     public Vector2 uppercutForce;
-
     public Vector2 sideKickForceR;
-    public Vector2 sideKickForceL;
 
+    private bool facingRight;
 
-    private int clickCount = 0;
-    private float timer = 0;
+    private PlayerMovement playerMovement;
 
-
+    void GetComponents()
+    {
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     // Use this for initialization
     void Start ()
     {
         GetComponents();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+
+    // Update is called once per frame
+    void Update ()
     {
         //---------------------------------------------------------------//
         // Light attacks
 
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    timeBetweenClicks = Time.time;
-        //    StartCoroutine(comboTimer());
-        //    ++clickCounter;
-        //    OneTwoCombo();
-        //    StopCoroutine(comboTimer());
-
-        //}
-
+        // OneTwo Combo - L
         if (Input.GetKeyDown(KeyCode.L))
         {
-            OneTwoCombo();
+            if (Time.time - lastClicked < 0.5)
+            {
+                OneTwoComboSecondHit();
+            }
+            else
+            {
+                OneTwoComboFirstHit();
+            }
+            lastClicked = Time.time;
         }
 
         // Flying Uppercut - W J
@@ -97,12 +96,6 @@ public class PlayerControls : MonoBehaviour
             TwoSideAttack();
         }
 
-        // Spinning Kick - A K
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            SpinKickLeft();
-        }
-
         // Spinning Kick - D K
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -111,46 +104,39 @@ public class PlayerControls : MonoBehaviour
 
     }
 
-    void GetComponents()
+
+
+    void OneTwoComboFirstHit()
     {
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        anim.SetTrigger("1-2Combo(1)");
     }
 
-    void OneTwoCombo()
+    void OneTwoComboSecondHit()
     {
-            
-            if (clickCount == 1)//Number of tabs you want minus one
-            {
-                anim.SetTrigger("1-2Combo(1)");
-            }
-
-            if (timer > 0 && clickCount == 2)//Number of tabs you want minus one
-            {
-                anim.SetTrigger("1-2Combo(2)");
-            }
-
-            else
-            {
-                timer = 0.5f;
-                clickCount += 1;
-            }
-
-
-        if (timer > 0)
-        {
-            timer -= 1 * Time.deltaTime;
-        }
-        else
-        {
-            clickCount = 0;
-        }
+        anim.SetTrigger("1-2Combo(2)");
     }
 
     void FlyingUppercut()
     {
+        facingRight = playerMovement.facingRight;
         anim.SetTrigger("SpinUppercut");
-        rb.AddForce(uppercutForce);
+
+        if (facingRight)
+        {
+            if (uppercutForce.x < 0f)
+            {
+                uppercutForce.x *= -1;
+            }
+            rb.AddForce(uppercutForce);
+        }
+        else
+        {
+            if (uppercutForce.x > 0f)
+            {
+                uppercutForce.x *= -1;
+            }
+            rb.AddForce(uppercutForce);
+        }
     }
 
     void TwoSideAttack()
@@ -158,25 +144,27 @@ public class PlayerControls : MonoBehaviour
         anim.SetTrigger("TwoSide");
     }
 
-    void SpinKickLeft()
-    {
-        anim.SetTrigger("SpinKick");
-        rb.AddForce(sideKickForceL);
-    }
-
     void SpinKickRight()
     {
+        facingRight = playerMovement.facingRight;
         anim.SetTrigger("SpinKick");
-        rb.AddForce(sideKickForceR);
+
+        if (facingRight)
+        {
+            if(sideKickForceR.x < 0f)
+            {
+                sideKickForceR.x *= -1;
+            }
+            rb.AddForce(sideKickForceR);
+        }
+        else
+        {
+            if(sideKickForceR.x > 0f)
+            {
+                sideKickForceR.x *= -1;
+            }
+            rb.AddForce(sideKickForceR);
+        }
+
     }
-
-    //IEnumerator ComboTimer()
-    //{
-    //    //yield return new WaitForSeconds(1.0f);
-    //    //clickCounter = 0;
-    //    //anim.SetBool("OneTwoCombo1", false);
-    //    //anim.SetBool("OneTwoCombo2", false);
-
-
-    //}
 }

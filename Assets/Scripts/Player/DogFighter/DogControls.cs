@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControls : MonoBehaviour
+public class DogControls : MonoBehaviour
 {
 
     float lastClicked = 0.0f;
@@ -10,8 +10,11 @@ public class PlayerControls : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
 
-    public Vector2 uppercutForce;
-    public Vector2 sideKickForceR;
+    public Vector2 jumpKickForce;
+    public Vector2 forwardKickForce;
+
+	public GameObject blast;
+	public Transform blastPosition;
 
     private bool facingRight;
 
@@ -42,11 +45,11 @@ public class PlayerControls : MonoBehaviour
         {
             if (Time.time - lastClicked < 0.5)
             {
-                OneTwoComboSecondHit();
+                KickComboFirstHit();
             }
             else
             {
-                OneTwoComboFirstHit();
+                KickComboSecondHit();
             }
             lastClicked = Time.time;
         }
@@ -87,83 +90,91 @@ public class PlayerControls : MonoBehaviour
         // Flying Uppercut - W K
         if (Input.GetKeyDown(KeyCode.I))
         {
-            FlyingUppercut();
+            JumpKick();
         }
 
         // Two Side Attack - S K
         if(Input.GetKeyDown(KeyCode.M))
         {
-            TwoSideAttack();
+            KiBlast();
         }
 
         // Spinning Kick - D K
         if (Input.GetKeyDown(KeyCode.K))
         {
-            SpinKickRight();
+            ForwardKick();
         }
 
     }
 
 
 
-    void OneTwoComboFirstHit()
+    void KickComboFirstHit()
     {
-        anim.SetTrigger("1-2Combo(1)");
+        anim.SetTrigger("KickCombo(0)");
     }
 
-    void OneTwoComboSecondHit()
+    void KickComboSecondHit()
     {
-        anim.SetTrigger("1-2Combo(2)");
+        anim.SetTrigger("KickCombo(1)");
     }
 
-    void FlyingUppercut()
+	void KickComboThirdHit()
+    {
+        anim.SetTrigger("KickCombo(2)");
+    }
+
+    void JumpKick()
     {
         facingRight = playerMovement.facingRight;
-        anim.SetTrigger("SpinUppercut");
+        anim.SetTrigger("JumpKick");
 
         if (facingRight)
         {
-            if (uppercutForce.x < 0f)
+            if (jumpKickForce.x < 0f)
             {
-                uppercutForce.x *= -1;
+                jumpKickForce.x *= -1;
             }
-            rb.AddForce(uppercutForce);
+            rb.AddForce(jumpKickForce);
         }
         else
         {
-            if (uppercutForce.x > 0f)
+            if (jumpKickForce.x > 0f)
             {
-                uppercutForce.x *= -1;
+                jumpKickForce.x *= -1;
             }
-            rb.AddForce(uppercutForce);
+            rb.AddForce(jumpKickForce);
         }
     }
 
-    void TwoSideAttack()
+    void KiBlast()
     {
-        anim.SetTrigger("TwoSide");
+        anim.SetTrigger("KiBlast");
+
+		GameObject newBlast = Instantiate(blast, blastPosition), InstantiateInWorldSpace;
+
     }
 
-    void SpinKickRight()
+    void ForwardKick()
     {
         facingRight = playerMovement.facingRight;
-        anim.SetTrigger("SpinKick");
+        anim.SetTrigger("ForwardKick");
 
         if (facingRight)
         {
-            if(sideKickForceR.x < 0f)
+            if(forwardKickForce.x < 0f)
             {
-                sideKickForceR.x *= -1;
+                forwardKickForce.x *= -1;
             }
-            rb.AddForce(sideKickForceR);
+            rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
         }
         else
         {
-            if(sideKickForceR.x > 0f)
+            if(forwardKickForce.x > 0f)
             {
-                sideKickForceR.x *= -1;
+                forwardKickForce.x *= -1;
             }
-            rb.AddForce(sideKickForceR);
+            rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
         }
 
     }

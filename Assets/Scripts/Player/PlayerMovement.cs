@@ -4,12 +4,15 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [HideInInspector] public bool facingRight = true;
-    [HideInInspector] public bool jump = false;
+    [HideInInspector]public bool facingRight = true;
+
+    public float jumpVelocity = 500.0f;
+    private bool canJump = true;
+
+    private string TAG_FLOOR = "Floor";
+
     public float moveForce = 365f;
     public float maxSpeed = 5f;
-    public float jumpForce = 1000f;
-    public Transform groundCheck;
 
 
     private Animator anim;
@@ -26,17 +29,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-
-        //if (Input.GetButtonDown("Jump")) //&& grounded)
-        //{
-        //    jump = true;
-        //}
+        if (!canJump)
+            anim.SetBool("Jumping", true);
+        else
+            anim.SetBool("Jumping", false);
     }
 
     void FixedUpdate()
     {
         float h = Input.GetAxis("Horizontal");
+
+        if (Input.GetKey(KeyCode.W) && canJump)
+        {
+            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+            canJump = false;
+        }
 
         if (h * rb.velocity.x < maxSpeed)
         {
@@ -72,5 +79,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == TAG_FLOOR)
+        {
+            canJump = true;
+        }
     }
 }

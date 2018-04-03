@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DogControls : MonoBehaviour
 {
-
+    private float shotCounter;
+    public float timeBetweenShots;
+    
     float lastClicked = 0.0f;
 
     private Animator anim;
@@ -37,6 +39,8 @@ public class DogControls : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        shotCounter -= Time.deltaTime;
+        
         //---------------------------------------------------------------//
         // Light attacks
 
@@ -54,29 +58,58 @@ public class DogControls : MonoBehaviour
             lastClicked = Time.time;
         }
 
-        // Flying Uppercut - W J
-        if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.J))
+        // Flying Uppercut - W K
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            
+            JumpKick();
         }
 
-        // Two Side Attack - S J
-        if (Input.GetKeyDown(KeyCode.S) && Input.GetKeyDown(KeyCode.J))
+        // Two Side Attack - S K
+        if(Input.GetKeyDown(KeyCode.M))
         {
-            
+
+            if(shotCounter <= 0)
+            {
+                shotCounter = timeBetweenShots;
+                StartCoroutine(KiBlast());
+            }
         }
 
-        // Spinning Kick - A J
-        if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.J))
+        // Spinning Kick - D K
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            
+            ForwardKick();
         }
 
-        // Spinning Kick - D J
-        if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.J))
-        {
+        #if !UNITY_ANDROID && !UNITY_IPHONE && UNITY_BLACKBERRY && !UNITY_WINRT
+
+        
+
+        #endif
+
+        // // Flying Uppercut - W J
+        // if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.J))
+        // {
             
-        }
+        // }
+
+        // // Two Side Attack - S J
+        // if (Input.GetKeyDown(KeyCode.S) && Input.GetKeyDown(KeyCode.J))
+        // {
+            
+        // }
+
+        // // Spinning Kick - A J
+        // if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.J))
+        // {
+            
+        // }
+
+        // // Spinning Kick - D J
+        // if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.J))
+        // {
+            
+        // }
 
         //---------------------------------------------------------------//
         // Heavy Attacks.
@@ -87,23 +120,7 @@ public class DogControls : MonoBehaviour
 
         //}
 
-        // Flying Uppercut - W K
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            JumpKick();
-        }
-
-        // Two Side Attack - S K
-        if(Input.GetKeyDown(KeyCode.M))
-        {
-            KiBlast();
-        }
-
-        // Spinning Kick - D K
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ForwardKick();
-        }
+ 
 
     }
 
@@ -147,12 +164,13 @@ public class DogControls : MonoBehaviour
         }
     }
 
-    void KiBlast()
+    IEnumerator KiBlast()
     {
         anim.SetTrigger("KiBlast");
 
-		GameObject newBlast = Instantiate(blast, blastPosition), InstantiateInWorldSpace;
-
+        yield return new WaitForSeconds(0.4f);
+        GameObject newBlast = Instantiate(blast,blastPosition.position,Quaternion.identity);
+        StopCoroutine(KiBlast());
     }
 
     void ForwardKick()
@@ -178,4 +196,5 @@ public class DogControls : MonoBehaviour
         }
 
     }
+
 }

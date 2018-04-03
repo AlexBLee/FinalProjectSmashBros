@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public float moveForce = 365f;
     public float maxSpeed = 5f;
 
+    private float hInput = 0;
 
+         
+    private float h = 0;
     private Animator anim;
     private Rigidbody2D rb;
 
@@ -33,23 +36,22 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("Jumping", true);
         else
             anim.SetBool("Jumping", false);
+
+
     }
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
+        #if !UNITY_ANDROID && !UNITY_IPHONE && UNITY_BLACKBERRY && !UNITY_WINRT
 
-        if (Input.GetKey(KeyCode.W) && canJump)
-        {
-            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-            canJump = false;
-        }
+        
 
-        if (h * rb.velocity.x < maxSpeed)
-        {
-            rb.AddForce(Vector2.right * h * moveForce);
-            anim.SetBool("Walking", true);
-        }
+        #endif
+        Move(hInput);
+
+        
+
+        
 
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
         {
@@ -81,6 +83,27 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    void Move(float horizontalInput)
+    {
+        anim.SetBool("Walking", true);
+        
+        if (horizontalInput * rb.velocity.x < maxSpeed)
+        {
+            rb.AddForce(Vector2.right * horizontalInput * moveForce);
+        }
+    }
+
+    public void Jump()
+    {
+        rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+        canJump = false;
+    }
+
+    public void StartMoving(float horizontalInput)
+    {
+        hInput = horizontalInput;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == TAG_FLOOR)
@@ -88,4 +111,5 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
         }
     }
+
 }

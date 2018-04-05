@@ -126,22 +126,22 @@ public class DogControls : MonoBehaviour
 
 
 
-    void KickComboFirstHit()
+    public void KickComboFirstHit()
     {
         anim.SetTrigger("KickCombo(0)");
     }
 
-    void KickComboSecondHit()
+    public void KickComboSecondHit()
     {
         anim.SetTrigger("KickCombo(1)");
     }
 
-	void KickComboThirdHit()
+	public void KickComboThirdHit()
     {
         anim.SetTrigger("KickCombo(2)");
     }
 
-    void JumpKick()
+    public void JumpKick()
     {
         facingRight = playerMovement.facingRight;
         anim.SetTrigger("JumpKick");
@@ -169,11 +169,11 @@ public class DogControls : MonoBehaviour
         anim.SetTrigger("KiBlast");
 
         yield return new WaitForSeconds(0.4f);
-        GameObject newBlast = Instantiate(blast,blastPosition.position,Quaternion.identity);
+        Instantiate(blast,blastPosition.position,Quaternion.identity);
         StopCoroutine(KiBlast());
     }
 
-    void ForwardKick()
+    public void ForwardKick()
     {
         facingRight = playerMovement.facingRight;
         anim.SetTrigger("ForwardKick");

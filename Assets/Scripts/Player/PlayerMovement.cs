@@ -14,10 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float moveForce = 365f;
     public float maxSpeed = 5f;
 
-    private float hInput = 0;
+    public Joystick joystick;
 
-         
-    private float h = 0;
     private Animator anim;
     private Rigidbody2D rb;
 
@@ -47,10 +45,23 @@ public class PlayerMovement : MonoBehaviour
         
 
         #endif
-        Move(hInput);
 
+        float h = joystick.Horizontal;
+        float v = joystick.Vertical;
         
+        if (h * rb.velocity.x < maxSpeed)
+        {
+            anim.SetBool("Walking", true);
+            
+            rb.AddForce(Vector2.right * h * moveForce);
+        }
 
+        if(canJump && v > 0)
+        {
+            rb.AddForce(Vector2.up * jumpVelocity * v, ForceMode2D.Impulse);
+            canJump = false;
+        }
+        
         
 
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
@@ -81,27 +92,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-    }
-
-    void Move(float horizontalInput)
-    {
-        anim.SetBool("Walking", true);
-        
-        if (horizontalInput * rb.velocity.x < maxSpeed)
-        {
-            rb.AddForce(Vector2.right * horizontalInput * moveForce);
-        }
-    }
-
-    public void Jump()
-    {
-        rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-        canJump = false;
-    }
-
-    public void StartMoving(float horizontalInput)
-    {
-        hInput = horizontalInput;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

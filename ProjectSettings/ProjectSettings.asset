@@ -157,7 +157,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.Alex.SmashBros
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -248,7 +249,7 @@ PlayerSettings:
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
-  androidUseLowAccuracyLocation: 0
+  androidUseLowAccuracyLocation: 1
   m_AndroidBanners:
   - width: 320
     height: 180

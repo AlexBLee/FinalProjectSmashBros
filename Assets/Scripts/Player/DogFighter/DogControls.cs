@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DogControls : MonoBehaviour
 {
+    bool canJumpKick = true;
+    string TAG_FLOOR = "Floor";
     private float shotCounter;
     public float timeBetweenShots;
     
@@ -81,11 +83,6 @@ public class DogControls : MonoBehaviour
             ForwardKick();
         }
 
-        #if !UNITY_ANDROID && !UNITY_IPHONE && UNITY_BLACKBERRY && !UNITY_WINRT
-
-        
-
-        #endif
 
         // // Flying Uppercut - W J
         // if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.J))
@@ -143,25 +140,32 @@ public class DogControls : MonoBehaviour
 
     public void JumpKick()
     {
-        facingRight = playerMovement.facingRight;
-        anim.SetTrigger("JumpKick");
+        if(canJumpKick)
+        {
+            facingRight = playerMovement.facingRight;
+            anim.SetTrigger("JumpKick");
 
-        if (facingRight)
-        {
-            if (jumpKickForce.x < 0f)
+            if (facingRight)
             {
-                jumpKickForce.x *= -1;
+                if (jumpKickForce.x < 0f)
+                {
+                    jumpKickForce.x *= -1;
+                }
+                rb.AddForce(jumpKickForce);
             }
-            rb.AddForce(jumpKickForce);
-        }
-        else
-        {
-            if (jumpKickForce.x > 0f)
+            else
             {
-                jumpKickForce.x *= -1;
+                if (jumpKickForce.x > 0f)
+                {
+                    jumpKickForce.x *= -1;
+                }
+                rb.AddForce(jumpKickForce);
             }
-            rb.AddForce(jumpKickForce);
+
+            canJumpKick = false;
+            
         }
+        
     }
 
     IEnumerator KiBlast()
@@ -195,6 +199,14 @@ public class DogControls : MonoBehaviour
             rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == TAG_FLOOR)
+        {
+            canJumpKick = true;
+        }
     }
 
 }

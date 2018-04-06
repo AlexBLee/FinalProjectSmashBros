@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]public bool facingRight = true;
 
     public float jumpVelocity = 500.0f;
-    private bool canJump = true;
+    public bool canJump = true;
 
     private string TAG_FLOOR = "Floor";
 

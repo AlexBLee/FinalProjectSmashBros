@@ -7,7 +7,7 @@ public class CatControls : MonoBehaviour
 
     float lastClicked = 0.0f;
 
-    private Animator anim;
+    public Animator anim;
     private Rigidbody2D rb;
 
     public Vector2 uppercutForce;
@@ -28,6 +28,7 @@ public class CatControls : MonoBehaviour
     void Start ()
     {
         GetComponents();
+        
 	}
 
 
@@ -99,7 +100,7 @@ public class CatControls : MonoBehaviour
         // Spinning Kick - D K
         if (Input.GetKeyDown(KeyCode.K))
         {
-            SpinKickRight();
+            SpinKick();
         }
 
     }
@@ -116,9 +117,10 @@ public class CatControls : MonoBehaviour
         anim.SetTrigger("1-2Combo(2)");
     }
 
-    void FlyingUppercut()
+    public void FlyingUppercut()
     {
         facingRight = playerMovement.facingRight;
+        
         anim.SetTrigger("SpinUppercut");
 
         if (facingRight)
@@ -144,9 +146,8 @@ public class CatControls : MonoBehaviour
         anim.SetTrigger("TwoSide");
     }
 
-    void SpinKickRight()
+    public void SpinKick()
     {
-        facingRight = playerMovement.facingRight;
         anim.SetTrigger("SpinKick");
 
         if (facingRight)

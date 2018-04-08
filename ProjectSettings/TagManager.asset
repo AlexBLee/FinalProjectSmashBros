@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Character
+  - KillZone
   layers:
   - Default
   - TransparentFX

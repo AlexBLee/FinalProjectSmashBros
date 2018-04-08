@@ -13,6 +13,7 @@ public class DogControls : MonoBehaviour
 
     private Animator anim;
     private Rigidbody2D rb;
+    
 
     public Vector2 jumpKickForce;
     public Vector2 forwardKickForce;
@@ -29,6 +30,7 @@ public class DogControls : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
+        
     }
 
     // Use this for initialization
@@ -168,6 +170,15 @@ public class DogControls : MonoBehaviour
         
     }
 
+    public void KiBlastButton()
+    {
+        if(shotCounter <= 0)
+            {
+                shotCounter = timeBetweenShots;
+                StartCoroutine(KiBlast());
+            }
+    }
+
     IEnumerator KiBlast()
     {
         anim.SetTrigger("KiBlast");
@@ -175,6 +186,7 @@ public class DogControls : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         Instantiate(blast,blastPosition.position,Quaternion.identity);
         StopCoroutine(KiBlast());
+
     }
 
     public void ForwardKick()

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveForce = 365f;
     public float maxSpeed = 5f;
 
-    public Joystick joystick;
+    private Joystick joystick;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        joystick = FindObjectOfType<FixedJoystick>();
     }
 
     // Update is called once per frame
@@ -40,12 +41,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        #if !UNITY_ANDROID && !UNITY_IPHONE && UNITY_BLACKBERRY && !UNITY_WINRT
-
-        
-
-        #endif
-
         float h = joystick.Horizontal;
         float v = joystick.Vertical;
         
@@ -56,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.right * h * moveForce);
         }
 
-        if(canJump && v > 0)
+        if(canJump && v > 0.5)
         {
             rb.AddForce(Vector2.up * jumpVelocity * v, ForceMode2D.Impulse);
             canJump = false;

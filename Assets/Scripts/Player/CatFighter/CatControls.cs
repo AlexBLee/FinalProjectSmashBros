@@ -9,9 +9,13 @@ public class CatControls : MonoBehaviour
 
     public Animator anim;
     private Rigidbody2D rb;
+    private bool canUppercut = true;
+    private bool canKick = true;
 
     public Vector2 uppercutForce;
     public Vector2 sideKickForceR;
+
+    private string TAG_FLOOR = "Floor";
 
     private bool facingRight;
 
@@ -119,26 +123,32 @@ public class CatControls : MonoBehaviour
 
     public void FlyingUppercut()
     {
-        facingRight = playerMovement.facingRight;
-        
-        anim.SetTrigger("SpinUppercut");
+        if(canUppercut)
+        {
+            facingRight = playerMovement.facingRight;
+            
+            anim.SetTrigger("SpinUppercut");
 
-        if (facingRight)
-        {
-            if (uppercutForce.x < 0f)
+            if (facingRight)
             {
-                uppercutForce.x *= -1;
+                if (uppercutForce.x < 0f)
+                {
+                    uppercutForce.x *= -1;
+                }
+                rb.AddForce(uppercutForce);
             }
-            rb.AddForce(uppercutForce);
-        }
-        else
-        {
-            if (uppercutForce.x > 0f)
+            else
             {
-                uppercutForce.x *= -1;
+                if (uppercutForce.x > 0f)
+                {
+                    uppercutForce.x *= -1;
+                }
+                rb.AddForce(uppercutForce);
             }
-            rb.AddForce(uppercutForce);
+
+            canUppercut = false;
         }
+        
     }
 
     void TwoSideAttack()
@@ -148,24 +158,42 @@ public class CatControls : MonoBehaviour
 
     public void SpinKick()
     {
-        anim.SetTrigger("SpinKick");
-
-        if (facingRight)
+        if(canKick)
         {
-            if(sideKickForceR.x < 0f)
+            anim.SetTrigger("SpinKick");
+
+            if (facingRight)
             {
-                sideKickForceR.x *= -1;
+                if(sideKickForceR.x < 0f)
+                {
+                    sideKickForceR.x *= -1;
+                }
+                rb.AddForce(sideKickForceR);
             }
-            rb.AddForce(sideKickForceR);
-        }
-        else
-        {
-            if(sideKickForceR.x > 0f)
+            else
             {
-                sideKickForceR.x *= -1;
+                if(sideKickForceR.x > 0f)
+                {
+                    sideKickForceR.x *= -1;
+                }
+                rb.AddForce(sideKickForceR);
             }
-            rb.AddForce(sideKickForceR);
+
+            canKick = false;
         }
 
+    }
+
+    public void booltrue()
+    {
+        canKick = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == TAG_FLOOR)
+        {
+            canUppercut = true;
+        }
     }
 }

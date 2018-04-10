@@ -90,26 +90,37 @@ public class CatControls : MonoBehaviour
         //}
 
         // Flying Uppercut - W K
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Keypad8))
         {
             FlyingUppercut();
         }
 
         // Two Side Attack - S K
-        if(Input.GetKeyDown(KeyCode.M))
+        if(Input.GetKeyDown(KeyCode.Keypad5))
         {
             TwoSideAttack();
         }
 
         // Spinning Kick - D K
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             SpinKick();
         }
 
     }
 
-
+    public void OneTwoCombo()
+    {
+        if (Time.time - lastClicked < 0.5)
+            {
+                OneTwoComboSecondHit();
+            }
+            else
+            {
+                OneTwoComboFirstHit();
+            }
+            lastClicked = Time.time;
+    }
 
     void OneTwoComboFirstHit()
     {
@@ -151,7 +162,7 @@ public class CatControls : MonoBehaviour
         
     }
 
-    void TwoSideAttack()
+    public void TwoSideAttack()
     {
         anim.SetTrigger("TwoSide");
     }
@@ -160,6 +171,8 @@ public class CatControls : MonoBehaviour
     {
         if(canKick)
         {
+            facingRight = playerMovement.facingRight;
+
             anim.SetTrigger("SpinKick");
 
             if (facingRight)

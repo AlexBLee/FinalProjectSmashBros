@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class CatHealth : MonoBehaviour
 {
     private string TAG_CHARACTER = "Character";
     private string TAG_BLAST = "Blast";

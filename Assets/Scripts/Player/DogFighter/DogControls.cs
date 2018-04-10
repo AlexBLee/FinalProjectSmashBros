@@ -124,6 +124,21 @@ public class DogControls : MonoBehaviour
     }
 
 
+    public void KickCombo()
+    {
+        KickComboFirstHit();
+
+        if (Time.time - lastClicked < 0.5)
+            {
+                KickComboSecondHit();
+
+            }
+            else
+            {
+                KickComboThirdHit();
+            }
+            lastClicked = Time.time;
+    }
 
     public void KickComboFirstHit()
     {

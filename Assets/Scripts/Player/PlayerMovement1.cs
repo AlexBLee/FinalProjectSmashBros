@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement1 : MonoBehaviour
 {
 
     [HideInInspector]public bool facingRight = true;
@@ -41,8 +41,42 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float h = joystick.Horizontal;
-        float v = joystick.Vertical;
+        // float h = joystick.Horizontal;
+        // float v = joystick.Vertical;
+        
+        // if (h * rb.velocity.x < maxSpeed)
+        // {
+        //     anim.SetBool("Walking", true);
+            
+        //     rb.AddForce(Vector2.right * h * moveForce);
+        // }
+
+        // if(canJump && v > 0.5)
+        // {
+        //     rb.AddForce(Vector2.up * jumpVelocity * v, ForceMode2D.Impulse);
+        //     canJump = false;
+        // }
+        
+        
+
+        // if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+        // {
+        //     rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+        //     anim.SetBool("Walking", true);
+
+        // }
+
+        // if(h == 0)
+        // {
+        //     anim.SetBool("Walking", false);
+        // }
+
+        // if (h > 0 && !facingRight)
+        //     Flip();
+
+        // else if (h < 0 && facingRight)
+        //     Flip();
+        float h = Input.GetAxis("Horizontal");
         
         if (h * rb.velocity.x < maxSpeed)
         {
@@ -51,9 +85,9 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.right * h * moveForce);
         }
 
-        if(canJump && v > 0.5)
+        if(canJump && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            rb.AddForce(Vector2.up * jumpVelocity * v, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
             canJump = false;
         }
         
@@ -76,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (h < 0 && facingRight)
             Flip();
+
         
     }
 

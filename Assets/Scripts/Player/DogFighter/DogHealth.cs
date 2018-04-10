@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class DogHealth : MonoBehaviour
 {
     private string TAG_CHARACTER = "Character";
     private string TAG_BLAST = "Blast";
@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public Vector2 damage;
 
     private PlayerMovement playerMovement;
-    private CatControls catControls;
+    private DogControls dogControls;
     
 
 	// Use this for initialization
@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        catControls = GetComponent<CatControls>();
+        dogControls = GetComponent<DogControls>();
 	}
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
@@ -35,10 +35,10 @@ public class PlayerHealth : MonoBehaviour
                 HitTakenRight();
                 anim.SetTrigger("Hit");
                 playerMovement.enabled = false;
-                catControls.enabled = false;
+                dogControls.enabled = false;
                 yield return new WaitForSeconds(0.1f);
                 playerMovement.enabled = true;
-                catControls.enabled = true;
+                dogControls.enabled = true;
                 
                 Debug.Log("hit right!");
             }
@@ -48,10 +48,10 @@ public class PlayerHealth : MonoBehaviour
                 HitTakenLeft();
                 anim.SetTrigger("Hit");
                 playerMovement.enabled = false;
-                catControls.enabled = false;
+                dogControls.enabled = false;
                 yield return new WaitForSeconds(0.1f);
                 playerMovement.enabled = true;
-                catControls.enabled = true;
+                dogControls.enabled = true;
             }
         }
         

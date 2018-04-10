@@ -7,6 +7,8 @@ TagManager:
   - Floor
   - Character
   - KillZone
+  - Blast
+  - Dog
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Background
+  - Foreground
+  - Characters
   - 
   - 
   - 

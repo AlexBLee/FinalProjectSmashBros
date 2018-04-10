@@ -6,7 +6,7 @@ public class DogManager : MonoBehaviour
 {
 	private Vector2 spawnPosition = new Vector2(0,0);
 	private string TAG_KILLZONE = "KillZone";
-    public Transform dogPosition;
+    [HideInInspector] public Transform dogPosition;
 
     void Start()
     {

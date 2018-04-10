@@ -5,6 +5,7 @@ using UnityEngine;
 public class DogControls : MonoBehaviour
 {
     bool canJumpKick = true;
+    bool canKick = true;
     string TAG_FLOOR = "Floor";
     private float shotCounter;
     public float timeBetweenShots;
@@ -84,40 +85,6 @@ public class DogControls : MonoBehaviour
         {
             ForwardKick();
         }
-
-
-        // // Flying Uppercut - W J
-        // if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.J))
-        // {
-            
-        // }
-
-        // // Two Side Attack - S J
-        // if (Input.GetKeyDown(KeyCode.S) && Input.GetKeyDown(KeyCode.J))
-        // {
-            
-        // }
-
-        // // Spinning Kick - A J
-        // if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.J))
-        // {
-            
-        // }
-
-        // // Spinning Kick - D J
-        // if (Input.GetKeyDown(KeyCode.A) && Input.GetKeyDown(KeyCode.J))
-        // {
-            
-        // }
-
-        //---------------------------------------------------------------//
-        // Heavy Attacks.
-
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    
-
-        //}
 
  
 
@@ -206,26 +173,36 @@ public class DogControls : MonoBehaviour
 
     public void ForwardKick()
     {
-        facingRight = playerMovement.facingRight;
-        anim.SetTrigger("ForwardKick");
-
-        if (facingRight)
+        if(canKick)
         {
-            if(forwardKickForce.x < 0f)
+            facingRight = playerMovement.facingRight;
+            anim.SetTrigger("ForwardKick");
+
+            if (facingRight)
             {
-                forwardKickForce.x *= -1;
+                if(forwardKickForce.x < 0f)
+                {
+                    forwardKickForce.x *= -1;
+                }
+                rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
             }
-            rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
-        }
-        else
-        {
-            if(forwardKickForce.x > 0f)
+            else
             {
-                forwardKickForce.x *= -1;
+                if(forwardKickForce.x > 0f)
+                {
+                    forwardKickForce.x *= -1;
+                }
+                rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
             }
-            rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
+            
+            canKick = false;
         }
 
+    }
+
+    public void ForwardKickCheck()
+    {
+        canKick = true;
     }
 
    

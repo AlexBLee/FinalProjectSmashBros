@@ -197,7 +197,7 @@ public class CatControls : MonoBehaviour
 
     }
 
-    public void booltrue()
+    public void SpinKickCheck()
     {
         canKick = true;
     }

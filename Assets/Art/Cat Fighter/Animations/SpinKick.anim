@@ -829,7 +829,7 @@ AnimationClip:
   m_GenerateMotionCurves: 0
   m_Events:
   - time: 0.4
-    functionName: booltrue
+    functionName: SpinKickCheck
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

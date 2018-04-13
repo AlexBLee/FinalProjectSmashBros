@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement1 : MonoBehaviour
 {
 
     [HideInInspector]public bool facingRight = true;
@@ -31,18 +31,21 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!canJump)
-            anim.SetBool("Jumping", true);
-        else
-            anim.SetBool("Jumping", false);
+        canJump = true;
+
+        // if (!canJump)
+        //     anim.SetBool("Jumping", true);
+        // else
+        //     anim.SetBool("Jumping", false);
 
 
     }
 
     void FixedUpdate()
     {
-        float h = joystick.Horizontal;
-        float v = joystick.Vertical;
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        
         
         if (h * rb.velocity.x < maxSpeed)
         {
@@ -51,9 +54,9 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.right * h * moveForce);
         }
 
-        if(canJump && v > 0.8)
+        if(canJump)
         {
-            rb.AddForce(Vector2.up * jumpVelocity * v, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpVelocity * v,  ForceMode2D.Impulse);
             canJump = false;
         }
         
@@ -88,12 +91,5 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == TAG_FLOOR)
-        {
-            canJump = true;
-        }
-    }
 
 }

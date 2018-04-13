@@ -24,7 +24,9 @@ GameObject:
   - component: {fileID: 50657799912774216}
   - component: {fileID: 95699155466001530}
   - component: {fileID: 114418782057396440}
+  - component: {fileID: 114851672845301224}
   - component: {fileID: 114622584991363498}
+  - component: {fileID: 114138649050605468}
   m_Layer: 10
   m_Name: CatGuy
   m_TagString: Player
@@ -68,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1038790306785222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.684, y: -3.2901726, z: -0.154894}
+  m_LocalPosition: {x: 2.0657222, y: -3.348187, z: -0.154894}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4655399859980478}
@@ -162,6 +164,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114138649050605468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038790306785222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 877cc34efb3d7434d87722c151e073cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
+  jumpVelocity: 15
+  canJump: 1
+  moveForce: 365
+  maxSpeed: 5
 --- !u!114 &114418782057396440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,6 +207,17 @@ MonoBehaviour:
   anim: {fileID: 0}
   uppercutForce: {x: 50, y: 900}
   sideKickForceR: {x: 2000, y: 500}
+--- !u!114 &114851672845301224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038790306785222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f05b6b5d43a294080a9ca130e24760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212207362048874862
 SpriteRenderer:
   m_ObjectHideFlags: 1

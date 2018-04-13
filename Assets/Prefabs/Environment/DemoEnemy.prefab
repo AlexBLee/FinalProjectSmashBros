@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212548934764740034}
   - component: {fileID: 61619806721623956}
   - component: {fileID: 50887689652664318}
+  - component: {fileID: 114224719737701232}
+  - component: {fileID: 114089287497923804}
   m_Layer: 0
   m_Name: DemoEnemy
   m_TagString: Untagged
@@ -37,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1771844611951078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.5483, y: -3.3811686, z: 0}
-  m_LocalScale: {x: 1, y: 5.29, z: 1}
+  m_LocalScale: {x: 1.9, y: 5.37, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,7 +55,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -87,6 +89,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &114089287497923804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771844611951078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6418019eda7bc4db6e773e4ad17ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  damage: {x: 0, y: 0}
+--- !u!114 &114224719737701232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771844611951078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a651c4fb0676e4c8b71f7f927f70d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212548934764740034
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -122,7 +148,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f1dba0cc34e66e74280af4e39f59dd9d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.72794116, g: 0.26762542, b: 0.26762542, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

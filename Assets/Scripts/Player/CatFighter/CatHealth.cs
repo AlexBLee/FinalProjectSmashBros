@@ -63,7 +63,7 @@ public class CatHealth : MonoBehaviour
     {
         health += 10.0f;
 
-        damage = new Vector2(health * -10, health * -10);
+        damage = new Vector2(health * -10, health * 10);
 
         
         Debug.Log(damage);

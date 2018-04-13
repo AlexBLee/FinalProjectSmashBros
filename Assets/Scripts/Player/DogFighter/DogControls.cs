@@ -50,7 +50,7 @@ public class DogControls : MonoBehaviour
         // Light attacks
 
         // OneTwo Combo - L
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             if (Time.time - lastClicked < 0.5)
             {
@@ -64,13 +64,13 @@ public class DogControls : MonoBehaviour
         }
 
         // Flying Uppercut - W K
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             JumpKick();
         }
 
         // Two Side Attack - S K
-        if(Input.GetKeyDown(KeyCode.M))
+        if(Input.GetKeyDown(KeyCode.Colon))
         {
 
             if(shotCounter <= 0)

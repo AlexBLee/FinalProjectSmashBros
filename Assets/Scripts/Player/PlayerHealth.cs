@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private CatControls catControls;
+    private DogControls dogControls;
     
 
 	// Use this for initialization
@@ -23,7 +24,16 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        catControls = GetComponent<CatControls>();
+
+        if(gameObject.name == "CatFighter")
+        {
+            catControls = GetComponent<CatControls>();
+        }
+
+        if(gameObject.name == "DogFighter")
+        {
+            dogControls = GetComponent<DogControls>();
+        }
 	}
 
     private IEnumerator OnTriggerEnter2D(Collider2D collision)
@@ -33,12 +43,9 @@ public class PlayerHealth : MonoBehaviour
             if (collision.transform.position.x > transform.position.x)
             {
                 HitTakenRight();
-                anim.SetTrigger("Hit");
-                playerMovement.enabled = false;
-                catControls.enabled = false;
+                DisableControls();
                 yield return new WaitForSeconds(0.1f);
-                playerMovement.enabled = true;
-                catControls.enabled = true;
+                EnableControls();
                 
                 Debug.Log("hit right!");
             }
@@ -46,12 +53,9 @@ public class PlayerHealth : MonoBehaviour
             if (collision.transform.position.x < transform.position.x)
             {
                 HitTakenLeft();
-                anim.SetTrigger("Hit");
-                playerMovement.enabled = false;
-                catControls.enabled = false;
+                DisableControls();
                 yield return new WaitForSeconds(0.1f);
-                playerMovement.enabled = true;
-                catControls.enabled = true;
+                EnableControls();
             }
         }
         
@@ -59,11 +63,41 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
+    void DisableControls()
+    {
+        playerMovement.enabled = false;
+        if(catControls != null)
+        {
+            catControls.enabled = false;
+        }
+
+        if(dogControls != null)
+        {
+            dogControls.enabled = false;
+        }
+    }
+
+    void EnableControls()
+    {
+        playerMovement.enabled = true;
+        if(catControls != null)
+        {
+            catControls.enabled = true;
+        }
+
+        if(dogControls != null)
+        {
+            dogControls.enabled = true;
+        }
+    }
+
     void HitTakenRight()
     {
+        anim.SetTrigger("Hit");
+        
         health += 10.0f;
 
-        damage = new Vector2(health * -10, health * -10);
+        damage = new Vector2(health * -10, health * 10);
 
         
         Debug.Log(damage);
@@ -73,6 +107,8 @@ public class PlayerHealth : MonoBehaviour
 
     void HitTakenLeft()
     {
+        anim.SetTrigger("Hit");
+        
         health += 10.0f;
 
         damage = new Vector2(health * 10, health * 10);

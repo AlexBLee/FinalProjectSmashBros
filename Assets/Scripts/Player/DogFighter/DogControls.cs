@@ -155,10 +155,10 @@ public class DogControls : MonoBehaviour
     public void KiBlastButton()
     {
         if(shotCounter <= 0)
-            {
-                shotCounter = timeBetweenShots;
-                StartCoroutine(KiBlast());
-            }
+        {
+            shotCounter = timeBetweenShots;
+            StartCoroutine(KiBlast());
+        }
     }
 
     IEnumerator KiBlast()

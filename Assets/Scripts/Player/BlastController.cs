@@ -7,6 +7,7 @@ public class BlastController : MonoBehaviour
     public float speed = 0.5f;
     private PlayerMovement playerMovement;
     private Rigidbody2D rBody;
+    private Hit hit;
     
 
 	// Use this for initialization
@@ -14,6 +15,7 @@ public class BlastController : MonoBehaviour
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
         rBody = GetComponent<Rigidbody2D>();
+        hit = GetComponent<Hit>();
         shootBullet();
 
         
@@ -41,7 +43,8 @@ public class BlastController : MonoBehaviour
     {
         if (collision.gameObject)
         {
-            Debug.Log("hi!");
+            hit.SetDamage(3);
+            hit.SetKnockback(new Vector2(5,0));
             Destroy(gameObject);
         }
     }

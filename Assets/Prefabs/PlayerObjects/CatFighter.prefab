@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114068900067350670}
   - component: {fileID: 114619691769035702}
   - component: {fileID: 114187358947500324}
+  - component: {fileID: 114300673984075286}
   m_Layer: 10
   m_Name: CatFighter
   m_TagString: Player
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258905793114654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 31.389423, y: -1.6230845, z: -0.154894}
+  m_LocalPosition: {x: -0.66, y: -3.11, z: -0.154894}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4269552104266254}
@@ -189,6 +190,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
+--- !u!114 &114300673984075286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258905793114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2087a758a3e1b67418c167e2c591b3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  knockback: {x: 0, y: 0}
 --- !u!114 &114582490705621976
 MonoBehaviour:
   m_ObjectHideFlags: 1

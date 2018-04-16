@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     private CatControls catControls;
     private DogControls dogControls;
     
+    private Hit hit;
 
 	// Use this for initialization
 	void Start ()
@@ -42,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (collision.transform.position.x > transform.position.x)
             {
-                HitTakenRight();
+                HitTakenRight(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
                 DisableControls();
                 yield return new WaitForSeconds(0.1f);
                 EnableControls();                
@@ -50,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (collision.transform.position.x < transform.position.x)
             {
-                HitTakenLeft();
+                HitTakenLeft(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
                 DisableControls();
                 yield return new WaitForSeconds(0.1f);
                 EnableControls();
@@ -94,10 +95,12 @@ public class PlayerHealth : MonoBehaviour
         anim.SetTrigger("Hit");
         health += damage;
 
-        float x = ((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f);
-        Vector2 totalKnockback = new Vector2(-x,x) + knockback;
+        float x = (((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) * 1.0f));
+        Vector2 totalKnockback = new Vector2(-(x+knockback.x),(x+knockback.y));
 
         Debug.Log(x);
+        Debug.Log("RIGHT : " + totalKnockback);
+        
         rb.AddForce(totalKnockback);
     }
 
@@ -107,9 +110,9 @@ public class PlayerHealth : MonoBehaviour
         health += damage;
 
         float x = ((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f);
-        Vector2 totalKnockback = new Vector2(x,x) + knockback;
-
+        Vector2 totalKnockback = new Vector2((x+knockback.x),(x+knockback.y));
         Debug.Log(x);
+        Debug.Log("LEFT : " + totalKnockback);
         rb.AddForce(totalKnockback);
     }
 

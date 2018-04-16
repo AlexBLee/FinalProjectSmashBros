@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114885829048874100}
   - component: {fileID: 50345472293329210}
   - component: {fileID: 61289013072261754}
+  - component: {fileID: 114016932539012788}
   m_Layer: 10
   m_Name: Blast
   m_TagString: Blast
@@ -88,6 +89,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14571762, y: 0.13741851}
   m_EdgeRadius: 0
+--- !u!114 &114016932539012788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703489262586198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2087a758a3e1b67418c167e2c591b3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  knockback: {x: 0, y: 0}
 --- !u!114 &114885829048874100
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hit 
+public class Hit : MonoBehaviour
  {
 	 public float damage;
 	 public Vector2 knockback;
@@ -13,22 +13,22 @@ public class Hit
 		knockback = kback;
 	}
 
-	float GetDamage(float dmg)
+	public float GetDamage()
     {
         return damage;
     }
 
-    Vector2 GetKnockback(Vector2 knockback)
+    public Vector2 GetKnockback()
     {
         return knockback;
     }
 
-	void SetDamage(float dmg)
+	public void SetDamage(float dmg)
 	{
 		damage = dmg;
 	}
 
-	void SetKnockback(Vector2 kback)
+	public void SetKnockback(Vector2 kback)
 	{
 		knockback = kback;
 	}

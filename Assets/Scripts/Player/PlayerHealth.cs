@@ -45,9 +45,7 @@ public class PlayerHealth : MonoBehaviour
                 HitTakenRight();
                 DisableControls();
                 yield return new WaitForSeconds(0.1f);
-                EnableControls();
-                
-                Debug.Log("hit right!");
+                EnableControls();                
             }
 
             if (collision.transform.position.x < transform.position.x)
@@ -91,30 +89,29 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void HitTakenRight()
+    void HitTakenRight(float damage, Vector2 knockback)
     {
         anim.SetTrigger("Hit");
-        
-        health += 10.0f;
+        health += damage;
 
-        damage = new Vector2(health * -10, health * 10);
+        float x = ((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f);
+        Vector2 totalKnockback = new Vector2(-x,x) + knockback;
 
-        
-        Debug.Log(damage);
-
-        rb.AddForce(damage);
+        Debug.Log(x);
+        rb.AddForce(totalKnockback);
     }
 
-    void HitTakenLeft()
+    void HitTakenLeft(float damage, Vector2 knockback)
     {
         anim.SetTrigger("Hit");
-        
-        health += 10.0f;
+        health += damage;
 
-        damage = new Vector2(health * 10, health * 10);
+        float x = ((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f);
+        Vector2 totalKnockback = new Vector2(x,x) + knockback;
 
-        Debug.Log(damage);
-
-        rb.AddForce(damage);
+        Debug.Log(x);
+        rb.AddForce(totalKnockback);
     }
+
+    
 }

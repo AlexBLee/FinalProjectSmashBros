@@ -32,9 +32,9 @@ public class BlastController : MonoBehaviour
     void shootBullet()
     {
         if (playerMovement.facingRight != true)
-				rBody.velocity += (new Vector2(-100,0) * Time.deltaTime * speed);
-			else
-				rBody.velocity += (new Vector2(100,0) * Time.deltaTime * speed);
+            rBody.velocity += (new Vector2(-100,0) * Time.deltaTime * speed);
+        else
+            rBody.velocity += (new Vector2(100,0) * Time.deltaTime * speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

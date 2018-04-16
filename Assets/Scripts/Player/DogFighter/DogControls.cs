@@ -22,6 +22,8 @@ public class DogControls : MonoBehaviour
 	public GameObject blast;
 	public Transform blastPosition;
 
+    
+
     private bool facingRight;
 
     private PlayerMovement playerMovement;
@@ -96,33 +98,39 @@ public class DogControls : MonoBehaviour
         KickComboFirstHit();
 
         if (Time.time - lastClicked < 0.5)
-            {
-                KickComboSecondHit();
+        {
+            KickComboSecondHit();
 
-            }
-            else
-            {
-                KickComboThirdHit();
-            }
-            lastClicked = Time.time;
+        }
+        else
+        {
+            KickComboThirdHit();
+        }
+        
+        lastClicked = Time.time;
     }
 
-    public void KickComboFirstHit()
+    public Hit KickComboFirstHit()
     {
         anim.SetTrigger("KickCombo(0)");
+        return new Hit(5,new Vector2(20,5));
     }
 
-    public void KickComboSecondHit()
+    public Hit KickComboSecondHit()
     {
         anim.SetTrigger("KickCombo(1)");
+        return new Hit(5,new Vector2(20,5));
+        
     }
 
-	public void KickComboThirdHit()
+	public Hit KickComboThirdHit()
     {
         anim.SetTrigger("KickCombo(2)");
+        return new Hit(8,new Vector2(50,10));
+        
     }
 
-    public void JumpKick()
+    public Hit JumpKick()
     {
         if(canJumpKick)
         {
@@ -149,8 +157,11 @@ public class DogControls : MonoBehaviour
             canJumpKick = false;
             
         }
+
+        return new Hit(16,new Vector2(0,100));
         
     }
+    
 
     public void KiBlastButton()
     {

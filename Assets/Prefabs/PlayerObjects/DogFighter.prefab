@@ -234,8 +234,8 @@ MonoBehaviour:
   timeBetweenShots: 0.7
   jumpKickForce: {x: 50, y: 900}
   forwardKickForce: {x: 50000, y: 6}
-  jumpKickKnockback: {x: 10, y: 800}
-  forwardKickKnockback: {x: 900, y: 200}
+  jumpKickKnockback: {x: 10, y: 350}
+  forwardKickKnockback: {x: 500, y: 200}
   kickKnockback: {x: 50, y: 0}
   blast: {fileID: 1703489262586198, guid: d197eee2f6e3b564a8eb554bb4c3a1f5, type: 2}
   blastPosition: {fileID: 4678392724319034}

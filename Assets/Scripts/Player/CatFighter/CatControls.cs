@@ -43,7 +43,7 @@ public class CatControls : MonoBehaviour
         // Light attacks
 
         // OneTwo Combo - L
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Keypad4))
         {
             if (Time.time - lastClicked < 0.5)
             {
@@ -90,19 +90,19 @@ public class CatControls : MonoBehaviour
         //}
 
         // Flying Uppercut - W K
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Keypad8))
         {
             FlyingUppercut();
         }
 
         // Two Side Attack - S K
-        if(Input.GetKeyDown(KeyCode.Colon))
+        if(Input.GetKeyDown(KeyCode.Keypad5))
         {
             TwoSideAttack();
         }
 
         // Spinning Kick - D K
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             SpinKick();
         }

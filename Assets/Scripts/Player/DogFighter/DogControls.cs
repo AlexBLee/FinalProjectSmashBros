@@ -19,6 +19,10 @@ public class DogControls : MonoBehaviour
     public Vector2 jumpKickForce;
     public Vector2 forwardKickForce;
 
+    public Vector2 jumpKickKnockback;
+    public Vector2 forwardKickKnockback;
+    public Vector2 kickKnockback;
+    
 	public GameObject blast;
 	public Transform blastPosition;
 
@@ -55,7 +59,7 @@ public class DogControls : MonoBehaviour
         // Light attacks
 
         // OneTwo Combo - L
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             if (Time.time - lastClicked < 0.5)
             {
@@ -69,13 +73,13 @@ public class DogControls : MonoBehaviour
         }
 
         // Flying Uppercut - W K
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             JumpKick();
         }
 
         // Two Side Attack - S K
-        if(Input.GetKeyDown(KeyCode.Colon))
+        if(Input.GetKeyDown(KeyCode.K))
         {
 
             if(shotCounter <= 0)
@@ -86,7 +90,7 @@ public class DogControls : MonoBehaviour
         }
 
         // Spinning Kick - D K
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             ForwardKick();
         }
@@ -116,20 +120,28 @@ public class DogControls : MonoBehaviour
     public void KickComboFirstHit()
     {
         anim.SetTrigger("KickCombo(0)");
-        hit.SetDamage(5000);
-        hit.SetKnockback(new Vector2(1000,1000));
+        hit.SetDamage(4);
+        hit.SetKnockback(kickKnockback);
         
     }
 
     public void KickComboSecondHit()
     {
         anim.SetTrigger("KickCombo(1)");
+        hit.SetDamage(4);
+        hit.SetKnockback(kickKnockback);
+        
+        
         
     }
 
 	public void KickComboThirdHit()
     {
         anim.SetTrigger("KickCombo(2)");
+        hit.SetDamage(4);
+        hit.SetKnockback(kickKnockback);
+        
+        
         
     }
 
@@ -162,7 +174,7 @@ public class DogControls : MonoBehaviour
         }
 
         hit.SetDamage(10);
-        hit.SetKnockback(new Vector2(10,1000));        
+        hit.SetKnockback(jumpKickKnockback);        
     }
     
 
@@ -211,8 +223,8 @@ public class DogControls : MonoBehaviour
             
             canKick = false;
         }
-        hit.SetDamage(16);
-        hit.SetKnockback(new Vector2(500,200));
+        hit.SetDamage(5);
+        hit.SetKnockback(forwardKickKnockback);
         
 
     }

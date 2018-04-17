@@ -44,7 +44,7 @@ public class BlastController : MonoBehaviour
         if (collision.gameObject)
         {
             hit.SetDamage(3);
-            hit.SetKnockback(new Vector2(5,0));
+            hit.SetKnockback(new Vector2(125,0));
             Destroy(gameObject);
         }
     }

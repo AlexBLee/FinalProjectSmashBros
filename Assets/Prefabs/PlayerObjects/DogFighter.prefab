@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 114530950690870158}
   - component: {fileID: 114266133937951292}
   - component: {fileID: 114253687059005334}
-  - component: {fileID: 114742857793967654}
-  - component: {fileID: 114763535126959346}
+  - component: {fileID: 114793880929589618}
+  - component: {fileID: 114769086902090524}
   m_Layer: 10
   m_Name: DogFighter
   m_TagString: Player
@@ -236,18 +236,6 @@ MonoBehaviour:
   forwardKickForce: {x: 50000, y: 6}
   blast: {fileID: 1703489262586198, guid: d197eee2f6e3b564a8eb554bb4c3a1f5, type: 2}
   blastPosition: {fileID: 4678392724319034}
---- !u!114 &114742857793967654
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1802695048475120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795072e2a074d6443a9c5731a3f0be42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 0}
 --- !u!114 &114746342382301756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,7 +252,7 @@ MonoBehaviour:
   canJump: 1
   moveForce: 365
   maxSpeed: 5
---- !u!114 &114763535126959346
+--- !u!114 &114769086902090524
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -272,7 +260,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1802695048475120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2087a758a3e1b67418c167e2c591b3dd, type: 3}
+  m_Script: {fileID: 11500000, guid: ecb8077c1a5aee245880fa5885251b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+--- !u!114 &114793880929589618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802695048475120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313e5d891ec4aec4aa4ef405403fd887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0

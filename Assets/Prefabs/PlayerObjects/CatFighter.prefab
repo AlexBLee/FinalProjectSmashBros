@@ -27,8 +27,8 @@ GameObject:
   - component: {fileID: 114679685687262378}
   - component: {fileID: 114068900067350670}
   - component: {fileID: 114619691769035702}
-  - component: {fileID: 114187358947500324}
-  - component: {fileID: 114300673984075286}
+  - component: {fileID: 114888371261465102}
+  - component: {fileID: 114925713346685008}
   m_Layer: 10
   m_Name: CatFighter
   m_TagString: Player
@@ -178,31 +178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catPosition: {fileID: 0}
---- !u!114 &114187358947500324
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258905793114654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795072e2a074d6443a9c5731a3f0be42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 0}
---- !u!114 &114300673984075286
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258905793114654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2087a758a3e1b67418c167e2c591b3dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  knockback: {x: 0, y: 0}
 --- !u!114 &114582490705621976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +221,31 @@ MonoBehaviour:
   anim: {fileID: 0}
   uppercutForce: {x: 50, y: 900}
   sideKickForceR: {x: 2000, y: 500}
+--- !u!114 &114888371261465102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258905793114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313e5d891ec4aec4aa4ef405403fd887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  knockback: {x: 0, y: 0}
+--- !u!114 &114925713346685008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258905793114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecb8077c1a5aee245880fa5885251b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!212 &212719571458160220
 SpriteRenderer:
   m_ObjectHideFlags: 1

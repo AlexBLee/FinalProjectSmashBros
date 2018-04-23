@@ -61,7 +61,7 @@ public class DogControls : MonoBehaviour
         //OneTwo Combo - L
         if (Input.GetKeyDown(KeyCode.O))
         {
-            if (Time.time - lastClicked < 0.5)
+            if (Time.time - lastClicked < 0.4)
             {
                 KickComboFirstHit();
             }

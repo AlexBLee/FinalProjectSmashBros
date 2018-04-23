@@ -81,7 +81,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.enabled = true;
         if(catControls != null)
         {
-            //catControls.enabled = true;
+            catControls.enabled = true;
         }
 
         if(dogControls != null)

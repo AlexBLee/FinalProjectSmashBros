@@ -58,7 +58,7 @@ public class DogControls : MonoBehaviour
         //---------------------------------------------------------------//
         // Light attacks
 
-        // OneTwo Combo - L
+        //OneTwo Combo - L
         if (Input.GetKeyDown(KeyCode.O))
         {
             if (Time.time - lastClicked < 0.5)

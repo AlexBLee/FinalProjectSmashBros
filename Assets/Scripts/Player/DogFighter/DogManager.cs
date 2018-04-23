@@ -2,26 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DogManager : MonoBehaviour 
+public class DogManager : MonoBehaviour
 {
 	private Vector2 spawnPosition = new Vector2(0,0);
 	private string TAG_KILLZONE = "KillZone";
+    private int lives = 5;
+    private Rigidbody2D rb;
     [HideInInspector] public Transform dogPosition;
     private PlayerHealth playerHealth;
 
     void Start()
     {
         dogPosition = GetComponent<Transform>();
-        playerHealth = GetComponent<PlayerHealth>();
+        playerHealth = GetComponent<PlayerHealth>();   
+        rb = GetComponent<Rigidbody2D>();     
         
     }
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    void Update()
+    {
+        if(lives <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+	private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == TAG_KILLZONE)
         {
-            transform.position = spawnPosition;
             playerHealth.health = 0;
+            --lives;
+            yield return new WaitForSeconds(2);
+            rb.velocity = new Vector2(0,0);
+            transform.position = spawnPosition;
+            Debug.Log(lives);
         }
     }
+
+
 }

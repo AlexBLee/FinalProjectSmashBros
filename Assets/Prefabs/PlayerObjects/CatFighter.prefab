@@ -184,7 +184,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258905793114654}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 147749e206291694f94340129bb12c00, type: 3}
   m_Name: 
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 95064213010158422}
   uppercutForce: {x: 50, y: 900}
-  sideKickForceR: {x: 2000, y: 500}
+  sideKickForceR: {x: 300, y: 500}
 --- !u!114 &114888371261465102
 MonoBehaviour:
   m_ObjectHideFlags: 1

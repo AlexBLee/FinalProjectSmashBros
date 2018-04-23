@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class DogManager : MonoBehaviour
 {
-	private Vector2 spawnPosition = new Vector2(0,0);
+	public Transform spawnPosition;
 	private string TAG_KILLZONE = "KillZone";
+	private string TAG_PLATFORM = "Platform";
     private int lives = 5;
     private Rigidbody2D rb;
     [HideInInspector] public Transform dogPosition;
     private PlayerHealth playerHealth;
+    public Animator anim;
+    public Platforms platforms;
 
     void Start()
     {
@@ -33,12 +36,39 @@ public class DogManager : MonoBehaviour
         {
             playerHealth.health = 0;
             --lives;
-            yield return new WaitForSeconds(2);
-            rb.velocity = new Vector2(0,0);
-            transform.position = spawnPosition;
-            Debug.Log(lives);
+            rb.velocity = new Vector2(0,0);            
+            yield return new WaitForSeconds(1);
+            transform.position = spawnPosition.position;
+            anim.SetTrigger("IsDead");
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == TAG_PLATFORM)
+        {
+            transform.SetParent(collision.gameObject.transform);
+        }
+    }
+
+    IEnumerator OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == TAG_PLATFORM)
+        {
+            yield return new WaitForSeconds(1);
+            transform.parent = null;
+
+            if(platforms.done == true)
+            {
+                anim.SetTrigger("IsIdle");
+                platforms.SetFalse();
+            }
+
+
+            
+        }
+    }
+    
 
 
 }

@@ -9,6 +9,7 @@ TagManager:
   - KillZone
   - Blast
   - Dog
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Background
   - Foreground
   - Characters
-  - 
+  - Colliders
   - 
   - 
   - 

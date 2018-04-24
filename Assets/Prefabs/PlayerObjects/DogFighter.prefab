@@ -40,8 +40,8 @@ GameObject:
   - component: {fileID: 95436521287431974}
   - component: {fileID: 114746342382301756}
   - component: {fileID: 114530950690870158}
-  - component: {fileID: 114266133937951292}
   - component: {fileID: 114253687059005334}
+  - component: {fileID: 114870020417840180}
   - component: {fileID: 114793880929589618}
   - component: {fileID: 114769086902090524}
   m_Layer: 10
@@ -208,21 +208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   damage: {x: 0, y: 0}
---- !u!114 &114266133937951292
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1802695048475120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3abd6c1d59431d34b9ed796d25b9ba64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPosition: {fileID: 0}
-  dogPosition: {fileID: 4186088583667720}
-  anim: {fileID: 0}
-  platforms: {fileID: 0}
 --- !u!114 &114530950690870158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
+  text2: {fileID: 0}
 --- !u!114 &114793880929589618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,6 +269,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockback: {x: 0, y: 0}
+--- !u!114 &114870020417840180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802695048475120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1fd9292ca310a42bb2f862d1ed1892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platforms: {fileID: 0}
+  spawnPosition: {fileID: 0}
+  anim: {fileID: 0}
+  lives: 5
 --- !u!212 &212416234537557488
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -14,7 +14,6 @@ public class PlayerHealth : MonoBehaviour
     public Vector2 damage;
 
     private PlayerMovement playerMovement;
-    private PlayerMovement2 playerMovement2;
     
     private CatControls catControls;
     private DogControls dogControls;

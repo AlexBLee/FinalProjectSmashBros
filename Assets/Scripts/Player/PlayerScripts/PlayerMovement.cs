@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement1 : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
+    private bool player1 = false;
+    private bool player2 = false;
+
+    private float h = 0.0f;
+    private float h2 = 0.0f;
+    
 
     [HideInInspector]public bool facingRight = true;
 
@@ -14,7 +20,7 @@ public class PlayerMovement1 : MonoBehaviour
     public float moveForce = 365f;
     public float maxSpeed = 5f;
 
-    private Joystick joystick;
+    //private Joystick joystick;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -25,28 +31,38 @@ public class PlayerMovement1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        joystick = FindObjectOfType<FixedJoystick>();
+        //joystick = FindObjectOfType<FixedJoystick>();
+
+        if(gameObject.name == "DogFighter")
+        {
+            player1 = true;
+        }
+        else if(gameObject.name == "CatFighter")
+        {
+            player2 = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        canJump = true;
-
-        // if (!canJump)
-        //     anim.SetBool("Jumping", true);
-        // else
-        //     anim.SetBool("Jumping", false);
-
-
+        if (!canJump)
+            anim.SetBool("Jumping", true);
+        else
+            anim.SetBool("Jumping", false);
     }
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        //float h = joystick.Horizontal;
+        //float v = joystick.Vertical;
+
+        if(player1)
+            h = Input.GetAxis("Horizontal");
         
-        
+        if(player2)
+            h = Input.GetAxis("Horizontal1");
+
         if (h * rb.velocity.x < maxSpeed)
         {
             anim.SetBool("Walking", true);
@@ -54,12 +70,11 @@ public class PlayerMovement1 : MonoBehaviour
             rb.AddForce(Vector2.right * h * moveForce);
         }
 
-        if(canJump)
+        if(canJump && Input.GetKey(KeyCode.W)) //&& v > 0.8)
         {
-            rb.AddForce(Vector2.up * jumpVelocity * v,  ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
             canJump = false;
         }
-        
         
 
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
@@ -91,5 +106,12 @@ public class PlayerMovement1 : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == TAG_FLOOR)
+        {
+            canJump = true;
+        }
+    }
 
 }

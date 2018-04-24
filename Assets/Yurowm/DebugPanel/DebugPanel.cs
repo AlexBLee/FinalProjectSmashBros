@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#pragma warning disable 0414
+#pragma warning disable 0618
+
 
 //[ExecuteInEditMode]
 public class DebugPanel : MonoBehaviour {

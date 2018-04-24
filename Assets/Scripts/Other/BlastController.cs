@@ -13,7 +13,7 @@ public class BlastController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement = GameObject.Find("DogFighter").GetComponent<PlayerMovement>();
         rBody = GetComponent<Rigidbody2D>();
         hit = GetComponent<Hit>();
         shootBullet();

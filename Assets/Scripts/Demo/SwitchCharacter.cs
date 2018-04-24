@@ -14,8 +14,8 @@ public class SwitchCharacter : MonoBehaviour
 	public Transform spawnPosition;
 	public Transform switchPosition;
 
-	private DogManager dogManager;
-	private CatManager catManager;
+	//private DogManager dogManager;
+	//private CatManager catManager;
 
 	private bool dogActive = true;
 	private bool catActive = false;
@@ -34,8 +34,8 @@ public class SwitchCharacter : MonoBehaviour
 
 	void Start()
 	{
-		dogManager = FindObjectOfType<DogManager>();
-		catManager = FindObjectOfType<CatManager>();
+		// dogManager = FindObjectOfType<DogManager>();
+		// catManager = FindObjectOfType<CatManager>();
 		
 		catButtonA.SetActive(false);
 		catButtonB.SetActive(false);
@@ -53,8 +53,8 @@ public class SwitchCharacter : MonoBehaviour
 		{
 			dogActive = false;
 			catActive = true;
-			dogManager.dogPosition.position = switchPosition.position;
-			catManager.catPosition.position = spawnPosition.position;
+			// dogManager.dogPosition.position = switchPosition.position;
+			// catManager.catPosition.position = spawnPosition.position;
 
 			catButtonA.SetActive(true);
 			catButtonB.SetActive(true);
@@ -72,8 +72,8 @@ public class SwitchCharacter : MonoBehaviour
 		{	
 			catActive = false;
 			dogActive = true;
-			catManager.catPosition.position = switchPosition.position;
-			dogManager.dogPosition.position = spawnPosition.position;
+			// catManager.catPosition.position = switchPosition.position;
+			// dogManager.dogPosition.position = spawnPosition.position;
 
 			dogButtonA.SetActive(true);
 			dogButtonB.SetActive(true);

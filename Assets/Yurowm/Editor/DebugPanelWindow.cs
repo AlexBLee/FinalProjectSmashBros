@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+#pragma warning disable 0414
+
 
 public class DebugPanelWindow : EditorWindow {
 

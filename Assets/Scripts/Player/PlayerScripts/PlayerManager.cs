@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DogManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour 
 {
-	public Transform spawnPosition;
 	private string TAG_KILLZONE = "KillZone";
 	private string TAG_PLATFORM = "Platform";
-    public int lives = 5;
-    private Rigidbody2D rb;
-    [HideInInspector] public Transform dogPosition;
-    private PlayerHealth playerHealth;
-    public Animator anim;
+
     public Platforms platforms;
+	public Transform spawnPosition;
+
+    private Rigidbody2D rb;
+    public Animator anim;
+
+    private PlayerHealth playerHealth;
+    public int lives = 5;
 
     void Start()
     {
-        dogPosition = GetComponent<Transform>();
         playerHealth = GetComponent<PlayerHealth>();   
         rb = GetComponent<Rigidbody2D>();     
-        
     }
 
     void Update()
@@ -66,7 +66,5 @@ public class DogManager : MonoBehaviour
 
         }
     }
-    
-
-
 }
+

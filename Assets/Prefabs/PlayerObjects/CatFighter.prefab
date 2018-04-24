@@ -24,13 +24,11 @@ GameObject:
   - component: {fileID: 50767480818027816}
   - component: {fileID: 95064213010158422}
   - component: {fileID: 114679685687262378}
-  - component: {fileID: 114068900067350670}
   - component: {fileID: 114619691769035702}
   - component: {fileID: 114888371261465102}
   - component: {fileID: 114925713346685008}
-  - component: {fileID: 114084034208847222}
-  - component: {fileID: 114341601901161478}
-  - component: {fileID: 114394403363594730}
+  - component: {fileID: 114149412341765236}
+  - component: {fileID: 114564865241342796}
   m_Layer: 10
   m_Name: CatFighter
   m_TagString: Player
@@ -73,9 +71,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258905793114654}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15, y: -3.6957145, z: -0.154894}
-  m_LocalScale: {x: -5, y: 5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.15, y: -3.11, z: -0.154894}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4269552104266254}
   m_Father: {fileID: 0}
@@ -168,7 +166,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114068900067350670
+--- !u!114 &114149412341765236
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -176,15 +174,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1258905793114654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b09ab3b5fc9fc004b80364b9472d55b7, type: 3}
+  m_Script: {fileID: 11500000, guid: fb1fd9292ca310a42bb2f862d1ed1892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {fileID: 0}
-  lives: 5
-  catPosition: {fileID: 4942280953171860}
-  anim: {fileID: 0}
   platforms: {fileID: 0}
---- !u!114 &114084034208847222
+  spawnPosition: {fileID: 0}
+  anim: {fileID: 0}
+  lives: 5
+--- !u!114 &114564865241342796
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -192,40 +189,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1258905793114654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 771aed46cb19313488a5628680f3b72d, type: 3}
+  m_Script: {fileID: 11500000, guid: 147749e206291694f94340129bb12c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 0
+  facingRight: 1
   jumpVelocity: 15
   canJump: 1
   moveForce: 365
   maxSpeed: 5
---- !u!114 &114341601901161478
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258905793114654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 313e5d891ec4aec4aa4ef405403fd887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  knockback: {x: 0, y: 0}
---- !u!114 &114394403363594730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258905793114654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 313e5d891ec4aec4aa4ef405403fd887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  knockback: {x: 0, y: 0}
 --- !u!114 &114619691769035702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,7 +224,7 @@ MonoBehaviour:
   anim: {fileID: 95064213010158422}
   uppercutForce: {x: 50, y: 900}
   sideKickForceR: {x: -300, y: 500}
-  uppercutKnockback: {x: 0, y: 800}
+  uppercutKnockback: {x: 0, y: 10}
   spinKickKnockback: {x: 500, y: 0}
   twoSideKnockback: {x: 600, y: 0}
   punchKnockback: {x: 300, y: 0}

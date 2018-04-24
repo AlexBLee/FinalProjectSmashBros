@@ -26,13 +26,13 @@ public class CatControls : MonoBehaviour
 
     private Hit hit;
 
-    private PlayerMovement2 playerMovement2;
+    private PlayerMovement playerMovement;
 
     void GetComponents()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        playerMovement2 = GetComponent<PlayerMovement2>();
+        playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
     }
 
@@ -118,7 +118,7 @@ public class CatControls : MonoBehaviour
     {
         if(canUppercut)
         {
-            facingRight = playerMovement2.facingRight;
+            facingRight = playerMovement.facingRight;
             
             anim.SetTrigger("SpinUppercut");
 
@@ -158,7 +158,7 @@ public class CatControls : MonoBehaviour
     {
         if(canKick)
         {
-            facingRight = playerMovement2.facingRight;
+            facingRight = playerMovement.facingRight;
 
             anim.SetTrigger("SpinKick");
 

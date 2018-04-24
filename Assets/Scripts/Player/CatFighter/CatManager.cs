@@ -4,24 +4,66 @@ using UnityEngine;
 
 public class CatManager : MonoBehaviour 
 {
-	private Vector2 spawnPosition = new Vector2(0,0);
-	private string TAG_KILLZONE = "KillZone";
-    public Transform catPosition;
+	public Transform spawnPosition;
+    private string TAG_KILLZONE = "KillZone";
+	private string TAG_PLATFORM = "Platform";
+    public int lives = 5;
+    private Rigidbody2D rb;
+    [HideInInspector]public Transform catPosition;
     private PlayerHealth playerHealth;
+    public Animator anim;
+    public Platforms platforms;
 
     void Start()
     {
         catPosition = GetComponent<Transform>();
-        playerHealth = GetComponent<PlayerHealth>();
+        playerHealth = GetComponent<PlayerHealth>();   
+        rb = GetComponent<Rigidbody2D>();     
+        
     }
-    
 
-	private void OnTriggerEnter2D(Collider2D collision)
+    void Update()
+    {
+        if(lives <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+	private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == TAG_KILLZONE)
         {
-            transform.position = spawnPosition;
             playerHealth.health = 0;
+            --lives;
+            rb.velocity = new Vector2(0,0);            
+            yield return new WaitForSeconds(1);
+            transform.position = spawnPosition.position;
+            anim.SetTrigger("IsDead");
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == TAG_PLATFORM)
+        {
+            transform.SetParent(collision.gameObject.transform);
+        }
+    }
+
+    IEnumerator OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == TAG_PLATFORM)
+        {
+            yield return new WaitForSeconds(1);
+            transform.parent = null;
+
+            if(platforms.done == true)
+            {
+                anim.SetTrigger("IsIdle");
+                platforms.SetFalse();
+            }
+
         }
     }
 }

@@ -7,7 +7,7 @@ public class DogManager : MonoBehaviour
 	public Transform spawnPosition;
 	private string TAG_KILLZONE = "KillZone";
 	private string TAG_PLATFORM = "Platform";
-    private int lives = 5;
+    public int lives = 5;
     private Rigidbody2D rb;
     [HideInInspector] public Transform dogPosition;
     private PlayerHealth playerHealth;
@@ -64,8 +64,6 @@ public class DogManager : MonoBehaviour
                 platforms.SetFalse();
             }
 
-
-            
         }
     }
     

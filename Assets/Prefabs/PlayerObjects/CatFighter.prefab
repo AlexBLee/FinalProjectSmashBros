@@ -23,12 +23,14 @@ GameObject:
   - component: {fileID: 61602626071923664}
   - component: {fileID: 50767480818027816}
   - component: {fileID: 95064213010158422}
-  - component: {fileID: 114582490705621976}
   - component: {fileID: 114679685687262378}
   - component: {fileID: 114068900067350670}
   - component: {fileID: 114619691769035702}
   - component: {fileID: 114888371261465102}
   - component: {fileID: 114925713346685008}
+  - component: {fileID: 114084034208847222}
+  - component: {fileID: 114341601901161478}
+  - component: {fileID: 114394403363594730}
   m_Layer: 10
   m_Name: CatFighter
   m_TagString: Player
@@ -45,7 +47,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4269552104266254}
   - component: {fileID: 61289697894801838}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: HitCollider
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -71,9 +73,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258905793114654}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.49, y: -3.11, z: -0.154894}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.15, y: -3.6957145, z: -0.154894}
+  m_LocalScale: {x: -5, y: 5, z: 1}
   m_Children:
   - {fileID: 4269552104266254}
   m_Father: {fileID: 0}
@@ -111,7 +113,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0026476402, y: 0.024710698}
+  m_Offset: {x: 0.008197976, y: -0.12710634}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -122,7 +124,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.030990396, y: 0.043345843}
+  m_Size: {x: 0.0081360815, y: 0.011349976}
   m_EdgeRadius: 0
 --- !u!61 &61602626071923664
 BoxCollider2D:
@@ -136,18 +138,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010475603, y: 0.0016887538}
+  m_Offset: {x: 0.008830503, y: 0.0024783611}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.29}
+    oldSize: {x: 0.18, y: 0.3}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15237948, y: 0.29531723}
+  m_Size: {x: 0.15566969, y: 0.3002597}
   m_EdgeRadius: 0
 --- !u!95 &95064213010158422
 Animator:
@@ -177,8 +179,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09ab3b5fc9fc004b80364b9472d55b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPosition: {fileID: 0}
+  lives: 5
   catPosition: {fileID: 4942280953171860}
---- !u!114 &114582490705621976
+  anim: {fileID: 0}
+  platforms: {fileID: 0}
+--- !u!114 &114084034208847222
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -186,14 +192,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 1258905793114654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 147749e206291694f94340129bb12c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 771aed46cb19313488a5628680f3b72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 1
+  facingRight: 0
   jumpVelocity: 15
   canJump: 1
   moveForce: 365
   maxSpeed: 5
+--- !u!114 &114341601901161478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258905793114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313e5d891ec4aec4aa4ef405403fd887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  knockback: {x: 0, y: 0}
+--- !u!114 &114394403363594730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258905793114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313e5d891ec4aec4aa4ef405403fd887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  knockback: {x: 0, y: 0}
 --- !u!114 &114619691769035702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,7 +252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 95064213010158422}
   uppercutForce: {x: 50, y: 900}
-  sideKickForceR: {x: 300, y: 500}
+  sideKickForceR: {x: -300, y: 500}
+  uppercutKnockback: {x: 0, y: 800}
+  spinKickKnockback: {x: 500, y: 0}
+  twoSideKnockback: {x: 600, y: 0}
+  punchKnockback: {x: 300, y: 0}
 --- !u!114 &114888371261465102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
+  text2: {fileID: 0}
 --- !u!212 &212719571458160220
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -280,7 +317,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300004, guid: dc8add860f0f6f645aa11090b23923a5, type: 3}
+  m_Sprite: {fileID: 21300006, guid: dc8add860f0f6f645aa11090b23923a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

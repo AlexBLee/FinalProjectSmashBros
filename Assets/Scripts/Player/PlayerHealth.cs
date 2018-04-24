@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public Vector2 damage;
 
     private PlayerMovement playerMovement;
+    private PlayerMovement2 playerMovement2;
+    
     private CatControls catControls;
     private DogControls dogControls;
     
@@ -79,6 +81,7 @@ public class PlayerHealth : MonoBehaviour
     void EnableControls()
     {
         playerMovement.enabled = true;
+        
         if(catControls != null)
         {
             catControls.enabled = true;

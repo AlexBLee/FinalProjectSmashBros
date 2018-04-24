@@ -6,6 +6,7 @@ public class DogControls : MonoBehaviour
 {
     bool canJumpKick = true;
     bool canKick = true;
+    bool thirdKick = false;
     string TAG_FLOOR = "Floor";
     private float shotCounter;
     public float timeBetweenShots;
@@ -22,11 +23,11 @@ public class DogControls : MonoBehaviour
     public Vector2 jumpKickKnockback;
     public Vector2 forwardKickKnockback;
     public Vector2 kickKnockback;
+    private Hit hit;
     
 	public GameObject blast;
 	public Transform blastPosition;
 
-    private Hit hit;
 
     
 
@@ -59,27 +60,35 @@ public class DogControls : MonoBehaviour
         // Light attacks
 
         //OneTwo Combo - L
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.U))
         {
-            if (Time.time - lastClicked < 0.4)
-            {
-                KickComboFirstHit();
-            }
-            else
+            thirdKick = false;
+            KickComboFirstHit();
+            
+            if (Time.time - lastClicked < 0.5 && thirdKick == false)
             {
                 KickComboSecondHit();
+                thirdKick = true;              
             }
+
+            if(Time.time - lastClicked < 0.5 && thirdKick == true)
+            {
+                KickComboThirdHit();                
+                thirdKick = false;
+
+            }
+
             lastClicked = Time.time;
         }
 
         // Flying Uppercut - W K
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             JumpKick();
         }
 
         // Two Side Attack - S K
-        if(Input.GetKeyDown(KeyCode.K))
+        if(Input.GetKeyDown(KeyCode.O))
         {
 
             if(shotCounter <= 0)
@@ -90,7 +99,7 @@ public class DogControls : MonoBehaviour
         }
 
         // Spinning Kick - D K
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             ForwardKick();
         }

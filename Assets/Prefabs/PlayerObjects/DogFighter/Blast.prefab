@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+  knockback: {x: 0, y: 0}
 --- !u!114 &114885829048874100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  knockback: {x: 0, y: 0}
 --- !u!114 &114888081258320674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  knockback: {x: 2000, y: 0}
+  knockback: {x: 0, y: 0}
 --- !u!212 &212009446366096682
 SpriteRenderer:
   m_ObjectHideFlags: 1

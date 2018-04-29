@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CatControls : MonoBehaviour
 {
-
+    bool canHit = true;
     float lastClicked = 0.0f;
 
     public Animator anim;
@@ -116,11 +116,11 @@ public class CatControls : MonoBehaviour
 
     public void FlyingUppercut()
     {
-        if(canUppercut)
+        if(canUppercut && canHit)
         {
             facingRight = playerMovement.facingRight;
-            
             anim.SetTrigger("SpinUppercut");
+            
 
             if (facingRight)
             {
@@ -138,7 +138,8 @@ public class CatControls : MonoBehaviour
                 }
                 rb.AddForce(uppercutForce);
             }
-
+            playerMovement.enabled = false;            
+            canHit = false;
             canUppercut = false;
         }
 
@@ -149,14 +150,18 @@ public class CatControls : MonoBehaviour
 
     public void TwoSideAttack()
     {
-        anim.SetTrigger("TwoSide");
-        hit.SetDamage(5);
-        hit.SetKnockback(twoSideKnockback);
+        if(canHit)
+        {
+            playerMovement.enabled = false;
+            anim.SetTrigger("TwoSide");
+            hit.SetDamage(5);
+            hit.SetKnockback(twoSideKnockback);
+        }
     }
 
     public void SpinKick()
     {
-        if(canKick)
+        if(canKick && canHit)
         {
             facingRight = playerMovement.facingRight;
 
@@ -178,7 +183,8 @@ public class CatControls : MonoBehaviour
                 }
                 rb.AddForce(sideKickForceR);
             }
-
+            playerMovement.enabled = false;
+            canHit = false;
             canKick = false;
         }
 
@@ -199,4 +205,12 @@ public class CatControls : MonoBehaviour
             canUppercut = true;
         }
     }
+
+    public void EnableCatControl()
+    {
+        Debug.Log("!");
+        playerMovement.enabled = true;
+        canHit = true;
+    }
+
 }

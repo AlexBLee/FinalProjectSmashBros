@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DogControls : MonoBehaviour
 {
+    bool canHit = true;
     bool canJumpKick = true;
-    bool canKick = true;
     bool thirdKick = false;
     string TAG_FLOOR = "Floor";
     private float shotCounter;
@@ -16,7 +16,6 @@ public class DogControls : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     
-
     public Vector2 jumpKickForce;
     public Vector2 forwardKickForce;
 
@@ -27,9 +26,6 @@ public class DogControls : MonoBehaviour
     
 	public GameObject blast;
 	public Transform blastPosition;
-
-
-    
 
     private bool facingRight;
 
@@ -90,7 +86,6 @@ public class DogControls : MonoBehaviour
         // Two Side Attack - S K
         if(Input.GetKeyDown(KeyCode.O))
         {
-
             if(shotCounter <= 0)
             {
                 shotCounter = timeBetweenShots;
@@ -156,10 +151,11 @@ public class DogControls : MonoBehaviour
 
     public void JumpKick()
     {
-        if(canJumpKick)
+        if(canJumpKick && canHit)
         {
             facingRight = playerMovement.facingRight;
             anim.SetTrigger("JumpKick");
+            
 
             if (facingRight)
             {
@@ -177,38 +173,34 @@ public class DogControls : MonoBehaviour
                 }
                 rb.AddForce(jumpKickForce);
             }
-
+            playerMovement.enabled = false;            
+            canHit = false;
             canJumpKick = false;
             
         }
-
         hit.SetDamage(10);
-        hit.SetKnockback(jumpKickKnockback);        
+        hit.SetKnockback(jumpKickKnockback);       
+         
     }
     
 
-    public void KiBlastButton()
-    {
-        if(shotCounter <= 0)
-        {
-            shotCounter = timeBetweenShots;
-            StartCoroutine(KiBlast());
-        }
-    }
-
     IEnumerator KiBlast()
     {
-        anim.SetTrigger("KiBlast");
-
-        yield return new WaitForSeconds(0.4f);
-        Instantiate(blast,blastPosition.position,Quaternion.identity);
-        StopCoroutine(KiBlast());
+        if(canHit)
+        {
+            playerMovement.enabled = false;
+            anim.SetTrigger("KiBlast");
+        
+            yield return new WaitForSeconds(0.4f);
+            Instantiate(blast,blastPosition.position,Quaternion.identity);
+            StopCoroutine(KiBlast());
+        }
 
     }
 
     public void ForwardKick()
     {
-        if(canKick)
+        if(canHit)
         {
             facingRight = playerMovement.facingRight;
             anim.SetTrigger("ForwardKick");
@@ -229,18 +221,13 @@ public class DogControls : MonoBehaviour
                 }
                 rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
             }
-            
-            canKick = false;
+            playerMovement.enabled = false;
+            canHit = false;
         }
         hit.SetDamage(5);
         hit.SetKnockback(forwardKickKnockback);
         
 
-    }
-
-    public void ForwardKickCheck()
-    {
-        canKick = true;
     }
 
    
@@ -251,6 +238,14 @@ public class DogControls : MonoBehaviour
         {
             canJumpKick = true;
         }
+    }
+
+
+    public void EnableDogControl()
+    {
+        Debug.Log("!");
+        playerMovement.enabled = true;
+        canHit = true;
     }
 
 }

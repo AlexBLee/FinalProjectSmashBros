@@ -63,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
-    void DisableControls()
+    public void DisableControls()
     {
         playerMovement.enabled = false;
         if(catControls != null)
@@ -75,11 +75,13 @@ public class PlayerHealth : MonoBehaviour
         {
             dogControls.enabled = false;
         }
+
     }
 
-    void EnableControls()
+    public void EnableControls()
     {
         playerMovement.enabled = true;
+        
         
         if(catControls != null)
         {
@@ -88,7 +90,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(dogControls != null)
         {
-            dogControls.enabled = true;
+            dogControls.enabled = true;            
         }
     }
 
@@ -113,8 +115,10 @@ public class PlayerHealth : MonoBehaviour
 
         float x = (((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f)*(health/10));
         Vector2 totalKnockback = new Vector2((x+knockback.x),(x+knockback.y));
+
         Debug.Log(x);
         Debug.Log("LEFT : " + totalKnockback);
+
         rb.AddForce(totalKnockback);
     }
 

@@ -13,13 +13,24 @@ public class PlayerManager : MonoBehaviour
     private Rigidbody2D rb;
     public Animator anim;
 
+    private PlayerMovement playerMovement;
+    private DogControls dogControls;
+    private CatControls catControls;
+
     private PlayerHealth playerHealth;
     public int lives = 5;
 
     void Start()
     {
-        playerHealth = GetComponent<PlayerHealth>();   
-        rb = GetComponent<Rigidbody2D>();     
+        playerHealth = GetComponent<PlayerHealth>(); 
+        playerMovement = GetComponent<PlayerMovement>(); 
+        rb = GetComponent<Rigidbody2D>();
+
+        if(gameObject.name == "DogFighter")
+            dogControls = GetComponent<DogControls>();
+
+        if(gameObject.name == "CatFighter")
+            catControls = GetComponent<CatControls>();
     }
 
     void Update()
@@ -39,6 +50,15 @@ public class PlayerManager : MonoBehaviour
             rb.velocity = new Vector2(0,0);            
             yield return new WaitForSeconds(1);
             transform.position = spawnPosition.position;
+            playerMovement.enabled = false;
+            if(dogControls != null)
+            {
+                dogControls.enabled = false;
+            }
+            if(catControls != null)
+            {
+                catControls.enabled = false;
+            }
             anim.SetTrigger("IsDead");
         }
     }
@@ -57,6 +77,15 @@ public class PlayerManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             transform.parent = null;
+            playerMovement.enabled = true;
+            if(dogControls != null)
+            {
+                dogControls.enabled = true;
+            }
+            if(catControls != null)
+            {
+                catControls.enabled = true;
+            }
 
             if(platforms.done == true)
             {
@@ -66,5 +95,7 @@ public class PlayerManager : MonoBehaviour
 
         }
     }
+
+    
 }
 

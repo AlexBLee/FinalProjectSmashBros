@@ -6,6 +6,7 @@ public class BlastController : MonoBehaviour
 {
     public float speed = 0.5f;
     private PlayerMovement playerMovement;
+    public Vector2 knockback;
     private Rigidbody2D rBody;
     private Hit hit;
     
@@ -44,7 +45,7 @@ public class BlastController : MonoBehaviour
         if (collision.gameObject)
         {
             hit.SetDamage(3);
-            hit.SetKnockback(new Vector2(125,0));
+            hit.SetKnockback(knockback);
             Destroy(gameObject);
         }
     }

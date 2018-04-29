@@ -6,9 +6,7 @@ public class PlayerMovement : MonoBehaviour
     private bool player1 = false;
     private bool player2 = false;
 
-    private float h = 0.0f;
-    private float h2 = 0.0f;
-    
+    private float h = 0.0f;    
 
     [HideInInspector]public bool facingRight = true;
 

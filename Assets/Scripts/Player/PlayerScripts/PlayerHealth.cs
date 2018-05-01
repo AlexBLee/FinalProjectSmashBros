@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
     
     private CatControls catControls;
     private DogControls dogControls;
+
+    public GameObject hitSpark;
     
     private Hit hit;
 
@@ -46,6 +48,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 HitTakenRight(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
                 DisableControls();
+                Instantiate(hitSpark,collision.transform.position,Quaternion.identity);       
                 yield return new WaitForSeconds(0.1f);
                 EnableControls();                
             }
@@ -54,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 HitTakenLeft(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
                 DisableControls();
+                Instantiate(hitSpark,collision.transform.position,Quaternion.identity);                            
                 yield return new WaitForSeconds(0.1f);
                 EnableControls();
             }
@@ -102,8 +106,8 @@ public class PlayerHealth : MonoBehaviour
         float x = (((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f)*(health/10));
         Vector2 totalKnockback = new Vector2(-(x+knockback.x),(x+knockback.y));
 
-        Debug.Log(x);
-        Debug.Log("RIGHT : " + totalKnockback);
+        // Debug.Log(x);
+        // Debug.Log("RIGHT : " + totalKnockback);
         
         rb.AddForce(totalKnockback);
     }
@@ -116,8 +120,8 @@ public class PlayerHealth : MonoBehaviour
         float x = (((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f)*(health/10));
         Vector2 totalKnockback = new Vector2((x+knockback.x),(x+knockback.y));
 
-        Debug.Log(x);
-        Debug.Log("LEFT : " + totalKnockback);
+        // Debug.Log(x);
+        // Debug.Log("LEFT : " + totalKnockback);
 
         rb.AddForce(totalKnockback);
     }

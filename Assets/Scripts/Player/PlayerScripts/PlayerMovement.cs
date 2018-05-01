@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     private bool player1 = false;
     private bool player2 = false;
 
-    private float h = 0.0f;    
+    private float h = 0.0f;
 
     [HideInInspector]public bool facingRight = true;
 
@@ -56,10 +56,29 @@ public class PlayerMovement : MonoBehaviour
         //float v = joystick.Vertical;
 
         if(player1)
+        {
             h = Input.GetAxis("Horizontal");
+
+            if(canJump && Input.GetKeyDown(KeyCode.W)) //&& v > 0.8)
+            {
+                rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+                canJump = false;
+            }
         
+        }
+            
         if(player2)
+        {
             h = Input.GetAxis("Horizontal1");
+
+            if(canJump && Input.GetKeyDown(KeyCode.UpArrow)) //&& v > 0.8)
+            {
+                rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+                canJump = false;
+            }
+            
+        }
+            
 
         if (h * rb.velocity.x < maxSpeed)
         {
@@ -68,11 +87,12 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.right * h * moveForce);
         }
 
-        if(canJump && Input.GetKey(KeyCode.W)) //&& v > 0.8)
-        {
-            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-            canJump = false;
-        }
+
+        // if(canJump && Input.GetKeyDown(KeyCode.W)) //&& v > 0.8)
+        // {
+        //     rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+        //     canJump = false;
+        // }
         
 
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)

@@ -243,7 +243,7 @@ public class DogControls : MonoBehaviour
 
     public void EnableDogControl()
     {
-        Debug.Log("!");
+        //Debug.Log("!");
         playerMovement.enabled = true;
         canHit = true;
     }

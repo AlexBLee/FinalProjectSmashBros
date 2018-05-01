@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class PlayerManager : MonoBehaviour 
 {
@@ -31,15 +32,18 @@ public class PlayerManager : MonoBehaviour
 
         if(gameObject.name == "CatFighter")
             catControls = GetComponent<CatControls>();
-    }
 
-    void Update()
-    {
-        if(lives <= 0)
+
+        Observable.EveryUpdate()
+        .Where(_ => lives == 0)
+        .Subscribe(_ =>
         {
             Destroy(gameObject);
-        }
+        });
+
+        
     }
+
 
 	private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,10 +55,12 @@ public class PlayerManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             transform.position = spawnPosition.position;
             playerMovement.enabled = false;
+
             if(dogControls != null)
             {
                 dogControls.enabled = false;
             }
+
             if(catControls != null)
             {
                 catControls.enabled = false;

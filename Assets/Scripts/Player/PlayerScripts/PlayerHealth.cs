@@ -18,7 +18,9 @@ public class PlayerHealth : MonoBehaviour
     private CatControls catControls;
     private DogControls dogControls;
 
-    public GameObject hitSpark;
+    private SpriteRenderer spriteRenderer;
+    private Color white = new Color(255,255,255,255);
+
     
     private Hit hit;
 
@@ -27,8 +29,9 @@ public class PlayerHealth : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
-
+        
         if(gameObject.name == "CatFighter")
         {
             catControls = GetComponent<CatControls>();
@@ -48,17 +51,21 @@ public class PlayerHealth : MonoBehaviour
             {
                 HitTakenRight(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
                 DisableControls();
-                Instantiate(hitSpark,collision.transform.position,Quaternion.identity);       
+                spriteRenderer.material.color = white;
                 yield return new WaitForSeconds(0.1f);
+                spriteRenderer.material.color = Color.white;
                 EnableControls();                
             }
 
             if (collision.transform.position.x < transform.position.x)
             {
+                spriteRenderer.material.color = Color.white;
+                
                 HitTakenLeft(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
                 DisableControls();
-                Instantiate(hitSpark,collision.transform.position,Quaternion.identity);                            
+                spriteRenderer.material.color = white;                
                 yield return new WaitForSeconds(0.1f);
+                spriteRenderer.material.color = Color.white;                
                 EnableControls();
             }
         }

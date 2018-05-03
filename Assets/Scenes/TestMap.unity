@@ -537,6 +537,59 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 906421275}
   m_Script: {fileID: 11500000, guid: fbc365b4f634a5344860d4b9c1752e95, type: 3}
+--- !u!1 &376104477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 376104479}
+  - component: {fileID: 376104478}
+  m_Layer: 0
+  m_Name: HealthIndicators
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &376104478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 376104477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b326d9f4e36e77140b07733cb5f0c66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players:
+  - {fileID: 141551872}
+  - {fileID: 1419059153}
+  - {fileID: 0}
+  - {fileID: 0}
+  health: {fileID: 617363788}
+  health2: {fileID: 1922252418}
+  health3: {fileID: 831996019}
+  health4: {fileID: 505054738}
+  lives: {fileID: 100093153}
+  lives2: {fileID: 947505070}
+  lives3: {fileID: 0}
+  lives4: {fileID: 0}
+--- !u!4 &376104479
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 376104477}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.062042482, y: -3.4960554, z: 0.0124211535}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &384193807 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4390643282381212, guid: 046b0f32a70bdb94b8844553f5ad3244,
@@ -983,7 +1036,7 @@ GameObject:
   - component: {fileID: 617363789}
   - component: {fileID: 617363788}
   m_Layer: 5
-  m_Name: DoggyHealth
+  m_Name: 1Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1469,6 +1522,31 @@ Prefab:
       propertyPath: text2
       value: 
       objectReference: {fileID: 100093153}
+    - target: {fileID: 212416234537557488, guid: fde9393b67eaf3a4499e8fa233539095,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212416234537557488, guid: fde9393b67eaf3a4499e8fa233539095,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212416234537557488, guid: fde9393b67eaf3a4499e8fa233539095,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212416234537557488, guid: fde9393b67eaf3a4499e8fa233539095,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114769086902090524, guid: fde9393b67eaf3a4499e8fa233539095,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
   m_IsPrefabParent: 0
@@ -2899,16 +2977,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114925713346685008, guid: ab5c0b02835c4fd4d901974144795139,
-        type: 2}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 1922252418}
-    - target: {fileID: 114925713346685008, guid: ab5c0b02835c4fd4d901974144795139,
-        type: 2}
-      propertyPath: text2
-      value: 
-      objectReference: {fileID: 947505070}
     - target: {fileID: 114149412341765236, guid: ab5c0b02835c4fd4d901974144795139,
         type: 2}
       propertyPath: platforms
@@ -2924,12 +2992,21 @@ Prefab:
       propertyPath: anim
       value: 
       objectReference: {fileID: 148672916}
-    - target: {fileID: 114619691769035702, guid: ab5c0b02835c4fd4d901974144795139,
+    - target: {fileID: 114925713346685008, guid: ab5c0b02835c4fd4d901974144795139,
         type: 2}
-      propertyPath: hitSpark
+      propertyPath: text
       value: 
-      objectReference: {fileID: 1668409358455708, guid: 0c4c682237c4a7e4ea848dc875036b92,
+      objectReference: {fileID: 1922252418}
+    - target: {fileID: 114925713346685008, guid: ab5c0b02835c4fd4d901974144795139,
         type: 2}
+      propertyPath: text2
+      value: 
+      objectReference: {fileID: 947505070}
+    - target: {fileID: 114925713346685008, guid: ab5c0b02835c4fd4d901974144795139,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
   m_IsPrefabParent: 0
@@ -2950,7 +3027,7 @@ GameObject:
   - component: {fileID: 1922252419}
   - component: {fileID: 1922252418}
   m_Layer: 5
-  m_Name: CattyHealth
+  m_Name: 2Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

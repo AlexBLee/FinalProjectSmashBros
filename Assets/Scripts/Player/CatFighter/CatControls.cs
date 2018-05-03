@@ -208,7 +208,6 @@ public class CatControls : MonoBehaviour
 
     public void EnableCatControl()
     {
-        Debug.Log("!");
         playerMovement.enabled = true;
         canHit = true;
     }

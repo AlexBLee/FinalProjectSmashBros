@@ -18,11 +18,16 @@ public class PlayerManager : MonoBehaviour
     private DogControls dogControls;
     private CatControls catControls;
 
+    private CameraScript cameraScript;
+
+
+
     private PlayerHealth playerHealth;
     public int lives = 5;
 
     void Start()
     {
+        cameraScript = FindObjectOfType<CameraScript>();
         playerHealth = GetComponent<PlayerHealth>(); 
         playerMovement = GetComponent<PlayerMovement>(); 
         rb = GetComponent<Rigidbody2D>();
@@ -33,13 +38,15 @@ public class PlayerManager : MonoBehaviour
         if(gameObject.name == "CatFighter")
             catControls = GetComponent<CatControls>();
 
+        
 
         Observable.EveryUpdate()
         .Where(_ => lives == 0)
         .Subscribe(_ =>
         {
+            cameraScript.players.RemoveAt(0);
             Destroy(gameObject);
-        });
+        }).AddTo(this);
 
         
     }

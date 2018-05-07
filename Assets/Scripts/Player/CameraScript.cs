@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour 
 {
 	public LevelFocus levelFocus;
+	public LevelManager levelManager;
 	public List<GameObject> players;
 	
 	public float depthUpdateSpeed = 5f;
@@ -21,9 +22,22 @@ public class CameraScript : MonoBehaviour
 	private Vector3 cameraPosition;
 
 	// Use this for initialization
+
+	void Awake()
+	{
+		
+	}
 	void Start () 
 	{	
+		levelManager = FindObjectOfType<LevelManager>();
+
+		foreach(GameObject t in levelManager.players)
+		{
+			players.Add(t);
+		}
+		
 		players.Add(levelFocus.gameObject);
+
 
 	}
 	

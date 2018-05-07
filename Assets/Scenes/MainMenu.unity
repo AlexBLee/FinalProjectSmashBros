@@ -991,8 +991,6 @@ MonoBehaviour:
   players:
   - {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
   - {fileID: 1258905793114654, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
   player1: 0
   player2: 0
   player3: 0

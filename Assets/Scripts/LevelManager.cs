@@ -5,7 +5,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour 
 {
 	private GameManager instance;
-	public List<GameObject> playerObjects;
+	public List<GameObject> managerObjects;
+	public List<GameObject> players;
 
 	public Transform P1Spawn;
 	public Transform P2Spawn;
@@ -15,18 +16,20 @@ public class LevelManager : MonoBehaviour
 
 	void Awake () 
 	{
-		playerObjects = GameManager.instance.players;
+		managerObjects = GameManager.instance.players;
 
-		if(playerObjects[0] != null)
+		if(managerObjects[0] != null)
 		{
-			GameObject player1 = Instantiate(playerObjects[0], P1Spawn.position ,Quaternion.identity);
-			player1.name = playerObjects[0].name;
+			GameObject player1 = Instantiate(managerObjects[0], P1Spawn.position ,Quaternion.identity);
+			player1.name = managerObjects[0].name;
+			players.Add(player1);
 		}
 
-		if(playerObjects[1] != null)
+		if(managerObjects[1] != null)
 		{
-			GameObject player2 = Instantiate(playerObjects[1], P2Spawn.position ,Quaternion.identity);
-			player2.name = playerObjects[1].name;
+			GameObject player2 = Instantiate(managerObjects[1], P2Spawn.position ,Quaternion.identity);
+			player2.name = managerObjects[1].name;
+			players.Add(player2);
 		}
 
 		// if(playerObjects[2] != null)

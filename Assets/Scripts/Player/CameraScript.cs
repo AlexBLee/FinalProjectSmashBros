@@ -22,8 +22,9 @@ public class CameraScript : MonoBehaviour
 
 	// Use this for initialization
 	void Start () 
-	{
+	{	
 		players.Add(levelFocus.gameObject);
+
 	}
 	
 	// Update is called once per frame

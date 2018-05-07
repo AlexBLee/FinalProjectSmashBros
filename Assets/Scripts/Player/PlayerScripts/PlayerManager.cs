@@ -19,9 +19,6 @@ public class PlayerManager : MonoBehaviour
     private CatControls catControls;
 
     private CameraScript cameraScript;
-
-
-
     private PlayerHealth playerHealth;
     public int lives = 5;
 

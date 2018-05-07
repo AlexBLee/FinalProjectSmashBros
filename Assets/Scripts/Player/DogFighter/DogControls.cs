@@ -44,6 +44,7 @@ public class DogControls : MonoBehaviour
     void Start ()
     {
         GetComponents();
+        
 	}
 
 

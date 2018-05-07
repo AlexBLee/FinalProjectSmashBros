@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();

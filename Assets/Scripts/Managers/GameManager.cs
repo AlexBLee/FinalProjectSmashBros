@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour 
 {
+	// Singleton to bring things between scenes.
+
 	public static GameManager instance;
 	public List<GameObject> players;
-
-	public bool player1;
-	public bool player2;
-	public bool player3;
-	public bool player4;
-	
 
 	void Awake()
 	{

@@ -18,7 +18,6 @@ public class DogControls : MonoBehaviour
     
     public Vector2 jumpKickForce;
     public Vector2 forwardKickForce;
-
     public Vector2 jumpKickKnockback;
     public Vector2 forwardKickKnockback;
     public Vector2 kickKnockback;
@@ -48,15 +47,11 @@ public class DogControls : MonoBehaviour
 	}
 
 
-    // Update is called once per frame
     void Update ()
     {
         shotCounter -= Time.deltaTime;
-        
-        //---------------------------------------------------------------//
-        // Light attacks
 
-        //OneTwo Combo - L
+        // Two Kick Combo
         if (Input.GetKeyDown(KeyCode.U))
         {
             thirdKick = false;
@@ -78,13 +73,13 @@ public class DogControls : MonoBehaviour
             lastClicked = Time.time;
         }
 
-        // Flying Uppercut - W K
+        // Flying Kick
         if (Input.GetKeyDown(KeyCode.I))
         {
             JumpKick();
         }
 
-        // Two Side Attack - S K
+        // Two Side Attack
         if(Input.GetKeyDown(KeyCode.O))
         {
             if(shotCounter <= 0)
@@ -94,7 +89,7 @@ public class DogControls : MonoBehaviour
             }
         }
 
-        // Spinning Kick - D K
+        // Forward Kick
         if (Input.GetKeyDown(KeyCode.P))
         {
             ForwardKick();
@@ -105,22 +100,6 @@ public class DogControls : MonoBehaviour
     }
 
 
-    public void KickCombo()
-    {
-        KickComboFirstHit();
-
-        if (Time.time - lastClicked < 0.5)
-        {
-            KickComboSecondHit();
-
-        }
-        else
-        {
-            KickComboThirdHit();
-        }
-        
-        lastClicked = Time.time;
-    }
 
     public void KickComboFirstHit()
     {
@@ -135,9 +114,6 @@ public class DogControls : MonoBehaviour
         anim.SetTrigger("KickCombo(1)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
-        
-        
-        
     }
 
 	public void KickComboThirdHit()
@@ -157,7 +133,7 @@ public class DogControls : MonoBehaviour
             facingRight = playerMovement.facingRight;
             anim.SetTrigger("JumpKick");
             
-
+            // If the player is facing right, and the force for the move is still negative, then change it to positive.
             if (facingRight)
             {
                 if (jumpKickForce.x < 0f)

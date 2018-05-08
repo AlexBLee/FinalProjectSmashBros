@@ -24,6 +24,7 @@ public class CatControls : MonoBehaviour
     public Vector2 twoSideKnockback;
     public Vector2 punchKnockback;
 
+    // Sets Damage and Knockback
     private Hit hit;
 
     private PlayerMovement playerMovement;
@@ -47,10 +48,7 @@ public class CatControls : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        //---------------------------------------------------------------//
-        // Light attacks
-
-        // OneTwo Combo - L
+        // Two Punch Combo
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             if (Time.time - lastClicked < 0.5)
@@ -64,22 +62,19 @@ public class CatControls : MonoBehaviour
             lastClicked = Time.time;
         }
 
-        //---------------------------------------------------------------//
-        // Heavy Attacks.
-
-        // Flying Uppercut - W K
+        // Flying Uppercut
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
             FlyingUppercut();
         }
 
-        // Two Side Attack - S K
+        // Two Side Attack
         if(Input.GetKeyDown(KeyCode.Keypad2))
         {
             TwoSideAttack();
         }
 
-        // Spinning Kick - D K
+        // Spinning Kick
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
             SpinKick();
@@ -87,18 +82,6 @@ public class CatControls : MonoBehaviour
 
     }
 
-    public void OneTwoCombo()
-    {
-        if (Time.time - lastClicked < 0.5)
-            {
-                OneTwoComboSecondHit();
-            }
-            else
-            {
-                OneTwoComboFirstHit();
-            }
-            lastClicked = Time.time;
-    }
 
     void OneTwoComboFirstHit()
     {
@@ -121,7 +104,7 @@ public class CatControls : MonoBehaviour
             facingRight = playerMovement.facingRight;
             anim.SetTrigger("SpinUppercut");
             
-
+            // If the player is facing right, and the force for the move is still negative, then change it to positive.            
             if (facingRight)
             {
                 if (uppercutForce.x < 0f)
@@ -161,7 +144,7 @@ public class CatControls : MonoBehaviour
 
     public void SpinKick()
     {
-        if(canKick && canHit)
+        if(canHit)
         {
             facingRight = playerMovement.facingRight;
 
@@ -185,7 +168,6 @@ public class CatControls : MonoBehaviour
             }
             playerMovement.enabled = false;
             canHit = false;
-            canKick = false;
         }
 
         hit.SetDamage(8);
@@ -210,6 +192,7 @@ public class CatControls : MonoBehaviour
     {
         playerMovement.enabled = true;
         canHit = true;
+        canKick = true;
     }
 
 }

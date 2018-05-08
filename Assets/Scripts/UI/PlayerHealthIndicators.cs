@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerHealthIndicators : MonoBehaviour 
 {
-	private GameManager instance;
-	public List<GameObject> listy;
+	public List<GameObject> players;
 
 	private PlayerHealth healthFirst;
 	private PlayerHealth healthSecond;
@@ -29,35 +28,41 @@ public class PlayerHealthIndicators : MonoBehaviour
 	public Text player3Lives;
 	public Text player4Lives;
 	
-	
 
 	// Use this for initialization
 	void Start () 
 	{
-		listy = GameManager.instance.players;
+		LevelManager levelManager = FindObjectOfType<LevelManager>();
 
-		if(listy[0] != null)
+		foreach(GameObject t in levelManager.players)
 		{
-			healthFirst = listy[0].GetComponent<PlayerHealth>();
-			livesFirst = listy[0].GetComponent<PlayerManager>();
+			players.Add(t);
 		}
 
-		if(listy[1] != null)
+		// --------------------------------------------------------------------------
+
+		if(players[0] != null)
 		{
-			healthSecond = listy[1].GetComponent<PlayerHealth>();
-			livesSecond = listy[1].GetComponent<PlayerManager>();
+			healthFirst = players[0].GetComponent<PlayerHealth>();
+			livesFirst = players[0].GetComponent<PlayerManager>();
 		}
 
-		// if(listy[2] != null)
+		if(players[1] != null)
+		{
+			healthSecond = players[1].GetComponent<PlayerHealth>();
+			livesSecond = players[1].GetComponent<PlayerManager>();
+		}
+
+		// if(players[2] != null)
 		// {
-		// 	healthThird = listy[2].GetComponent<PlayerHealth>();
-		// 	livesThird = listy[2].GetComponent<PlayerManager>();
+		// 	healthThird = players[2].GetComponent<PlayerHealth>();
+		// 	livesThird = players[2].GetComponent<PlayerManager>();
 		// }
 
-		// if(listy[3] != null)
+		// if(players[3] != null)
 		// {
-		// 	healthFourth = listy[3].GetComponent<PlayerHealth>();
-		// 	livesFourth = listy[3].GetComponent<PlayerManager>();
+		// 	healthFourth = players[3].GetComponent<PlayerHealth>();
+		// 	livesFourth = players[3].GetComponent<PlayerManager>();
 		// }
 		
 	}
@@ -65,26 +70,26 @@ public class PlayerHealthIndicators : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(listy[0] != null)
+		if(players[0] != null)
 		{
 			player1Health.text = healthFirst.health.ToString() + "%";
 			player1Lives.text = "Lives: "+ livesFirst.lives.ToString();
 		}
 
-		if(listy[1] != null)
+		if(players[1] != null)
 		{
 			player2Health.text = healthSecond.health.ToString() + "%";
 			player2Lives.text = "Lives: "+ livesSecond.lives.ToString();	
 		}
 		
-		// if(listy[2] != null)
+		// if(players[2] != null)
 		// {
 		// 	player3Health.text = healthThird.health.ToString() + "%";
 		// 	player3Lives.text = "Lives: "+ livesThird.lives.ToString();	
 		// }
 
 
-		// if(listy[3] != null)
+		// if(players[3] != null)
 		// {
 		// 	player4Health.text = healthFourth.health.ToString() + "%";
 		// 	player4Lives.text = "Lives: "+ livesFourth.lives.ToString();		

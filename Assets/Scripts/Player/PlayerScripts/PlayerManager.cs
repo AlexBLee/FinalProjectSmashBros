@@ -8,11 +8,11 @@ public class PlayerManager : MonoBehaviour
 	private string TAG_KILLZONE = "KillZone";
 	private string TAG_PLATFORM = "Platform";
 
-    public Platforms platforms;
 	public Transform spawnPosition;
+    
+    public Animator anim;
 
     private Rigidbody2D rb;
-    public Animator anim;
 
     private PlayerMovement playerMovement;
     private DogControls dogControls;
@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
 
     private CameraScript cameraScript;
     private PlayerHealth playerHealth;
+
     public int lives = 5;
 
     void Start()
@@ -55,9 +56,9 @@ public class PlayerManager : MonoBehaviour
         {
             playerHealth.health = 0;
             --lives;
-            rb.velocity = new Vector2(0,0);            
-            yield return new WaitForSeconds(1);
+            rb.velocity = new Vector2(0,0);
             transform.position = spawnPosition.position;
+            yield return new WaitForSeconds(1);
             playerMovement.enabled = false;
 
             if(dogControls != null)
@@ -69,7 +70,6 @@ public class PlayerManager : MonoBehaviour
             {
                 catControls.enabled = false;
             }
-            anim.SetTrigger("IsDead");
         }
     }
 
@@ -96,13 +96,6 @@ public class PlayerManager : MonoBehaviour
             {
                 catControls.enabled = true;
             }
-
-            if(platforms.done == true)
-            {
-                anim.SetTrigger("IsIdle");
-                platforms.SetFalse();
-            }
-
         }
     }
 

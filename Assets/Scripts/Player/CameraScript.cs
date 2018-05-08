@@ -23,10 +23,6 @@ public class CameraScript : MonoBehaviour
 
 	// Use this for initialization
 
-	void Awake()
-	{
-		
-	}
 	void Start () 
 	{	
 		levelManager = FindObjectOfType<LevelManager>();

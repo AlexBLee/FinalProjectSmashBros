@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hit : MonoBehaviour
  {
+	 // This class sets knockback and damage and is used by the characters.
+
 	 public float damage;
 	 public Vector2 knockback;
 	

@@ -18,7 +18,7 @@ public class ImageDisplay : MonoBehaviour
 
 	private void Start() 
 	{
-		managerObjects = GameManager.instance.players;		
+		managerObjects = GameManager.instance.players;
 		
 		rend = GetComponent<SpriteRenderer>();
 
@@ -38,11 +38,14 @@ public class ImageDisplay : MonoBehaviour
 			{
 				managerObjects[0] = characterList[listNumber - 1];
 				p1Chosen = true;
+				GameManager.instance.ready = true;				
 			}
 			if(cursor.name == "P2Cursor")
 			{
 				managerObjects[1] = characterList[listNumber - 1];
 				p2Chosen = true;
+				GameManager.instance.ready = true;				
+				
 			}
 			rend.sprite = spriteList[listNumber];
         }).AddTo(this);
@@ -55,14 +58,22 @@ public class ImageDisplay : MonoBehaviour
 			{
 				managerObjects[0] = null;
 				p1Chosen = false;
-			}
-
-			if(managerObjects[0] != null && p2Chosen == true)
-			{
-				managerObjects[0] = null;
-				p2Chosen = false;
+				GameManager.instance.ready = false;				
 				
 			}
+
+			if(managerObjects[1] != null && p2Chosen == true)
+			{
+				managerObjects[1] = null;
+				p2Chosen = false;
+				GameManager.instance.ready = false;				
+				
+
+				
+			}
+			
+
+			
 
 			listNumber = 0;
 			rend.sprite = spriteList[listNumber];

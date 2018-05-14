@@ -10,11 +10,18 @@ public class Cursor : MonoBehaviour
 	private void Start() 
 	{
 		box = GetComponent<BoxCollider2D>();
+		
 	}
 
 	private void Update() 
 	{
 		overlap = Physics2D.OverlapAreaAll(box.bounds.min,box.bounds.max);
+		if(overlap.Length > 1 && (overlap[1].name == "P2Cursor" || overlap[1].name == "P1Cursor"))
+		{
+			overlap[1] = null;
+		}
+
+
 	}
 
 	private void OnMouseDrag() 

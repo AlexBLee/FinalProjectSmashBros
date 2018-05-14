@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager instance;
 	public List<GameObject> players;
+	public bool ready;
 
 	void Awake()
 	{
@@ -22,5 +23,8 @@ public class GameManager : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 
+	}
+	private void Update() {
+		Debug.Log(instance.ready);
 	}
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class StartGameButton : MonoBehaviour 
 {
+
 	private Button button;
 	public Cursor[] cursorList;
 	
@@ -19,7 +20,11 @@ public class StartGameButton : MonoBehaviour
 
 	void GoToGame()
 	{
-		SceneManager.LoadScene("TestMap");
+		
+		if(GameManager.instance.ready == true)
+		{
+			SceneManager.LoadScene("TestMap");
+		}
 	}
 
 

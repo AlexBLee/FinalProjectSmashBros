@@ -10,7 +10,7 @@ public class CatControls : MonoBehaviour
     public Animator anim;
     private Rigidbody2D rb;
     private bool canUppercut = true;
-    private bool canKick = true;
+    private bool canKick;
 
     public Vector2 uppercutForce;
     public Vector2 sideKickForceR;

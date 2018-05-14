@@ -1012,8 +1012,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61188f8005f2d8b488ccbe5041ca7f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerObjects: []
   cursor: {fileID: 1406939213}
+  characterList:
+  - {fileID: 1258905793114654, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
+  - {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
   spriteList:
   - {fileID: 21300000, guid: f1dba0cc34e66e74280af4e39f59dd9d, type: 3}
   - {fileID: 21300000, guid: b41efb8a03c707944aedebaf31047ac3, type: 3}
@@ -1227,8 +1229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61188f8005f2d8b488ccbe5041ca7f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerObjects: []
   cursor: {fileID: 1583789890}
+  characterList:
+  - {fileID: 1258905793114654, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
+  - {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
   spriteList:
   - {fileID: 21300000, guid: f1dba0cc34e66e74280af4e39f59dd9d, type: 3}
   - {fileID: 21300000, guid: b41efb8a03c707944aedebaf31047ac3, type: 3}
@@ -1260,7 +1264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c78604493d618745bb0e3d7b964ef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &2023324624
 Transform:
   m_ObjectHideFlags: 0

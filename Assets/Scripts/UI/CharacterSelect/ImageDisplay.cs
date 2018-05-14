@@ -5,16 +5,20 @@ using UniRx;
 
 public class ImageDisplay : MonoBehaviour 
 {
-	public List<GameObject> managerObjects;	
+	private List<GameObject> managerObjects;
 	public Cursor cursor;
-	private GameObject character;
 	private SpriteRenderer rend;
+	public List<GameObject> characterList;
 	public Sprite[] spriteList;
-	private int listNumber = 0;
+	private int listNumber = 1;
+
+	private bool p1Chosen;
+	private bool p2Chosen;
+	
 
 	private void Start() 
 	{
-		managerObjects = GameManager.instance.players;
+		managerObjects = GameManager.instance.players;		
 		
 		rend = GetComponent<SpriteRenderer>();
 
@@ -26,16 +30,19 @@ public class ImageDisplay : MonoBehaviour
 			{
 				if(cursor.overlap[1].name == spriteList[i].name)
 				{
-					Debug.Log(cursor.overlap[1].name);
 					listNumber = i;
-					Debug.Log(listNumber);
 				}
 			}
-			
-			if(cursor.overlap[1].gameObject != null && !managerObjects.Contains(cursor.overlap[1].gameObject))
+
+			if(cursor.name == "P1Cursor")
 			{
-				managerObjects.Add(cursor.overlap[1].gameObject);
-				character = cursor.overlap[1].gameObject;
+				managerObjects[0] = characterList[listNumber - 1];
+				p1Chosen = true;
+			}
+			if(cursor.name == "P2Cursor")
+			{
+				managerObjects[1] = characterList[listNumber - 1];
+				p2Chosen = true;
 			}
 			rend.sprite = spriteList[listNumber];
         }).AddTo(this);
@@ -44,16 +51,22 @@ public class ImageDisplay : MonoBehaviour
         .Where(_ => cursor.overlap.Length == 1)
         .Subscribe(_ =>
         {
-			if(managerObjects.Contains(character))
+			if(managerObjects[0] != null && p1Chosen == true)
 			{
-				managerObjects.Remove(character);
+				managerObjects[0] = null;
+				p1Chosen = false;
 			}
+
+			if(managerObjects[0] != null && p2Chosen == true)
+			{
+				managerObjects[0] = null;
+				p2Chosen = false;
+				
+			}
+
 			listNumber = 0;
 			rend.sprite = spriteList[listNumber];
 
-			
-
-			
         }).AddTo(this);
 		
 	}

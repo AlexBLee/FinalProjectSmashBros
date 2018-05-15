@@ -30,19 +30,14 @@ public class DogControls : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
-    void GetComponents()
+
+    // Use this for initialization
+    void Start ()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
-        
-    }
-
-    // Use this for initialization
-    void Start ()
-    {
-        GetComponents();
         
 	}
 
@@ -146,10 +141,6 @@ public class DogControls : MonoBehaviour
             }
 
         }
-
-       
-
- 
 
     }
 

@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 	public List<GameObject> players;
 	public bool ready;
+	
+	public int p1Number;
+	public int p2Number;
 
 	void Awake()
 	{

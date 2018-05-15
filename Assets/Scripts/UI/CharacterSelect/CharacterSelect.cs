@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UniRx;
 
-public class ImageDisplay : MonoBehaviour 
+public class CharacterSelect : MonoBehaviour 
 {
 	private List<GameObject> managerObjects;
 	public Cursor cursor;
 	private SpriteRenderer rend;
 	public List<GameObject> characterList;
 	public Sprite[] spriteList;
-	private int listNumber = 1;
+	public int listNumber = 1;
 
 	private bool p1Chosen;
 	private bool p2Chosen;
+
+	
 	
 
 	private void Start() 
@@ -31,6 +34,16 @@ public class ImageDisplay : MonoBehaviour
 				if(cursor.overlap[1].tag == spriteList[i].name)
 				{
 					listNumber = i;
+
+					if(i == 0)
+					{
+						GameManager.instance.p1Number = i;
+					}
+
+					if(i == 1)
+					{
+						GameManager.instance.p2Number = i;
+					}
 				}
 			}
 

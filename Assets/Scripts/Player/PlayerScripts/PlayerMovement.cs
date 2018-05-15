@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private bool player1 = false;
-    private bool player2 = false;
+    public List<GameObject> managerObjects;
+    public bool player1 = false;
+    public bool player2 = false;
 
     private float h = 0.0f;
 
@@ -27,18 +30,21 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        managerObjects = GameManager.instance.players;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //joystick = FindObjectOfType<FixedJoystick>();
 
-        if(gameObject.name == "DogFighter")
+
+        if(managerObjects[0].name == gameObject.name)
         {
             player1 = true;
         }
-        else if(gameObject.name == "CatFighter")
+        else if(managerObjects[1].name == gameObject.name)
         {
             player2 = true;
         }
+        
     }
 
     // Update is called once per frame

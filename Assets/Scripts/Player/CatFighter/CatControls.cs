@@ -50,37 +50,76 @@ public class CatControls : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        // Two Punch Combo
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if(playerMovement.player1)
         {
-            if (Time.time - lastClicked < 0.5)
+            // Two Punch Combo
+            if (Input.GetKeyDown(KeyCode.U))
             {
-                OneTwoComboSecondHit();
+                if (Time.time - lastClicked < 0.5)
+                {
+                    OneTwoComboSecondHit();
+                }
+                else
+                {
+                    OneTwoComboFirstHit();
+                }
+                lastClicked = Time.time;
             }
-            else
+
+            // Flying Uppercut
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                OneTwoComboFirstHit();
+                FlyingUppercut();
             }
-            lastClicked = Time.time;
+
+            // Two Side Attack
+            if(Input.GetKeyDown(KeyCode.O))
+            {
+                TwoSideAttack();
+            }
+
+            // Spinning Kick
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                SpinKick();
+            }
         }
 
-        // Flying Uppercut
-        if (Input.GetKeyDown(KeyCode.Keypad5))
+        if(playerMovement.player2)
         {
-            FlyingUppercut();
-        }
+            // Two Punch Combo
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                if (Time.time - lastClicked < 0.5)
+                {
+                    OneTwoComboSecondHit();
+                }
+                else
+                {
+                    OneTwoComboFirstHit();
+                }
+                lastClicked = Time.time;
+            }
 
-        // Two Side Attack
-        if(Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            TwoSideAttack();
-        }
+            // Flying Uppercut
+            if (Input.GetKeyDown(KeyCode.Keypad5))
+            {
+                FlyingUppercut();
+            }
 
-        // Spinning Kick
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            SpinKick();
+            // Two Side Attack
+            if(Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                TwoSideAttack();
+            }
+
+            // Spinning Kick
+            if (Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                SpinKick();
+            }
         }
+        
 
     }
 

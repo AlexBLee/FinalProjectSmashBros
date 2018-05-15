@@ -10,6 +10,8 @@ TagManager:
   - Blast
   - Dog
   - Platform
+  - catSelect
+  - dogSelect
   layers:
   - Default
   - TransparentFX

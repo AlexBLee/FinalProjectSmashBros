@@ -51,49 +51,103 @@ public class DogControls : MonoBehaviour
     {
         shotCounter -= Time.deltaTime;
 
-        // Two Kick Combo
-        if (Input.GetKeyDown(KeyCode.U))
+        if(playerMovement.player1)
         {
-            thirdKick = false;
-            KickComboFirstHit();
-            
-            if (Time.time - lastClicked < 0.5 && thirdKick == false)
+             // Two Kick Combo
+            if (Input.GetKeyDown(KeyCode.U))
             {
-                KickComboSecondHit();
-                thirdKick = true;              
-            }
-
-            if(Time.time - lastClicked < 0.5 && thirdKick == true)
-            {
-                KickComboThirdHit();                
                 thirdKick = false;
+                KickComboFirstHit();
+                
+                if (Time.time - lastClicked < 0.5 && thirdKick == false)
+                {
+                    KickComboSecondHit();
+                    thirdKick = true;              
+                }
 
+                if(Time.time - lastClicked < 0.5 && thirdKick == true)
+                {
+                    KickComboThirdHit();                
+                    thirdKick = false;
+
+                }
+
+                lastClicked = Time.time;
             }
 
-            lastClicked = Time.time;
-        }
-
-        // Flying Kick
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            JumpKick();
-        }
-
-        // Two Side Attack
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            if(shotCounter <= 0)
+            // Flying Kick
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                shotCounter = timeBetweenShots;
-                StartCoroutine(KiBlast());
+                JumpKick();
             }
+
+            // Two Side Attack
+            if(Input.GetKeyDown(KeyCode.O))
+            {
+                if(shotCounter <= 0)
+                {
+                    shotCounter = timeBetweenShots;
+                    StartCoroutine(KiBlast());
+                }
+            }
+
+            // Forward Kick
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                ForwardKick();
+            }
+
         }
 
-        // Forward Kick
-        if (Input.GetKeyDown(KeyCode.P))
+        if(playerMovement.player2)
         {
-            ForwardKick();
+             // Two Kick Combo
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                thirdKick = false;
+                KickComboFirstHit();
+                
+                if (Time.time - lastClicked < 0.5 && thirdKick == false)
+                {
+                    KickComboSecondHit();
+                    thirdKick = true;              
+                }
+
+                if(Time.time - lastClicked < 0.5 && thirdKick == true)
+                {
+                    KickComboThirdHit();                
+                    thirdKick = false;
+
+                }
+
+                lastClicked = Time.time;
+            }
+
+            // Flying Kick
+            if (Input.GetKeyDown(KeyCode.Keypad5))
+            {
+                JumpKick();
+            }
+
+            // Two Side Attack
+            if(Input.GetKeyDown(KeyCode.Keypad2))
+            {
+                if(shotCounter <= 0)
+                {
+                    shotCounter = timeBetweenShots;
+                    StartCoroutine(KiBlast());
+                }
+            }
+
+            // Forward Kick
+            if (Input.GetKeyDown(KeyCode.Keypad3))
+            {
+                ForwardKick();
+            }
+
         }
+
+       
 
  
 

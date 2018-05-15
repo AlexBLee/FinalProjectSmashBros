@@ -24,7 +24,5 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 
 	}
-	private void Update() {
-		Debug.Log(instance.ready);
-	}
+
 }

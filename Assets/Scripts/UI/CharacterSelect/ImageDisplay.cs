@@ -28,7 +28,7 @@ public class ImageDisplay : MonoBehaviour
         {
 			for(int i = 0; i < spriteList.Length; i++)
 			{
-				if(cursor.overlap[1].name == spriteList[i].name)
+				if(cursor.overlap[1].tag == spriteList[i].name)
 				{
 					listNumber = i;
 				}

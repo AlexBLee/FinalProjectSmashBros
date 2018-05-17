@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
         .Where(_ => lives == 0)
         .Subscribe(_ =>
         {
-            cameraScript.players.RemoveAt();
+            cameraScript.players.RemoveAt(0);
             levelManager.players[0] = null;
             Destroy(gameObject);
         }).AddTo(this);

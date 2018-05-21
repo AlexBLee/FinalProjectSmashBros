@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -22,8 +23,10 @@ public class PlayerManager : MonoBehaviour
     private PlayerHealth playerHealth;
 
     public LevelManager levelManager;
-
     public int lives = 5;
+    public int index = 0;
+    public int deaths = 0;
+    public int kills = 0;
 
     void Start()
     {
@@ -39,14 +42,17 @@ public class PlayerManager : MonoBehaviour
         if(gameObject.name == "CatFighter")
             catControls = GetComponent<CatControls>();
 
+        index = levelManager.players.IndexOf(this.gameObject);
+
         
 
         Observable.EveryUpdate()
         .Where(_ => lives == 0)
         .Subscribe(_ =>
         {
-            cameraScript.players.RemoveAt(0);
-            levelManager.players[0] = null;
+            cameraScript.players.RemoveAt(index);
+            levelManager.players[index] = null;
+            levelManager.players.RemoveAt(index);
             Destroy(gameObject);
         }).AddTo(this);
 
@@ -54,16 +60,35 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-	private IEnumerator OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == TAG_KILLZONE)
         {
             playerHealth.health = 0;
+            if(playerHealth.koPlayer != null)
+            {
+                playerHealth.koPlayer.GetComponent<PlayerManager>().kills++;
+                
+                if(playerHealth.koPlayer.GetComponent<PlayerManager>().index == 0)
+                    GameManager.instance.p1Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().kills;
+                else
+                    GameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().kills;
+            }
             --lives;
+            ++deaths;
             rb.velocity = new Vector2(0,0);
             transform.position = spawnPosition.position;
-            yield return new WaitForSeconds(1);
             playerMovement.enabled = false;
+
+            if(index == 0)
+            {
+                GameManager.instance.p1Deaths = deaths;
+            }
+
+            if(index == 1)
+            {
+                GameManager.instance.p2Deaths = deaths;
+            }
 
             if(dogControls != null)
             {

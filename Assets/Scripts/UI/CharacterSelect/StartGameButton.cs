@@ -18,9 +18,8 @@ public class StartGameButton : MonoBehaviour
 		button.onClick.AddListener(GoToGame);
 	}
 
-	void GoToGame()
+	public void GoToGame()
 	{
-		
 		if(GameManager.instance.ready == true)
 		{
 			SceneManager.LoadScene("TestMap");

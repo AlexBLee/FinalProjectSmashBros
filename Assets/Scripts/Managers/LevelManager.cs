@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UniRx;
 
 public class LevelManager : MonoBehaviour 
 {
@@ -60,7 +62,18 @@ public class LevelManager : MonoBehaviour
 		
 		// }
 
+		
+
 	}
+
+	private void Update() 
+	{
+		if(players.Count == 1)
+		{
+			SceneManager.LoadScene("EndResult");
+		}
+	}
+
 	
 
 }

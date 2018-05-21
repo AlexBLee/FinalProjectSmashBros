@@ -13,11 +13,8 @@ public class CharacterSelect : MonoBehaviour
 	public Sprite[] spriteList;
 	public int listNumber = 1;
 
-	private bool p1Chosen;
-	private bool p2Chosen;
-
-	
-	
+	private static bool p1Chosen;
+	private static bool p2Chosen;
 
 	private void Start() 
 	{
@@ -51,13 +48,11 @@ public class CharacterSelect : MonoBehaviour
 			{
 				managerObjects[0] = characterList[listNumber - 1];
 				p1Chosen = true;
-				GameManager.instance.ready = true;				
 			}
 			if(cursor.name == "P2Cursor")
 			{
 				managerObjects[1] = characterList[listNumber - 1];
 				p2Chosen = true;
-				GameManager.instance.ready = true;				
 				
 			}
 			rend.sprite = spriteList[listNumber];
@@ -79,10 +74,7 @@ public class CharacterSelect : MonoBehaviour
 			{
 				managerObjects[1] = null;
 				p2Chosen = false;
-				GameManager.instance.ready = false;				
-				
-
-				
+				GameManager.instance.ready = false;	
 			}
 			
 
@@ -92,8 +84,13 @@ public class CharacterSelect : MonoBehaviour
 			rend.sprite = spriteList[listNumber];
 
         }).AddTo(this);
+
+		Observable.EveryUpdate()
+		.Where(_ => p1Chosen && p2Chosen)
+		.Subscribe(_ => GameManager.instance.ready = true);
+		
 		
 	}
-	
+
 	
 }

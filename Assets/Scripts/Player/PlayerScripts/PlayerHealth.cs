@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float health = 0f;
     public Vector2 damage;
+    public GameObject koPlayer;    
 
     private PlayerMovement playerMovement;
     
@@ -50,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
             if (collision.transform.position.x > transform.position.x)
             {
                 HitTakenRight(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
+                koPlayer = collision.transform.parent.gameObject;
                 DisableControls();
                 spriteRenderer.material.color = white;
                 yield return new WaitForSeconds(0.1f);
@@ -62,6 +64,7 @@ public class PlayerHealth : MonoBehaviour
                 spriteRenderer.material.color = Color.white;
                 
                 HitTakenLeft(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
+                koPlayer = collision.transform.parent.gameObject;                
                 DisableControls();
                 spriteRenderer.material.color = white;                
                 yield return new WaitForSeconds(0.1f);

@@ -7,20 +7,31 @@ public class Platforms : MonoBehaviour
 {
 	public bool done = false;
 	private Animator anim;
+	private BoxCollider2D box;
 
-	public void SetTrue() { done = true; }
+	public void SetTrue()
+	 {
+		done = true;
+		box.isTrigger = true;
+		 
+	}
 	public void SetFalse() { done = false; }
 
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
+		box = GetComponent<BoxCollider2D>();
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject)
         {
-            anim.SetTrigger("IsDead");
+			if(!done)
+			{
+				Debug.Log("!");
+            	anim.SetTrigger("IsDead");
+			}
         }
     }
 
@@ -30,23 +41,20 @@ public class Platforms : MonoBehaviour
         .Where(_ => done)
         .Subscribe(_ =>
         {
-            anim.SetTrigger("IsIdle");
-            SetFalse();
+            GoIdle();
         });
 
 	}
 
 
+	void GoIdle()
+	{
+		anim.SetTrigger("IsIdle");
+	}
 
-	// void Update()
-	// {
-	// 	if(done)
-	// 	{
-	// 		anim.SetTrigger("IsIdle");
-	// 		SetFalse();
-	// 	}
-	// }
-
+	private void Update() {
+		Debug.Log(done);
+	}
 	
 	
 }

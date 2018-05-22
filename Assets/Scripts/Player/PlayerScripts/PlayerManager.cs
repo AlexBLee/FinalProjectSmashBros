@@ -106,7 +106,10 @@ public class PlayerManager : MonoBehaviour
     {
         if(collision.gameObject.tag == TAG_PLATFORM)
         {
-            transform.SetParent(collision.gameObject.transform);
+            if(!collision.gameObject.GetComponent<Platforms>().done)
+            {
+                transform.SetParent(collision.gameObject.transform);
+            }
         }
     }
 
@@ -126,6 +129,10 @@ public class PlayerManager : MonoBehaviour
                 catControls.enabled = true;
             }
         }
+    }
+    private void Update() 
+    {
+        
     }
 
     

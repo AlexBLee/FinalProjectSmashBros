@@ -8,6 +8,8 @@ public class CustomBuildProcess
 	private static string readMeDestination = "Assets/Templates/Readme.txt";
 	private static string readMe = "/Readme.txt";
 	
+	
+	
 
 	public static bool IsManualBuild = false;
 	[MenuItem("Tools/Windows Build With Postprocess")]
@@ -22,8 +24,9 @@ public class CustomBuildProcess
 		string filepath = EditorUtility.SaveFolderPanel("Choose Location of Built Game", "","");
 		string[] scenes = new string[] { };
 
+		
 		// Build player
-		BuildPipeline.BuildPlayer(scenes, filepath + buildGameName, BuildTarget.StandaloneWindows, BuildOptions.None);
+		BuildPipeline.BuildPlayer(SceneChooser.GetScenesToBuild(), filepath + buildGameName, BuildTarget.StandaloneWindows, BuildOptions.None);
 
 		// Copy a file from the project folder to the build folder, alongside the built game
 		// Example POST process

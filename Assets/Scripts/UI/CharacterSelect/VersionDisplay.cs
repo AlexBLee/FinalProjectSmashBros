@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 
 
@@ -11,7 +10,7 @@ public class VersionDisplay : MonoBehaviour
 
 	private void Start() 
 	{
-	   string curVersion = PlayerSettings.bundleVersion;
+	   string curVersion = Application.version;
 		
 		text = GetComponent<Text>();
 		text.text = curVersion;

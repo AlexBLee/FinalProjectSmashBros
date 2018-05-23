@@ -264,6 +264,11 @@ Prefab:
       propertyPath: m_Name
       value: LivePlatform1
       objectReference: {fileID: 0}
+    - target: {fileID: 61219393463761578, guid: 698230f1ae0f40d47bfc7cccfc70b0ed,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 5d6a962120fb6214a884778106b8805d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 698230f1ae0f40d47bfc7cccfc70b0ed, type: 2}
   m_IsPrefabParent: 0
@@ -289,6 +294,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   done: 0
+--- !u!50 &148672914
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148672912}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 5d6a962120fb6214a884778106b8805d, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &162183009
 Prefab:
   m_ObjectHideFlags: 0
@@ -2721,6 +2746,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 61219393463761578, guid: 698230f1ae0f40d47bfc7cccfc70b0ed,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 5d6a962120fb6214a884778106b8805d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 698230f1ae0f40d47bfc7cccfc70b0ed, type: 2}
   m_IsPrefabParent: 0

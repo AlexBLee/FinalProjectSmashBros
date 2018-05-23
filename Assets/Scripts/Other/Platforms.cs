@@ -50,6 +50,7 @@ public class Platforms : MonoBehaviour
 	void GoIdle()
 	{
 		anim.SetTrigger("IsIdle");
+		anim.SetTrigger("StandStill");
 	}
 
 	private void Update() {

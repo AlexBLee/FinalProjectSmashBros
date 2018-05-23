@@ -109,6 +109,10 @@ public class PlayerManager : MonoBehaviour
             if(!collision.gameObject.GetComponent<Platforms>().done)
             {
                 transform.SetParent(collision.gameObject.transform);
+                if(transform.GetComponent<Rigidbody2D>())
+                {
+                    transform.GetComponent<Rigidbody2D>().isKinematic = true;
+                }
             }
         }
     }
@@ -117,7 +121,8 @@ public class PlayerManager : MonoBehaviour
     {
         if(collision.gameObject.tag == TAG_PLATFORM)
         {
-            yield return new WaitForSeconds(1);
+            transform.GetComponent<Rigidbody2D>().isKinematic = false;
+            yield return new WaitForSeconds(1.5f);
             transform.parent = null;
             playerMovement.enabled = true;
             if(dogControls != null)

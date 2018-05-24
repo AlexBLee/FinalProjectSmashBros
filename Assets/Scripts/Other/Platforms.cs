@@ -5,17 +5,17 @@ using UniRx;
 
 public class Platforms : MonoBehaviour 
 {
-	public bool done = false;
+	public BoolReactiveProperty done = new BoolReactiveProperty(false);
 	private Animator anim;
 	private BoxCollider2D box;
+	private GameObject tempObject;
+	private bool time = false;
 
 	public void SetTrue()
 	 {
-		done = true;
-		box.isTrigger = true;
-		 
+		done.Value = true;
 	}
-	public void SetFalse() { done = false; }
+	public void SetFalse() { done.Value = false; }
 
 	void Awake()
 	{
@@ -25,37 +25,43 @@ public class Platforms : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject)
+		tempObject = collision.gameObject;
+
+        if (tempObject.GetComponent<PlayerManager>().dead && !done.Value && time == false)
         {
-			if(!done)
-			{
-				Debug.Log("!");
-            	anim.SetTrigger("IsDead");
-			}
+			anim.SetTrigger("IsDead");
+            time = true;
+
         }
     }
 
 	void Start()
 	{
-		Observable.EveryUpdate()
-        .Where(_ => done)
+		done
+        .Where(d => d)
         .Subscribe(_ =>
         {
             GoIdle();
-        });
+
+        }).AddTo(this);
 
 	}
 
 
 	void GoIdle()
 	{
+		tempObject.GetComponent<PlayerManager>().SetDeath(false);
+		time = false;
 		anim.SetTrigger("IsIdle");
 		anim.SetTrigger("StandStill");
+
 	}
 
 	private void Update() {
-		Debug.Log(done);
-	}
-	
-	
+
+
+
+    }
+
+
 }

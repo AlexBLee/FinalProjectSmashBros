@@ -22,11 +22,14 @@ public class PlayerManager : MonoBehaviour
     private CameraScript cameraScript;
     private PlayerHealth playerHealth;
 
+    public bool dead = false;
+
     public LevelManager levelManager;
     public int lives = 5;
     public int index = 0;
     public int deaths = 0;
     public int kills = 0;
+    public int time = 0;
 
     void Start()
     {
@@ -76,6 +79,7 @@ public class PlayerManager : MonoBehaviour
             }
             --lives;
             ++deaths;
+            dead = true;
             rb.velocity = new Vector2(0,0);
             transform.position = spawnPosition.position;
             playerMovement.enabled = false;
@@ -104,25 +108,19 @@ public class PlayerManager : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == TAG_PLATFORM)
+        ++time;
+        if(collision.gameObject.tag == TAG_PLATFORM && dead && time == 1)
         {
-            if(!collision.gameObject.GetComponent<Platforms>().done)
-            {
-                transform.SetParent(collision.gameObject.transform);
-                if(transform.GetComponent<Rigidbody2D>())
-                {
-                    transform.GetComponent<Rigidbody2D>().isKinematic = true;
-                }
-            }
+            transform.SetParent(collision.gameObject.transform);
         }
     }
 
-    IEnumerator OnCollisionExit2D(Collision2D collision)
+
+    private void Update() 
     {
-        if(collision.gameObject.tag == TAG_PLATFORM)
+        if(!dead)
         {
-            transform.GetComponent<Rigidbody2D>().isKinematic = false;
-            yield return new WaitForSeconds(1.5f);
+            time = 0;
             transform.parent = null;
             playerMovement.enabled = true;
             if(dogControls != null)
@@ -134,10 +132,12 @@ public class PlayerManager : MonoBehaviour
                 catControls.enabled = true;
             }
         }
+            
     }
-    private void Update() 
+
+    public void SetDeath(bool death)
     {
-        
+        dead = death;
     }
 
     

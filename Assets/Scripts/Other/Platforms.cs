@@ -6,34 +6,20 @@ using UniRx;
 public class Platforms : MonoBehaviour 
 {
 	public BoolReactiveProperty done = new BoolReactiveProperty(false);
-	private Animator anim;
-	private BoxCollider2D box;
-	private GameObject tempObject;
-	private bool time = false;
 
-	public void SetTrue()
-	 {
-		done.Value = true;
-	}
+	private Animator anim;
+	private GameObject tempObject;
+
+	private bool ready = false;
+
+	// CALLED IN ANIMATIONS
+	public void SetTrue() { done.Value = true; }
 	public void SetFalse() { done.Value = false; }
 
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
-		box = GetComponent<BoxCollider2D>();
 	}
-
-	void OnCollisionEnter2D(Collision2D collision)
-    {
-		tempObject = collision.gameObject;
-
-        if (tempObject.GetComponent<PlayerManager>().dead && !done.Value && time == false)
-        {
-			anim.SetTrigger("IsDead");
-            time = true;
-
-        }
-    }
 
 	void Start()
 	{
@@ -48,20 +34,33 @@ public class Platforms : MonoBehaviour
 	}
 
 
+	// The platform has two checks: a done bool and a ready bool.
+	// Where: the "done" is changed after the animation is done, and the ready is used to check when the platform can go up.
+	void OnCollisionEnter2D(Collision2D collision)
+    {
+		tempObject = collision.gameObject;
+
+ 
+        if (tempObject.GetComponent<PlayerManager>().dead && !done.Value && ready == false)
+        {
+			anim.SetTrigger("IsDead");
+            ready = true;
+
+        }
+    }
+
+	
+	// Set the platform back to it's idle position.
 	void GoIdle()
 	{
 		tempObject.GetComponent<PlayerManager>().SetDeath(false);
-		time = false;
+		ready = false;
+
 		anim.SetTrigger("IsIdle");
 		anim.SetTrigger("StandStill");
 
 	}
 
-	private void Update() {
-
-
-
-    }
 
 
 }

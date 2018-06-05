@@ -23,8 +23,9 @@ public class LevelManager : MonoBehaviour
 	{
 		managerObjects = GameManager.instance.players;
 
-		// If the players exist, instantiate them in their respective areas, add to the level list and give them respawn areas.
+		// If the players exist, instantiate them in their respective areas, add to the level list and set their spawn positions.
 
+		// PLAYER 1
 		if(managerObjects[0] != null)
 		{
 			GameObject player1 = Instantiate(managerObjects[0], spawns[0].position ,Quaternion.identity);
@@ -33,7 +34,8 @@ public class LevelManager : MonoBehaviour
 			PlayerManager playerManager = player1.GetComponent<PlayerManager>();
 			playerManager.spawnPosition = respawns[0];
 		}
-
+		
+		// PLAYER 2
 		if(managerObjects[1] != null)
 		{
 			GameObject player2 = Instantiate(managerObjects[1], spawns[1].position ,Quaternion.identity);
@@ -43,7 +45,8 @@ public class LevelManager : MonoBehaviour
 			playerManager.spawnPosition = respawns[1];
 			
 		}
-
+		
+		// PLAYER 3
 		// if(managerObjects[2] != null)
 		// {
 		// 	GameObject player3 = Instantiate(managerObjects[2], spawns[2].position ,Quaternion.identity);
@@ -52,7 +55,8 @@ public class LevelManager : MonoBehaviour
 		// 	playerManager.spawnPosition = respawns[2];
 		
 		// }
-
+		
+		// PLAYER 4
 		// if(managerObjects[3] != null)
 		// {
 		// 	GameObject player4 = Instantiate(managerObjects[3], spawns[3].position ,Quaternion.identity);

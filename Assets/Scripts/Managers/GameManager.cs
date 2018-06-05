@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
 	// Singleton to bring things between scenes.
 
-	// Character Select/In Game
+	// Character Select/In-Game
 	public static GameManager instance;
 	public List<GameObject> players;
 	public bool ready;
@@ -14,16 +14,13 @@ public class GameManager : MonoBehaviour
 	public int p1Number;
 	public int p2Number;
 
-	// For results screen
+	// From going from In-Game to results screen
 	public int p1Kills;
 	public int p2Kills;
 	
 	public int p1Deaths;
 	public int p2Deaths;
 
-
-
-	
 
 	void Awake()
 	{
@@ -38,6 +35,18 @@ public class GameManager : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 
+	}
+	
+	private void Update() {
+		if(Input.GetKey(KeyCode.Escape))
+		{
+			QuitGame();
+		}
+	}
+
+	void QuitGame()
+	{
+		Application.Quit();
 	}
 
 }

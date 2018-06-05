@@ -5,10 +5,11 @@ using UnityEngine;
 public class BlastController : MonoBehaviour
 {
     public float speed = 0.5f;
-    private PlayerMovement playerMovement;
-    public Vector2 knockback;
     private Rigidbody2D rBody;
+    private PlayerMovement playerMovement;
     private Hit hit;
+    public Vector2 knockback;
+
     
 
 	// Use this for initialization
@@ -18,13 +19,6 @@ public class BlastController : MonoBehaviour
         rBody = GetComponent<Rigidbody2D>();
         hit = GetComponent<Hit>();
         shootBullet();
-
-        
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
 	}
 
     void OnBecameInvisible()
@@ -32,12 +26,17 @@ public class BlastController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Shoot the bullet in the respective direction of the player.
     void shootBullet()
     {
-        if (playerMovement.facingRight != true)
+        if (!playerMovement.facingRight)
+        {
             rBody.velocity += (new Vector2(-100,0) * Time.deltaTime * speed);
+        }
         else
+        {
             rBody.velocity += (new Vector2(100,0) * Time.deltaTime * speed);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

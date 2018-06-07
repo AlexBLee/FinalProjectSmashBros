@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
     public bool dead = false;
 
     public LevelManager levelManager;
-    public int lives = 5;
+    public int lives = 0;
     public int index = 0;
     public int deaths = 0;
     public int kills = 0;
@@ -46,6 +46,7 @@ public class PlayerManager : MonoBehaviour
             catControls = GetComponent<CatControls>();
 
         index = levelManager.players.IndexOf(this.gameObject);
+        lives = GameManager.instance.lives;
 
         
 

@@ -5,15 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour 
 {
 	// Singleton to bring things between scenes.
+	public static GameManager instance;
 
 	// Character Select/In-Game
-	public static GameManager instance;
+	public enum gamemode { KO = 0, Timer = 1 }; 
 	public List<GameObject> players;
 	public bool ready;
 	
 	public int p1Number;
 	public int p2Number;
-
+	public int lives = 5;
+	public int timeInSeconds = 5;
+	
 	// From going from In-Game to results screen
 	public int p1Kills;
 	public int p2Kills;
@@ -40,13 +43,9 @@ public class GameManager : MonoBehaviour
 	private void Update() {
 		if(Input.GetKey(KeyCode.Escape))
 		{
-			QuitGame();
+			Application.Quit();
 		}
 	}
 
-	void QuitGame()
-	{
-		Application.Quit();
-	}
 
 }

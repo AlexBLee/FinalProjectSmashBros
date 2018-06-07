@@ -7,12 +7,10 @@ using System;
 
 public class Timer : MonoBehaviour 
 {
-	private float startTime;
 	private Text text;
 
 	void Awake()
 	{
-		startTime = 420;
 		text = GetComponent<Text>();
 		
 	}
@@ -21,7 +19,7 @@ public class Timer : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		float guiTime = Time.time - startTime; 
+		float guiTime = Time.timeSinceLevelLoad - (GameManager.instance.timeInSeconds * 60); 
 
 		int minutes = Mathf.Abs((int)guiTime / 60);
 		int seconds = Mathf.Abs((int)guiTime % 60);

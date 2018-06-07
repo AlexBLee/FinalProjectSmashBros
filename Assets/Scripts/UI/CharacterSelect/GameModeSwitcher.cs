@@ -5,36 +5,36 @@ using UnityEngine.UI;
 
 public class GameModeSwitcher : MonoBehaviour 
 {
+	private GameManager instance;
 	public Text mode;
 	public Text minLives;
-	public int modeNum;
 
 	private void Start() {
-		modeNum = (int)GameManager.gamemode.KO;
+		instance = GameManager.instance;
 	}
 
 
 	public void SwitchMode()
 	{
-		modeNum++;
+		instance.gameModeNumber++;
 		CheckMode();
 
-		if(modeNum > 1)
+		if(instance.gameModeNumber > 1)
 		{
-			modeNum = 0;
+			instance.gameModeNumber = 0;
 			CheckMode();
 		}
 	}
 
 	public void CheckMode()
 	{
-		if(modeNum == (int)GameManager.gamemode.KO)
+		if(instance.gameModeNumber == (int)GameManager.gamemode.KO)
 		{
 			mode.text = "Survival Fest!";
 			minLives.text = GameManager.instance.lives + " lives";
 		}
 
-		if(modeNum == (int)GameManager.gamemode.Timer)
+		if(instance.gameModeNumber == (int)GameManager.gamemode.Timer)
 		{
 			mode.text = "KO Fest!";
 			minLives.text = GameManager.instance.timeInSeconds + "-mins";

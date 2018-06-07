@@ -46,7 +46,16 @@ public class PlayerManager : MonoBehaviour
             catControls = GetComponent<CatControls>();
 
         index = levelManager.players.IndexOf(this.gameObject);
-        lives = GameManager.instance.lives;
+        
+        if(GameManager.instance.gameModeNumber == 0)
+        {
+            lives = GameManager.instance.lives;
+        }
+
+        if(GameManager.instance.gameModeNumber == 1)
+        {
+            lives = 9999;
+        }
 
         
 

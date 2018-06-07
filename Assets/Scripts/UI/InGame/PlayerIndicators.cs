@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class PlayerHealthIndicators : MonoBehaviour 
+public class PlayerIndicators : MonoBehaviour 
 {
 	public List<GameObject> players;
 
@@ -13,8 +13,8 @@ public class PlayerHealthIndicators : MonoBehaviour
 	private PlayerHealth healthThird;
 	private PlayerHealth healthFourth;
 
-	private PlayerManager livesFirst;
-	private PlayerManager livesSecond;
+	private PlayerManager firstPlayer;
+	private PlayerManager secondPlayer;
 	private PlayerManager livesThird;
 	private PlayerManager livesFourth;
 
@@ -44,13 +44,13 @@ public class PlayerHealthIndicators : MonoBehaviour
 		if(players[0] != null)
 		{
 			healthFirst = players[0].GetComponent<PlayerHealth>();
-			livesFirst = players[0].GetComponent<PlayerManager>();
+			firstPlayer = players[0].GetComponent<PlayerManager>();
 		}
 
 		if(players[1] != null)
 		{
 			healthSecond = players[1].GetComponent<PlayerHealth>();
-			livesSecond = players[1].GetComponent<PlayerManager>();
+			secondPlayer = players[1].GetComponent<PlayerManager>();
 		}
 
 		// if(players[2] != null)
@@ -73,13 +73,32 @@ public class PlayerHealthIndicators : MonoBehaviour
 		if(players[0] != null)
 		{
 			player1Health.text = healthFirst.health.ToString() + "%";
-			player1Lives.text = "Lives: "+ livesFirst.lives.ToString();
+
+
+			if(GameManager.instance.gameModeNumber == 0)
+			{
+				player1Lives.text = "Lives: "+ firstPlayer.lives.ToString();
+			}
+
+			if(GameManager.instance.gameModeNumber == 1)
+			{
+				player1Lives.text = "Kills: "+ firstPlayer.kills.ToString();
+			}
 		}
 
 		if(players[1] != null)
 		{
 			player2Health.text = healthSecond.health.ToString() + "%";
-			player2Lives.text = "Lives: "+ livesSecond.lives.ToString();	
+			
+			if(GameManager.instance.gameModeNumber == 0)
+			{
+				player2Lives.text = "Lives: "+ secondPlayer.lives.ToString();
+			}
+
+			if(GameManager.instance.gameModeNumber == 1)
+			{
+				player2Lives.text = "Kills: "+ secondPlayer.kills.ToString();
+			}
 		}
 		
 		// if(players[2] != null)

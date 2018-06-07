@@ -6,6 +6,7 @@ public class LivesMinutesSwitcher : MonoBehaviour
 {
 	GameModeSwitcher gameModeSwitcher;
 	GameManager instance;
+	int gameModeNumber;
 
 	private void Start() 
 	{
@@ -13,11 +14,12 @@ public class LivesMinutesSwitcher : MonoBehaviour
 		instance = GameManager.instance;
 		instance.lives = 5;
 		instance.timeInSeconds = 5;
+		
 	}
 
 	public void AddNumber()
 	{
-		if(gameModeSwitcher.modeNum == (int)GameManager.gamemode.KO)
+		if(GameManager.instance.gameModeNumber == (int)GameManager.gamemode.KO)
 		{
 			if(instance.lives < 10)
 			{
@@ -25,7 +27,7 @@ public class LivesMinutesSwitcher : MonoBehaviour
 			}
 		}
 
-		if(gameModeSwitcher.modeNum == (int)GameManager.gamemode.Timer)
+		if(GameManager.instance.gameModeNumber == (int)GameManager.gamemode.Timer)
 		{
 			if(instance.timeInSeconds < 15)
 			{
@@ -36,7 +38,7 @@ public class LivesMinutesSwitcher : MonoBehaviour
 
 	public void MinusNumber()
 	{
-		if(gameModeSwitcher.modeNum == (int)GameManager.gamemode.KO)
+		if(GameManager.instance.gameModeNumber == (int)GameManager.gamemode.KO)
 		{
 			if(instance.lives > 1)
 			{
@@ -44,7 +46,7 @@ public class LivesMinutesSwitcher : MonoBehaviour
 			}
 		}
 
-		if(gameModeSwitcher.modeNum == (int)GameManager.gamemode.Timer)
+		if(GameManager.instance.gameModeNumber == (int)GameManager.gamemode.Timer)
 		{
 			if(instance.timeInSeconds > 1)
 			{

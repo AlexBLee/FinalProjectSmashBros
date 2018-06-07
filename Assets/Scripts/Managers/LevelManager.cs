@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using UniRx;
 
 public class LevelManager : MonoBehaviour 
@@ -17,6 +18,8 @@ public class LevelManager : MonoBehaviour
 
 	// Where the player will respawn after death
 	public Transform[] respawns;
+	
+	public Text text;
 	
 
 	void Awake () 

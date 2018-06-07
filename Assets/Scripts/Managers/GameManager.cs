@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 
 	// Character Select/In-Game
-	public enum gamemode { KO = 0, Timer = 1 }; 
+	public enum gamemode { KO = 0, Timer = 1 };
+	public int gameModeNumber = 0;
 	public List<GameObject> players;
 	public bool ready;
 	

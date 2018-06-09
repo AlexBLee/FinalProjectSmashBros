@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class LivesMinutesSwitcher : MonoBehaviour 
 {
-	GameModeSwitcher gameModeSwitcher;
-	GameManager instance;
-	int gameModeNumber;
+	private GameManager instance;
+	private int gameModeNumber;
 
 	private void Start() 
 	{
-		gameModeSwitcher = FindObjectOfType<GameModeSwitcher>();
 		instance = GameManager.instance;
 		instance.lives = 5;
 		instance.timeInSeconds = 5;

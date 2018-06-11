@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.Build;
+#pragma warning disable 0618
 
 
 public class PreBuildMethods : IPreprocessBuild, IPostprocessBuild

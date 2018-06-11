@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+#pragma warning disable 0219
 
 public class SceneChooser : EditorWindow
 {

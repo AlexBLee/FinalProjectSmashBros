@@ -22,7 +22,6 @@ public class CustomBuildProcess
 
 		// Build settings
 		string filepath = EditorUtility.SaveFolderPanel("Choose Location of Built Game", "","");
-		string[] scenes = new string[] { };
 
 		
 		// Build player

@@ -31,12 +31,16 @@ public class CatControls : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+    private AudioSource source;
+    public AudioClip[] clips;
+
     void GetComponents()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
+        source = GetComponent<AudioSource>();
     }
 
     // Use this for initialization
@@ -129,13 +133,15 @@ public class CatControls : MonoBehaviour
         anim.SetTrigger("1-2Combo(1)");
         hit.SetDamage(4);
         hit.SetKnockback(punchKnockback);
+        source.PlayOneShot(clips[0]);
     }
 
     void OneTwoComboSecondHit()
     {
         anim.SetTrigger("1-2Combo(2)");
         hit.SetDamage(4);
-        hit.SetKnockback(punchKnockback);        
+        hit.SetKnockback(punchKnockback);
+        source.PlayOneShot(clips[0]);        
     }
 
     public void FlyingUppercut()
@@ -162,6 +168,7 @@ public class CatControls : MonoBehaviour
                 }
                 rb.AddForce(uppercutForce);
             }
+            source.PlayOneShot(clips[1]);
             playerMovement.enabled = false;            
             canHit = false;
             canUppercut = false;
@@ -176,6 +183,7 @@ public class CatControls : MonoBehaviour
     {
         if(canHit)
         {
+            source.PlayOneShot(clips[0]);
             playerMovement.enabled = false;
             anim.SetTrigger("TwoSide");
             hit.SetDamage(5);
@@ -210,7 +218,7 @@ public class CatControls : MonoBehaviour
             playerMovement.enabled = false;
             canHit = false;
         }
-
+        source.PlayOneShot(clips[2]);
         hit.SetDamage(8);
         hit.SetKnockback(spinKickKnockback);
 

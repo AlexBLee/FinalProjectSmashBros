@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 114253687059005334}
   - component: {fileID: 114870020417840180}
   - component: {fileID: 114793880929589618}
+  - component: {fileID: 82343805586269116}
   m_Layer: 10
   m_Name: DogFighter
   m_TagString: Player
@@ -177,6 +178,101 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.151431, y: 0.2863482}
   m_EdgeRadius: 0
+--- !u!82 &82343805586269116
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802695048475120}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95436521287431974
 Animator:
   serializedVersion: 3
@@ -194,6 +290,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114253687059005334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,6 +304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   damage: {x: 0, y: 0}
+  koPlayer: {fileID: 0}
+  clip: {fileID: 8300000, guid: 6ab00d6b064beb64d99417709d18a368, type: 3}
 --- !u!114 &114530950690870158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +325,10 @@ MonoBehaviour:
   kickKnockback: {x: 20, y: 0}
   blast: {fileID: 1703489262586198, guid: d197eee2f6e3b564a8eb554bb4c3a1f5, type: 2}
   blastPosition: {fileID: 4678392724319034}
+  clips:
+  - {fileID: 8300000, guid: d91644a0f5fad694cb9e58b6d72ea56c, type: 3}
+  - {fileID: 8300000, guid: 0a7ecaa8188cbe24ead5e2fa2ba3d098, type: 3}
+  - {fileID: 8300000, guid: 1986cf0959163c44487fc42b7089b75b, type: 3}
 --- !u!114 &114746342382301756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -237,6 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147749e206291694f94340129bb12c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  managerObjects: []
+  player1: 0
+  player2: 0
   facingRight: 1
   jumpVelocity: 15
   canJump: 1
@@ -266,10 +372,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1fd9292ca310a42bb2f862d1ed1892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platforms: {fileID: 0}
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
+  death: {fileID: 8300000, guid: 5326efa4de78c9146ad0247260bda7a9, type: 3}
+  dead: 0
+  levelManager: {fileID: 0}
   lives: 5
+  index: 0
+  deaths: 0
+  kills: 0
+  time: 0
 --- !u!212 &212416234537557488
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -283,6 +395,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

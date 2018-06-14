@@ -22,7 +22,12 @@ public class PlayerManager : MonoBehaviour
     private CameraScript cameraScript;
     private PlayerHealth playerHealth;
 
+    private AudioSource source;
+    public AudioClip death;
+
     public bool dead = false;
+
+
 
     public LevelManager levelManager;
     public int lives = 0;
@@ -37,6 +42,7 @@ public class PlayerManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         playerHealth = GetComponent<PlayerHealth>(); 
         playerMovement = GetComponent<PlayerMovement>(); 
+        source = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
 
         if(gameObject.name == "DogFighter")
@@ -91,6 +97,7 @@ public class PlayerManager : MonoBehaviour
             ++deaths;
             dead = true;
             rb.velocity = new Vector2(0,0);
+            source.PlayOneShot(death);
             transform.position = spawnPosition.position;
             playerMovement.enabled = false;
 

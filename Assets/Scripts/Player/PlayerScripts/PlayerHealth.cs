@@ -14,6 +14,9 @@ public class PlayerHealth : MonoBehaviour
     public Vector2 damage;
     public GameObject koPlayer;    
 
+    private AudioSource source;
+    public AudioClip clip;
+
     private PlayerMovement playerMovement;
     
     private CatControls catControls;
@@ -32,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
+        source = GetComponent<AudioSource>();
         
         if(gameObject.name == "CatFighter")
         {
@@ -50,27 +54,32 @@ public class PlayerHealth : MonoBehaviour
         {
             if (collision.transform.position.x > transform.position.x)
             {
-                HitTakenRight(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
-                koPlayer = collision.transform.parent.gameObject;
-                DisableControls();
-                spriteRenderer.material.color = white;
-                yield return new WaitForSeconds(0.1f);
-                spriteRenderer.material.color = Color.white;
-                EnableControls();                
+                HitTakenRight(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());          
             }
 
             if (collision.transform.position.x < transform.position.x)
-            {
-                spriteRenderer.material.color = Color.white;
-                
+            {   
                 HitTakenLeft(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback());
-                koPlayer = collision.transform.parent.gameObject;                
-                DisableControls();
-                spriteRenderer.material.color = white;                
-                yield return new WaitForSeconds(0.1f);
-                spriteRenderer.material.color = Color.white;                
-                EnableControls();
             }
+
+            if(collision.gameObject.tag == TAG_BLAST)
+            {
+                koPlayer = collision.gameObject.GetComponent<BlastController>().player;
+            }
+            else
+            {
+                koPlayer = collision.transform.parent.gameObject;
+            }
+            
+
+
+            
+            source.PlayOneShot(clip);
+            DisableControls();
+            spriteRenderer.material.color = white;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.material.color = Color.white;
+            EnableControls();      
         }
         
 

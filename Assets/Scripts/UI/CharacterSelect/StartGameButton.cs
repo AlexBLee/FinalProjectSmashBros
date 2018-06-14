@@ -22,7 +22,7 @@ public class StartGameButton : MonoBehaviour
 	{
 		if(GameManager.instance.ready == true)
 		{
-			SceneManager.LoadScene("LevelSelect");
+			SceneManager.LoadScene("Level1");
 		}
 	}
 

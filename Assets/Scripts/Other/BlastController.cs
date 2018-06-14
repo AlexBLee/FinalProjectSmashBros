@@ -9,6 +9,7 @@ public class BlastController : MonoBehaviour
     private PlayerMovement playerMovement;
     private Hit hit;
     public Vector2 knockback;
+    public GameObject player;
 
     
 

@@ -30,6 +30,9 @@ public class DogControls : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+    private AudioSource source;
+    public AudioClip[] clips;
+
 
     // Use this for initialization
     void Start ()
@@ -38,6 +41,7 @@ public class DogControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
+        source = GetComponent<AudioSource>();
         
 	}
 
@@ -151,7 +155,7 @@ public class DogControls : MonoBehaviour
         anim.SetTrigger("KickCombo(0)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
-        
+        source.PlayOneShot(clips[0]);
     }
 
     public void KickComboSecondHit()
@@ -159,6 +163,7 @@ public class DogControls : MonoBehaviour
         anim.SetTrigger("KickCombo(1)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
+        source.PlayOneShot(clips[0]);
     }
 
 	public void KickComboThirdHit()
@@ -166,9 +171,7 @@ public class DogControls : MonoBehaviour
         anim.SetTrigger("KickCombo(2)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
-        
-        
-        
+        source.PlayOneShot(clips[0]);  
     }
 
     public void JumpKick()
@@ -198,6 +201,8 @@ public class DogControls : MonoBehaviour
             playerMovement.enabled = false;            
             canHit = false;
             canJumpKick = false;
+            source.PlayOneShot(clips[1]);
+
             
         }
         hit.SetDamage(10);
@@ -214,8 +219,11 @@ public class DogControls : MonoBehaviour
             anim.SetTrigger("KiBlast");
         
             yield return new WaitForSeconds(0.4f);
-            Instantiate(blast,blastPosition.position,Quaternion.identity);
+            GameObject ball = Instantiate(blast,blastPosition.position,Quaternion.identity);
+            ball.GetComponent<BlastController>().player = gameObject;
             StopCoroutine(KiBlast());
+            source.PlayOneShot(clips[2]);
+            
         }
 
     }
@@ -245,6 +253,8 @@ public class DogControls : MonoBehaviour
             }
             playerMovement.enabled = false;
             canHit = false;
+            source.PlayOneShot(clips[0]);
+
         }
         hit.SetDamage(5);
         hit.SetKnockback(forwardKickKnockback);

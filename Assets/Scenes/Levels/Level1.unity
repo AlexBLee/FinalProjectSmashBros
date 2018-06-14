@@ -237,7 +237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &100093152
 RectTransform:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lives: 0'
+  m_Text: 
 --- !u!222 &100093154
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -931,7 +931,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b326d9f4e36e77140b07733cb5f0c66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
   playerHealthDisplays:
   - {fileID: 617363788}
   - {fileID: 1922252418}
@@ -1301,7 +1300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &505054737
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1352,7 +1351,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0%
+  m_Text: 
 --- !u!222 &505054739
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1572,7 +1571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &617363787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1623,7 +1622,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0%
+  m_Text: 
 --- !u!222 &617363789
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1985,7 +1984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &831996018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2036,7 +2035,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0%
+  m_Text: 
 --- !u!222 &831996020
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2232,7 +2231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &947505069
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2283,7 +2282,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lives: 0'
+  m_Text: 
 --- !u!222 &947505071
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4662,7 +4661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1922252417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4713,7 +4712,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0%
+  m_Text: 
 --- !u!222 &1922252419
 CanvasRenderer:
   m_ObjectHideFlags: 0

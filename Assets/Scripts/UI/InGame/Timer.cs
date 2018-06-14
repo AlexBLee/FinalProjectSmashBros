@@ -12,6 +12,11 @@ public class Timer : MonoBehaviour
 	void Awake()
 	{
 		text = GetComponent<Text>();
+
+		if(GameManager.instance.gameModeNumber == 0)
+		{
+			gameObject.SetActive(false);
+		}
 		
 	}
 	

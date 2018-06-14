@@ -932,14 +932,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
-  player1Health: {fileID: 617363788}
-  player2Health: {fileID: 1922252418}
-  player3Health: {fileID: 831996019}
-  player4Health: {fileID: 505054738}
-  player1Lives: {fileID: 100093153}
-  player2Lives: {fileID: 947505070}
-  player3Lives: {fileID: 0}
-  player4Lives: {fileID: 0}
+  playerHealthDisplays:
+  - {fileID: 617363788}
+  - {fileID: 1922252418}
+  - {fileID: 831996019}
+  - {fileID: 505054738}
+  playerLivesKillDisplay:
+  - {fileID: 100093153}
+  - {fileID: 947505070}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &376104479
 Transform:
   m_ObjectHideFlags: 0

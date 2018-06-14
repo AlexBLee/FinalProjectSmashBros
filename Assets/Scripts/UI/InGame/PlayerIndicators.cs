@@ -8,25 +8,13 @@ public class PlayerIndicators : MonoBehaviour
 {
 	public List<GameObject> players;
 
-	private PlayerHealth healthFirst;
-	private PlayerHealth healthSecond;
-	private PlayerHealth healthThird;
-	private PlayerHealth healthFourth;
+	private PlayerHealth[] playerHealths = new PlayerHealth[4];
 
-	private PlayerManager firstPlayer;
-	private PlayerManager secondPlayer;
-	private PlayerManager livesThird;
-	private PlayerManager livesFourth;
+	private PlayerManager[] playerManagers = new PlayerManager[4];
 
-	public Text player1Health;
-	public Text player2Health;
-	public Text player3Health;
-	public Text player4Health;
+	public Text[] playerHealthDisplays;
 
-	public Text player1Lives;
-	public Text player2Lives;
-	public Text player3Lives;
-	public Text player4Lives;
+	public Text[] playerLivesKillDisplay;
 	
 
 	// Use this for initialization
@@ -43,26 +31,26 @@ public class PlayerIndicators : MonoBehaviour
 
 		if(players[0] != null)
 		{
-			healthFirst = players[0].GetComponent<PlayerHealth>();
-			firstPlayer = players[0].GetComponent<PlayerManager>();
+			playerHealths[0] = players[0].GetComponent<PlayerHealth>();
+			playerManagers[0] = players[0].GetComponent<PlayerManager>();
 		}
 
 		if(players[1] != null)
 		{
-			healthSecond = players[1].GetComponent<PlayerHealth>();
-			secondPlayer = players[1].GetComponent<PlayerManager>();
+			playerHealths[1] = players[1].GetComponent<PlayerHealth>();
+			playerManagers[1] = players[1].GetComponent<PlayerManager>();
 		}
 
 		// if(players[2] != null)
 		// {
-		// 	healthThird = players[2].GetComponent<PlayerHealth>();
-		// 	livesThird = players[2].GetComponent<PlayerManager>();
+		// 	playerHealths[2] = players[2].GetComponent<PlayerHealth>();
+		// 	playerManagers[2] = players[2].GetComponent<PlayerManager>();
 		// }
 
 		// if(players[3] != null)
 		// {
-		// 	healthFourth = players[3].GetComponent<PlayerHealth>();
-		// 	livesFourth = players[3].GetComponent<PlayerManager>();
+		// 	playerHealths[3] = players[3].GetComponent<PlayerHealth>();
+		// 	playerManagers[3] = players[3].GetComponent<PlayerManager>();
 		// }
 		
 	}
@@ -72,46 +60,46 @@ public class PlayerIndicators : MonoBehaviour
 	{
 		if(players[0] != null)
 		{
-			player1Health.text = healthFirst.health.ToString() + "%";
+			playerHealthDisplays[0].text = playerHealths[0].health.ToString() + "%";
 
 
 			if(GameManager.instance.gameModeNumber == 0)
 			{
-				player1Lives.text = "Lives: "+ firstPlayer.lives.ToString();
+				playerLivesKillDisplay[0].text = "Lives: "+ playerManagers[0].lives.ToString();
 			}
 
 			if(GameManager.instance.gameModeNumber == 1)
 			{
-				player1Lives.text = "Kills: "+ firstPlayer.kills.ToString();
+				playerLivesKillDisplay[0].text = "Kills: "+ playerManagers[0].kills.ToString();
 			}
 		}
 
 		if(players[1] != null)
 		{
-			player2Health.text = healthSecond.health.ToString() + "%";
+			playerHealthDisplays[1].text = playerHealths[1].health.ToString() + "%";
 			
 			if(GameManager.instance.gameModeNumber == 0)
 			{
-				player2Lives.text = "Lives: "+ secondPlayer.lives.ToString();
+				playerLivesKillDisplay[1].text = "Lives: "+ playerManagers[1].lives.ToString();
 			}
 
 			if(GameManager.instance.gameModeNumber == 1)
 			{
-				player2Lives.text = "Kills: "+ secondPlayer.kills.ToString();
+				playerLivesKillDisplay[1].text = "Kills: "+ playerManagers[1].kills.ToString();
 			}
 		}
 		
 		// if(players[2] != null)
 		// {
-		// 	player3Health.text = healthThird.health.ToString() + "%";
-		// 	player3Lives.text = "Lives: "+ livesThird.lives.ToString();	
+		// 	playerHealthDisplays[2].text = playerHealths[2].health.ToString() + "%";
+		// 	playerLivesKillDisplay[2].text = "Lives: "+ playerManagers[2].lives.ToString();	
 		// }
 
 
 		// if(players[3] != null)
 		// {
-		// 	player4Health.text = healthFourth.health.ToString() + "%";
-		// 	player4Lives.text = "Lives: "+ livesFourth.lives.ToString();		
+		// 	playerHealthDisplays[3].text = playerHealths[3].health.ToString() + "%";
+		// 	playerLivesKillDisplay[3].text = "Lives: "+ playerManagers[3].lives.ToString();		
 		// }
 
 	}

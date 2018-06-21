@@ -5,26 +5,32 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Tag check
+    private string TAG_FLOOR = "Floor";
+
+    // To determine players.
     public List<GameObject> managerObjects;
     public bool player1 = false;
     public bool player2 = false;
 
-    private float h = 0.0f;
-
-    [HideInInspector]public bool facingRight = true;
-
-    public float jumpVelocity = 15.0f;
+    // Jump check
     public bool canJump = true;
 
-    private string TAG_FLOOR = "Floor";
-
+    // Movement speeds/forces.
+    public float jumpVelocity = 15.0f;
     public float moveForce = 365f;
     public float maxSpeed = 5f;
+    private float h = 0.0f;
 
+    // FOR MOBILE!
     //private Joystick joystick;
 
+    // Animation
     private Animator anim;
+
+    // For moving.
     private Rigidbody2D rb;
+    [HideInInspector]public bool facingRight = true;
 
 
     // Use this for initialization

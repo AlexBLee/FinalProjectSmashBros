@@ -6,54 +6,52 @@ using UnityEngine;
 
 public class CatControls : MonoBehaviour
 {
-    bool canHit = true;
-    float lastClicked = 0.0f;
-
-    public Animator anim;
-    private Rigidbody2D rb;
-    private bool canUppercut = true;
+    // To determine when you can hit and when you clicked last.
+    private bool canHit = true;
     private bool canKick;
+    private bool canUppercut = true;
+    private float lastClicked = 0.0f;
 
+    // Animation
+    public Animator anim;
+
+    // To detect the floor.
+    private string TAG_FLOOR = "Floor";
+
+    // For move forces.
+    private Rigidbody2D rb;
+
+    // Move forces
     public Vector2 uppercutForce;
     public Vector2 sideKickForceR;
 
-    private string TAG_FLOOR = "Floor";
-
-    private bool facingRight;
-
-    public Vector2 uppercutKnockback;
-    public Vector2 spinKickKnockback;
-    public Vector2 twoSideKnockback;
+    // Move knockbacks.
     public Vector2 punchKnockback;
+    public Vector2 uppercutKnockback;
+    public Vector2 twoSideKnockback;
+    public Vector2 spinKickKnockback;
 
     // Sets Damage and Knockback
     private Hit hit;
-
     private PlayerMovement playerMovement;
+    private bool facingRight;
 
+    // Audio
     private AudioSource source;
     public AudioClip[] clips;
 
-    void GetComponents()
+    void Start ()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
         source = GetComponent<AudioSource>();
-    }
-
-    // Use this for initialization
-    void Start ()
-    {
-        GetComponents();
-        
 	}
 
-
-    // Update is called once per frame
     void Update ()
     {
+        // If player 1
         if(playerMovement.player1)
         {
             // Two Punch Combo
@@ -89,6 +87,7 @@ public class CatControls : MonoBehaviour
             }
         }
 
+        // If player 2
         if(playerMovement.player2)
         {
             // Two Punch Combo
@@ -123,11 +122,13 @@ public class CatControls : MonoBehaviour
                 SpinKick();
             }
         }
-        
-
     }
 
+    // --------------------------------------------------------------------------------------------------------- //
+    // MOVES
+    // --------------------------------------------------------------------------------------------------------- //
 
+    // Two punch combo
     void OneTwoComboFirstHit()
     {
         anim.SetTrigger("1-2Combo(1)");
@@ -143,6 +144,8 @@ public class CatControls : MonoBehaviour
         hit.SetKnockback(punchKnockback);
         source.PlayOneShot(clips[0]);        
     }
+
+    // --------------------------------------------------------------------------------------------------------- //
 
     public void FlyingUppercut()
     {
@@ -179,6 +182,8 @@ public class CatControls : MonoBehaviour
         
     }
 
+    // --------------------------------------------------------------------------------------------------------- //
+
     public void TwoSideAttack()
     {
         if(canHit)
@@ -190,6 +195,8 @@ public class CatControls : MonoBehaviour
             hit.SetKnockback(twoSideKnockback);
         }
     }
+
+    // --------------------------------------------------------------------------------------------------------- //
 
     public void SpinKick()
     {
@@ -224,11 +231,16 @@ public class CatControls : MonoBehaviour
 
     }
 
+    // Check if animation is done. -- Called in animation.
     public void SpinKickCheck()
     {
         canKick = true;
     }
 
+    // --------------------------------------------------------------------------------------------------------- //
+
+
+    // When the player lands, enable you to uppercut again.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == TAG_FLOOR)

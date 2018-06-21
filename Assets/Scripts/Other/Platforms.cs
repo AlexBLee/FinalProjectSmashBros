@@ -5,22 +5,25 @@ using UniRx;
 
 public class Platforms : MonoBehaviour 
 {
-	public BoolReactiveProperty done = new BoolReactiveProperty(false);
-
+	// For animations going up and down.
+	private BoolReactiveProperty done = new BoolReactiveProperty(false);
 	private Animator anim;
-	private GameObject tempObject;
 
-	private bool ready = false;
+	// The object that will be on the platform.
+	private GameObject tempObject;
 
 	// CALLED IN ANIMATIONS
 	public void SetTrue() { done.Value = true; }
 	public void SetFalse() { done.Value = false; }
+
+	private bool ready = false;
 
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
 	}
 
+	// When the platform has finished going down, go up and idle.
 	void Start()
 	{
 		done
@@ -40,7 +43,6 @@ public class Platforms : MonoBehaviour
     {
 		tempObject = collision.gameObject;
 
- 
         if (tempObject.GetComponent<PlayerManager>().dead && !done.Value && ready == false)
         {
 			anim.SetTrigger("IsDead");

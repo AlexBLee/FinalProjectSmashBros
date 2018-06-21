@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class BlastController : MonoBehaviour
 {
-    public float speed = 0.5f;
+    // Speed of blast.
+    private float speed = 0.5f;
+
+    // Determine the direction of the player
     private Rigidbody2D rBody;
     private PlayerMovement playerMovement;
+
+    // For damage/knockback on player.
     private Hit hit;
     public Vector2 knockback;
     public GameObject player;
 
-    
+    // --------------------------------------------------------------------------------------------------------- //
 
-	// Use this for initialization
+
 	void Start ()
     {
+        // Only the dog fighter uses this, so finding only the DogFighter is appropriate.
         playerMovement = GameObject.Find("DogFighter").GetComponent<PlayerMovement>();
+
         rBody = GetComponent<Rigidbody2D>();
         hit = GetComponent<Hit>();
         shootBullet();
 	}
 
+    // Destroy self when you can't see it.
     void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -40,6 +48,7 @@ public class BlastController : MonoBehaviour
         }
     }
 
+    // Hit people.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject)

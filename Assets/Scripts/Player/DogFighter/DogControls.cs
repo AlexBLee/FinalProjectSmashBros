@@ -4,37 +4,45 @@ using UnityEngine;
 
 public class DogControls : MonoBehaviour
 {
+    // To determine when you can hit and when you clicked last.
     bool canHit = true;
     bool canJumpKick = true;
     bool thirdKick = false;
-    string TAG_FLOOR = "Floor";
+    float lastClicked = 0.0f;
     private float shotCounter;
     public float timeBetweenShots;
     
-    float lastClicked = 0.0f;
-
+    // Animation
     private Animator anim;
+
+    // To detect the floor.
+    string TAG_FLOOR = "Floor";
+    
+    // For move forces.
     private Rigidbody2D rb;
     
+    // Move forces
     public Vector2 jumpKickForce;
     public Vector2 forwardKickForce;
+
+    // Move knockbacks.
     public Vector2 jumpKickKnockback;
     public Vector2 forwardKickKnockback;
     public Vector2 kickKnockback;
+
+    // Sets Damage and Knockback
     private Hit hit;
+    private PlayerMovement playerMovement;
+    private bool facingRight;
     
+    // For the blast
 	public GameObject blast;
 	public Transform blastPosition;
-
-    private bool facingRight;
-
-    private PlayerMovement playerMovement;
-
+    
+    // Audio
     private AudioSource source;
     public AudioClip[] clips;
 
-
-    // Use this for initialization
     void Start ()
     {
         anim = GetComponent<Animator>();
@@ -42,14 +50,15 @@ public class DogControls : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
         source = GetComponent<AudioSource>();
-        
 	}
 
 
     void Update ()
     {
+        // So you can't spam blast.
         shotCounter -= Time.deltaTime;
 
+        // If player 1
         if(playerMovement.player1)
         {
              // Two Kick Combo
@@ -98,6 +107,7 @@ public class DogControls : MonoBehaviour
 
         }
 
+        // If player 2
         if(playerMovement.player2)
         {
              // Two Kick Combo
@@ -148,8 +158,11 @@ public class DogControls : MonoBehaviour
 
     }
 
+    // --------------------------------------------------------------------------------------------------------- //
+    // MOVES
+    // --------------------------------------------------------------------------------------------------------- //
 
-
+    // Kick combo 
     public void KickComboFirstHit()
     {
         anim.SetTrigger("KickCombo(0)");
@@ -173,6 +186,8 @@ public class DogControls : MonoBehaviour
         hit.SetKnockback(kickKnockback);
         source.PlayOneShot(clips[0]);  
     }
+
+    // --------------------------------------------------------------------------------------------------------- //
 
     public void JumpKick()
     {
@@ -209,8 +224,9 @@ public class DogControls : MonoBehaviour
         hit.SetKnockback(jumpKickKnockback);       
          
     }
-    
 
+    // --------------------------------------------------------------------------------------------------------- //
+    
     IEnumerator KiBlast()
     {
         if(canHit)
@@ -227,6 +243,8 @@ public class DogControls : MonoBehaviour
         }
 
     }
+
+    // --------------------------------------------------------------------------------------------------------- //
 
     public void ForwardKick()
     {
@@ -262,6 +280,7 @@ public class DogControls : MonoBehaviour
 
     }
 
+    // --------------------------------------------------------------------------------------------------------- //
    
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -275,7 +294,6 @@ public class DogControls : MonoBehaviour
 
     public void EnableDogControl()
     {
-        //Debug.Log("!");
         playerMovement.enabled = true;
         canHit = true;
     }

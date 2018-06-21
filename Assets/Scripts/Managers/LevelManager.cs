@@ -8,7 +8,7 @@ using UniRx;
 public class LevelManager : MonoBehaviour 
 {
 	// List that stays active across character select/game/end result screen
-	public List<GameObject> managerObjects;
+	private List<GameObject> managerObjects;
 
 	// List for things in level.
 	public List<GameObject> players;
@@ -73,6 +73,7 @@ public class LevelManager : MonoBehaviour
 
 	}
 
+	// When there is one more player remaining, end the game.
 	private void Update() 
 	{
 		if(players.Count == 1)

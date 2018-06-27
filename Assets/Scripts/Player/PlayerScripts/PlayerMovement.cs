@@ -32,8 +32,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     [HideInInspector]public bool facingRight = true;
 
+    // --------------------------------------------------------------------------------------------------------- //    
 
-    // Use this for initialization
+
     void Start()
     {
         managerObjects = GameManager.instance.players;
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         //joystick = FindObjectOfType<FixedJoystick>();
 
-
+        // Find out the player number.
         if(managerObjects[0].name == gameObject.name)
         {
             player1 = true;
@@ -53,9 +54,9 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // If the player can jump and the player jumped, play the jump animation.
         if (!canJump)
             anim.SetBool("Jumping", true);
         else
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         //float h = joystick.Horizontal;
         //float v = joystick.Vertical;
 
+        // Player 1 controls.
         if(player1)
         {
             h = Input.GetAxis("Horizontal");
@@ -78,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
             }
         
         }
-            
+        
+        // Player 2 Controls.
         if(player2)
         {
             h = Input.GetAxis("Horizontal1");
@@ -91,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
             
-
+        // Move in direction.
         if (h * rb.velocity.x < maxSpeed)
         {
             anim.SetBool("Walking", true);
@@ -99,14 +102,8 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.right * h * moveForce);
         }
 
-
-        // if(canJump && Input.GetKeyDown(KeyCode.W)) //&& v > 0.8)
-        // {
-        //     rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-        //     canJump = false;
-        // }
         
-
+        // If the player has somehow moved faster than the max speed, then set their speed to max speed.
         if (Mathf.Abs(rb.velocity.x) > maxSpeed)
         {
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
@@ -114,20 +111,24 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        // If the player isn't moving, then don't walk.
+        // h is a number from 0-1 based on the player clicking movement buttons.
         if(h == 0)
         {
             anim.SetBool("Walking", false);
         }
 
+        // If player has clicked right and is not already facing right, flip the character
         if (h > 0 && !facingRight)
             Flip();
 
+        // If player has clicked left and is not already facing left, flip the character
         else if (h < 0 && facingRight)
             Flip();
         
     }
 
-
+    // Flip the character.
     void Flip()
     {
         facingRight = !facingRight;
@@ -136,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    // Hit the floor, can now jump.
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == TAG_FLOOR)

@@ -548,8 +548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58e4fe51a3edbc42947a18437e63fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  done:
-    value: 0
 --- !u!1 &123397507
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,8 +575,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b326d9f4e36e77140b07733cb5f0c66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthDisplays: []
-  playerLivesKillDisplay: []
+  playerHealthDisplays:
+  - {fileID: 727879658}
+  - {fileID: 1218633553}
+  - {fileID: 1768611079}
+  - {fileID: 1833896024}
+  playerLivesKillDisplay:
+  - {fileID: 1243446931}
+  - {fileID: 1336504597}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &123397509
 Transform:
   m_ObjectHideFlags: 0
@@ -2517,7 +2523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd9d39fba519a0458ab27601d65ee51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerObjects: []
   players: []
   spawns:
   - {fileID: 1018942198}
@@ -3272,8 +3277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58e4fe51a3edbc42947a18437e63fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  done:
-    value: 0
 --- !u!50 &1232228553
 Rigidbody2D:
   serializedVersion: 4

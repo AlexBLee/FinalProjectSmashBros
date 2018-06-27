@@ -6,10 +6,16 @@ using UnityEngine.UI;
 
 public class Results : MonoBehaviour 
 {
+	// Text
 	public Text[] textList;
+
+	// For finding the right positions for the players.
 	public int index;
 
-	// Use this for initialization
+    // --------------------------------------------------------------------------------------------------------- //    
+
+	// Show the name/kill/deaths.
+	// NOTE: currently works for only two players. will likely have to be refactored to work with more if needed.
 	void Start () 
 	{
 		textList[0].text = GameManager.instance.players[index].name;

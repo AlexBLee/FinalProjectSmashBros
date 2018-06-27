@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class StartGameButton : MonoBehaviour 
 {
-
+	// Button
 	private Button button;
-	public Cursor[] cursorList;
 	
+    // --------------------------------------------------------------------------------------------------------- //    
 
 	// Use this for initialization
 	void Start () 
@@ -18,6 +18,7 @@ public class StartGameButton : MonoBehaviour
 		button.onClick.AddListener(GoToLevelSelect);
 	}
 
+	// Go to level select.
 	public void GoToLevelSelect()
 	{
 		if(GameManager.instance.ready == true)

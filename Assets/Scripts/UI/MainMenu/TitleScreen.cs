@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
+    // Buttons
     public Text title;
     public Text enterText;
 
+    // --------------------------------------------------------------------------------------------------------- //    
+
+    // Go to menu from title screen.
     private void Update() 
     {
         if(Input.GetKeyDown(KeyCode.Return))

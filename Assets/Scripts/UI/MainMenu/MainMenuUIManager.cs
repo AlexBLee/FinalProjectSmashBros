@@ -5,27 +5,34 @@ using UnityEngine.UI;
 
 public class MainMenuUIManager : MonoBehaviour
 {
-    // Easiest, laziest, and worst way to make a Singleton.
+    // Menu Manager
     public static MainMenuUIManager instance;
 
+    // Menu screens.
     public PlayScreen playScreen;
     public MainMenuScreen mainMenuScreen;
     public OptionsScreen optionsScreen;
 
+    // Title screen.
     public RectTransform titleRT;
 
+    // The menu screen that you're currently on.
     private RectTransform currentScreen;
 
+    // --------------------------------------------------------------------------------------------------------- //    
+    
     private void Awake()
     {
         instance = this;
     }
 
+    // Set the current screen to the title screen to begin.
     private void Start() 
     {
         currentScreen = titleRT;
     }
 
+    // Go to menu screens when called.
     public void ToMainMenuScreen()
     {
         ChangeScreen(mainMenuScreen.GetComponent<RectTransform>());
@@ -41,7 +48,7 @@ public class MainMenuUIManager : MonoBehaviour
         ChangeScreen(optionsScreen.GetComponent<RectTransform>());
     }
 
-
+    // Using LeanTween - to animate screens to go to the side.
     private void ChangeScreen(RectTransform nextScreen)
     {
         if(nextScreen != currentScreen)
@@ -57,6 +64,7 @@ public class MainMenuUIManager : MonoBehaviour
                 LeanTween.moveX(nextScreen, 0.0f, 1.0f).setOnComplete(() => { currentScreen = nextScreen; });
             });
 
+            // Set the current screen to the screen that you're going to be on.
             currentScreen = nextScreen;
         }
     }

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class VersionDisplay : MonoBehaviour 
 {
+	// Version display Text
 	private Text text;
 
+	// Display version.
 	private void Start() 
 	{
 	   string curVersion = Application.version;

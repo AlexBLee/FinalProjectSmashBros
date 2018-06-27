@@ -7,12 +7,16 @@ using System;
 
 public class Timer : MonoBehaviour 
 {
+	// Text
 	private Text text;
+
+    // --------------------------------------------------------------------------------------------------------- //    
 
 	void Awake()
 	{
 		text = GetComponent<Text>();
 
+		// If the mode isn't the timed mode, then don't use the timer.
 		if(GameManager.instance.gameModeNumber == 0)
 		{
 			gameObject.SetActive(false);
@@ -21,7 +25,7 @@ public class Timer : MonoBehaviour
 	}
 	
 	
-	// Update is called once per frame
+	// Display time elapsed.
 	void Update () 
 	{
 		float guiTime = Time.timeSinceLevelLoad - (GameManager.instance.timeInSeconds * 60); 

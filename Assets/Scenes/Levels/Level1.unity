@@ -441,8 +441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58e4fe51a3edbc42947a18437e63fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  done:
-    value: 0
 --- !u!50 &148672914
 Rigidbody2D:
   serializedVersion: 4
@@ -1645,7 +1643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &626191921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1728,7 +1726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd9d39fba519a0458ab27601d65ee51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerObjects: []
   players: []
   spawns:
   - {fileID: 1460643531}
@@ -3186,7 +3183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1278010476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4711,7 +4708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1907819903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4836,8 +4833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58e4fe51a3edbc42947a18437e63fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  done:
-    value: 0
 --- !u!1001 &1931657482
 Prefab:
   m_ObjectHideFlags: 0

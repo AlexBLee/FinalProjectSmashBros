@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1270036355046048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.0049, y: 0.0445, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4942280953171860}
@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258905793114654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15, y: -3.11, z: -0.154894}
+  m_LocalPosition: {x: -6.304443, y: -3.2038906, z: -0.154894}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4269552104266254}
@@ -275,14 +275,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
+  levelManager: {fileID: 0}
   death: {fileID: 8300000, guid: 5326efa4de78c9146ad0247260bda7a9, type: 3}
   dead: 0
-  levelManager: {fileID: 0}
   lives: 5
   index: 0
   deaths: 0
   kills: 0
-  time: 0
 --- !u!114 &114564865241342796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,11 +296,11 @@ MonoBehaviour:
   managerObjects: []
   player1: 0
   player2: 0
-  facingRight: 1
-  jumpVelocity: 15
   canJump: 1
+  jumpVelocity: 15
   moveForce: 365
   maxSpeed: 5
+  facingRight: 1
 --- !u!114 &114619691769035702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,10 +330,10 @@ MonoBehaviour:
   anim: {fileID: 95064213010158422}
   uppercutForce: {x: 50, y: 900}
   sideKickForceR: {x: -300, y: 500}
-  uppercutKnockback: {x: 0, y: 10}
-  spinKickKnockback: {x: 350, y: 0}
-  twoSideKnockback: {x: 175, y: 0}
   punchKnockback: {x: 20, y: 0}
+  uppercutKnockback: {x: 0, y: 10}
+  twoSideKnockback: {x: 175, y: 0}
+  spinKickKnockback: {x: 350, y: 0}
   clips:
   - {fileID: 8300000, guid: 8b412f76b37f1704080089bdcb65f806, type: 3}
   - {fileID: 8300000, guid: 0a7ecaa8188cbe24ead5e2fa2ba3d098, type: 3}

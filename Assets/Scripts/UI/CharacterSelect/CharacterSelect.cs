@@ -17,7 +17,7 @@ public class CharacterSelect : MonoBehaviour
 	public Cursor cursor;
 
 	// For rendering the character image.
-	private SpriteRenderer rend;
+	private Image rend;
 	
 	// To determine if player has chosen their character.
 	private static bool p1Chosen;
@@ -30,7 +30,7 @@ public class CharacterSelect : MonoBehaviour
 	{
 		managerObjects = GameManager.instance.players;
 		
-		rend = GetComponent<SpriteRenderer>();
+		rend = GetComponent<Image>();
 
 		// Assign character to player.
 		// Note: The reason the array is checking for the 2nd element is because the cursor overlaps itself for the 1st element.
@@ -110,6 +110,7 @@ public class CharacterSelect : MonoBehaviour
 		
 	}
 
+	// Go to main menu.
 	public void GoToMainMenu()
 	{
 		SceneManager.LoadScene("MainMenu");

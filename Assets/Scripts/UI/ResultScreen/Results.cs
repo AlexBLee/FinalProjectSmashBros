@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -23,5 +24,11 @@ public class Results : MonoBehaviour
 		textList[2].text = "Falls: " + (index == 0 ? GameManager.instance.p1Deaths : GameManager.instance.p2Deaths);
 		
 	}
-	
+
+	private void Update() {
+		if(Input.GetKeyDown(KeyCode.Return))
+		{
+			SceneManager.LoadScene("CharacterSelect");	
+		}
+	}
 }

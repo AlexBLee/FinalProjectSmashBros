@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UniRx;
 
@@ -109,5 +110,9 @@ public class CharacterSelect : MonoBehaviour
 		
 	}
 
+	public void GoToMainMenu()
+	{
+		SceneManager.LoadScene("MainMenu");
+	}
 	
 }

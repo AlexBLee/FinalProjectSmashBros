@@ -1190,10 +1190,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61188f8005f2d8b488ccbe5041ca7f6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterList: []
-  spriteList: []
+  characterList:
+  - {fileID: 1258905793114654, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
+  - {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
+  spriteList:
+  - {fileID: 21300000, guid: f1dba0cc34e66e74280af4e39f59dd9d, type: 3}
+  - {fileID: 21300000, guid: 97af04d6d002ea5408b2880ba6c5e1ad, type: 3}
+  - {fileID: 21300000, guid: 185c7f857b19d23499f396cef8b49a64, type: 3}
   listNumber: 1
-  cursor: {fileID: 0}
+  cursor: {fileID: 1406939213}
 --- !u!1 &1203320724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,7 +1436,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e97172a356c975a4eb5bc3bdd66175c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2410,6 +2415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7dcf9f233a2c23419e7ab5a9b3adcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 1837212426}
   mode: {fileID: 1628286653}
   minLives: {fileID: 249978213}
 --- !u!114 &1837212432
@@ -2442,7 +2448,7 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!1 &2023324622
 GameObject:

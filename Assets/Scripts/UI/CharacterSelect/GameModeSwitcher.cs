@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class GameModeSwitcher : MonoBehaviour 
+public class GameModeSwitcher : NetworkBehaviour 
 {
 	// Game Manager
 	private GameManager instance;
+	public GameObject prefab;
 
 	// Text for the mode chosen.
 	public Text mode;

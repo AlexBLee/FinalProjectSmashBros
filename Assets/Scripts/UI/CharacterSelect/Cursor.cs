@@ -28,10 +28,11 @@ public class Cursor : NetworkBehaviour
 			overlap[1] = null;
 		}
 
-		// if(!isLocalPlayer)
-		// {
-		// 	return;
-		// }
+		if(!isLocalPlayer)
+		{
+			return;
+		}
+
 	}
 
 	// Drag the cursor with the mouse.

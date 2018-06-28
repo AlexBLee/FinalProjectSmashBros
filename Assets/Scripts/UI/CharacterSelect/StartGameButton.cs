@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class StartGameButton : MonoBehaviour 
+public class StartGameButton : NetworkBehaviour 
 {
 	// Button
 	private Button button;
@@ -26,6 +27,8 @@ public class StartGameButton : MonoBehaviour
 			SceneManager.LoadScene("LevelSelect");
 		}
 	}
+	
+
 
 
 	

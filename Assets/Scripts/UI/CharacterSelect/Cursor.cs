@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 
-public class Cursor : MonoBehaviour 
+public class Cursor : NetworkBehaviour
 {
 	// Colliders
 	BoxCollider2D box;
@@ -15,6 +16,7 @@ public class Cursor : MonoBehaviour
 
 	private void Update() 
 	{
+		
 		// To find out what object is under the cursor.
 		// In the character select, this is used to find out which character you want to play
 		overlap = Physics2D.OverlapAreaAll(box.bounds.min,box.bounds.max);
@@ -26,6 +28,10 @@ public class Cursor : MonoBehaviour
 			overlap[1] = null;
 		}
 
+		// if(!isLocalPlayer)
+		// {
+		// 	return;
+		// }
 	}
 
 	// Drag the cursor with the mouse.

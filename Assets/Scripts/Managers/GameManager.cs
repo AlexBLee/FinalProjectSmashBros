@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour 
-{
+
+public class GameManager : NetworkBehaviour {
+	
 	// Singleton to bring things between scenes.
 	public static GameManager instance;
 
@@ -13,8 +15,13 @@ public class GameManager : MonoBehaviour
 
 	// -- Character Select options
 	public enum gamemode { KO = 0, Timer = 1 };
+
+	[SyncVar]
 	public int gameModeNumber = 0;
+	
 	public List<GameObject> players;
+
+	[SyncVar]
 	public bool ready;
 
 	//------------------|
@@ -22,11 +29,15 @@ public class GameManager : MonoBehaviour
 	//------------------|
 
 	// --- For loading the players into the right positions.
+	[SyncVar]
 	public int p1Number;
+	[SyncVar]
 	public int p2Number;
 	
 	// --- Lives and Timer
+	[SyncVar]
 	public int lives = 5;
+	[SyncVar]
 	public int timeInSeconds = 5;
 
 	// ------------------|
@@ -34,10 +45,15 @@ public class GameManager : MonoBehaviour
 	// ------------------|
 
 	// From going from In-Game to results screen
+	[SyncVar]
 	public int p1Kills;
+
+	[SyncVar]
 	public int p2Kills;
 	
+	[SyncVar]
 	public int p1Deaths;
+	[SyncVar]
 	public int p2Deaths;
 
 	// -----------------------------------------------------------------------------------------------------------------------//

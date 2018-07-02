@@ -666,7 +666,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 0}
+  m_PlayerPrefab: {fileID: 2023324622}
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
@@ -1382,6 +1382,7 @@ GameObject:
   - component: {fileID: 1406939214}
   - component: {fileID: 1406939215}
   - component: {fileID: 1406939216}
+  - component: {fileID: 1406939217}
   m_Layer: 12
   m_Name: P2Cursor
   m_TagString: Untagged
@@ -1537,6 +1538,18 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &1406939217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406939210}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 246975512, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLobbyGUI: 1
 --- !u!1 &1421756133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1696,7 @@ GameObject:
   - component: {fileID: 1583789891}
   - component: {fileID: 1583789892}
   - component: {fileID: 1583789893}
+  - component: {fileID: 1583789894}
   m_Layer: 12
   m_Name: P1Cursor
   m_TagString: Untagged
@@ -1838,6 +1852,18 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &1583789894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1583789887}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 246975512, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLobbyGUI: 1
 --- !u!1 &1616958457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,6 +2485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2023324624}
   - component: {fileID: 2023324623}
+  - component: {fileID: 2023324625}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2503,3 +2530,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2023324625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2023324622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

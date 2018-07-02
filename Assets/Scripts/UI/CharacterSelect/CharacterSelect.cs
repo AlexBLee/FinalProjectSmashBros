@@ -8,7 +8,6 @@ using UniRx;
 public class CharacterSelect : MonoBehaviour 
 {
 	// Lists for characters.
-	private List<GameObject> managerObjects;
 	public List<GameObject> characterList;
 	public Sprite[] spriteList;
 	public int listNumber = 1;
@@ -28,7 +27,6 @@ public class CharacterSelect : MonoBehaviour
 
 	private void Start() 
 	{
-		managerObjects = GameManager.instance.players;
 		
 		rend = GetComponent<Image>();
 
@@ -56,14 +54,14 @@ public class CharacterSelect : MonoBehaviour
 			// For player 1.
 			if(cursor.name == "P1Cursor")
 			{
-				managerObjects[0] = characterList[listNumber - 1];
+				GameManager.instance.players[0] = characterList[listNumber - 1];
 				p1Chosen = true;
 			}
 
 			// For player 2.
 			if(cursor.name == "P2Cursor")
 			{
-				managerObjects[1] = characterList[listNumber - 1];
+				GameManager.instance.players[1] = characterList[listNumber - 1];
 				p2Chosen = true;
 				
 			}
@@ -79,17 +77,17 @@ public class CharacterSelect : MonoBehaviour
         .Where(_ => cursor.overlap.Length == 1)
         .Subscribe(_ =>
         {
-			if(managerObjects[0] != null && p1Chosen == true)
+			if(GameManager.instance.players[0] != null && p1Chosen == true)
 			{
-				managerObjects[0] = null;
+				GameManager.instance.players[0] = null;
 				p1Chosen = false;
 				GameManager.instance.ready = false;				
 				
 			}
 
-			if(managerObjects[1] != null && p2Chosen == true)
+			if(GameManager.instance.players[1] != null && p2Chosen == true)
 			{
-				managerObjects[1] = null;
+				GameManager.instance.players[1] = null;
 				p2Chosen = false;
 				GameManager.instance.ready = false;	
 			}

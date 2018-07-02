@@ -24,7 +24,8 @@ public class StartGameButton : NetworkBehaviour
 	{
 		if(GameManager.instance.ready == true)
 		{
-			SceneManager.LoadScene("LevelSelect");
+			//SceneManager.LoadScene("LevelSelect");
+			NetworkManager.singleton.ServerChangeScene("LevelSelect");
 		}
 	}
 	

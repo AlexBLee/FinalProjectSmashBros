@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class LevelSelect : MonoBehaviour {
+public class LevelSelect : NetworkBehaviour {
 
 	// Button
 	private Button button;
@@ -23,7 +24,9 @@ public class LevelSelect : MonoBehaviour {
 	{
 		if(GameManager.instance.ready == true)
 		{
-			SceneManager.LoadScene(gameObject.name);
+			//SceneManager.LoadScene(gameObject.name);
+			NetworkManager.singleton.ServerChangeScene(gameObject.name);
+
 		}
 	}
 }

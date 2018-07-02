@@ -26,6 +26,12 @@ public class GameModeSwitcher : NetworkBehaviour
 	// When the UI button is clicked, increment by 1 to display the right mode.
 	public void SwitchMode()
 	{
+		if(!isServer)
+		{
+			Debug.LogError("not server");
+			return;
+		}
+
 		instance.gameModeNumber++;
 		CheckMode();
 

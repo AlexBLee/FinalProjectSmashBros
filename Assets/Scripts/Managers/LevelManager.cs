@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UniRx;
 
-public class LevelManager : NetworkBehaviour 
+public class LevelManager : MonoBehaviour 
 {
 	// List that stays active across character select/game/end result screen
 
@@ -24,8 +24,6 @@ public class LevelManager : NetworkBehaviour
 
 	void Awake () 
 	{
-
-
 		// If the players exist, instantiate them in their respective areas, add to the level list and set their spawn positions.
 
 		// PLAYER 1

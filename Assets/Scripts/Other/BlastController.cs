@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlastController : MonoBehaviour
 {
     // Speed of blast.
-    private float speed = 0.5f;
+    private float speed = 5.0f;
 
     // Determine the direction of the player
     private Rigidbody2D rBody;

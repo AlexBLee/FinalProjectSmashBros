@@ -671,7 +671,9 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1258905793114654, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
+  - {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1382,7 +1384,6 @@ GameObject:
   - component: {fileID: 1406939214}
   - component: {fileID: 1406939215}
   - component: {fileID: 1406939216}
-  - component: {fileID: 1406939217}
   m_Layer: 12
   m_Name: P2Cursor
   m_TagString: Untagged
@@ -1538,18 +1539,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &1406939217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1406939210}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 246975512, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLobbyGUI: 1
 --- !u!1 &1421756133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1685,6 @@ GameObject:
   - component: {fileID: 1583789891}
   - component: {fileID: 1583789892}
   - component: {fileID: 1583789893}
-  - component: {fileID: 1583789894}
   m_Layer: 12
   m_Name: P1Cursor
   m_TagString: Untagged
@@ -1852,18 +1840,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &1583789894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1583789887}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 246975512, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLobbyGUI: 1
 --- !u!1 &1616958457
 GameObject:
   m_ObjectHideFlags: 0

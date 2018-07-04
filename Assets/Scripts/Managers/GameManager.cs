@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 
 
@@ -77,7 +78,7 @@ public class GameManager : NetworkBehaviour {
 	private void Update() {
 		if(Input.GetKey(KeyCode.Escape))
 		{
-			Application.Quit();
+			SceneManager.LoadScene("CharacterSelect");
 		}
 	}
 

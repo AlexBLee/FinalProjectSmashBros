@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
 
     // For the camera script to keep track of the player.
     private CameraScript cameraScript;
-    public LevelManager levelManager;
+    private LevelManager levelManager;
 
     // To subtract lives.
     private PlayerHealth playerHealth;

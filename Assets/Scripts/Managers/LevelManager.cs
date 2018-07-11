@@ -6,9 +6,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UniRx;
 
-public class LevelManager : MonoBehaviour 
+public class LevelManager : NetworkBehaviour 
 {
-	GameObject player1;
 
 	// List for things in level.
 	public List<GameObject> players;
@@ -23,20 +22,40 @@ public class LevelManager : MonoBehaviour
 	public Text text;
 	
 	
-	void Awake () 
+	void Start () 
 	{
-		
+		foreach(NetworkConnection conn in NetworkServer.connections)
+		{
+			Debug.Log(conn);
+		}
+	}
+	
+
+	// When there is one more player remaining, end the game.
+	private void Update() 
+	{
+		if(players.Count == 1)
+		{
+			SceneManager.LoadScene("EndResult");
+		}
+	}
+
+	
+	[Command]
+	public void CmdSpawnUnits()
+	{
 		// If the players exist, instantiate them in their respective areas, add to the level list and set their spawn positions.
 
 		// PLAYER 1
 		if(GameManager.instance.players[0] != null)
 		{
-			player1 = Instantiate(GameManager.instance.players[0], spawns[0].position ,Quaternion.identity);
-			NetworkServer.Spawn(player1);
+			GameObject player1 = Instantiate(GameManager.instance.players[0], spawns[0].position ,Quaternion.identity);
+			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[0], player1, 0);
 			player1.name = GameManager.instance.players[0].name;
 			players.Add(player1);
 			PlayerManager playerManager = player1.GetComponent<PlayerManager>();
 			playerManager.spawnPosition = respawns[0];
+
 		}
 		
 		// PLAYER 2
@@ -44,10 +63,12 @@ public class LevelManager : MonoBehaviour
 		{
 			GameObject player2 = Instantiate(GameManager.instance.players[1], spawns[1].position ,Quaternion.identity);
 			NetworkServer.Spawn(player2);
+			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[1], player2, 1);
 			player2.name = GameManager.instance.players[1].name;
 			players.Add(player2);
 			PlayerManager playerManager = player2.GetComponent<PlayerManager>();
 			playerManager.spawnPosition = respawns[1];
+
 		}
 		
 		// PLAYER 3
@@ -70,17 +91,6 @@ public class LevelManager : MonoBehaviour
 		
 		// }
 
-
-	}
-	
-
-	// When there is one more player remaining, end the game.
-	private void Update() 
-	{
-		if(players.Count == 1)
-		{
-			SceneManager.LoadScene("EndResult");
-		}
 	}
 
 	

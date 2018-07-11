@@ -118,7 +118,7 @@ public class PlayerManager : MonoBehaviour
             // For spawning on platform.
             rb.velocity = new Vector2(0,0);
             source.PlayOneShot(death);
-            transform.position = spawnPosition.position;
+            //transform.position = spawnPosition.position;
             playerMovement.enabled = false;
 
             // Figure out who to give the deaths to.

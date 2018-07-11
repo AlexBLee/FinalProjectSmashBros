@@ -25,6 +25,12 @@ public class GameManager : NetworkBehaviour {
 	[SyncVar]
 	public bool ready;
 
+	[SyncVar]
+	public int playerNumber = 2;
+
+	[SyncVar]
+	public Vector2 spawn = new Vector2(-0.7f,0.55f);
+
 	//------------------|
 	// In-Game			|
 	//------------------|

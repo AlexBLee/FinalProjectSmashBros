@@ -12,6 +12,16 @@ public class Cursor : NetworkBehaviour
 	private void Start() 
 	{
 		box = GetComponent<BoxCollider2D>();
+
+		if(gameObject.name == "P1Cursor(Clone)")
+		{
+			GameObject.Find("P1").GetComponent<CharacterSelect>().cursor = this;
+		}
+
+		if(gameObject.name == "P2Cursor(Clone)")
+		{
+			GameObject.Find("P2").GetComponent<CharacterSelect>().cursor = this;
+		}
 	}
 
 	private void Update() 
@@ -34,6 +44,11 @@ public class Cursor : NetworkBehaviour
 	// Drag the cursor with the mouse.
 	private void OnMouseDrag() 
 	{
+		if(!isLocalPlayer)
+		{
+			return;
+		}
+		
 		Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		temp.z = 0;
 		transform.position = temp;

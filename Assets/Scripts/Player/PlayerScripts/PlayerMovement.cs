@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections.Generic;
 
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     // Tag check
     private string TAG_FLOOR = "Floor";
@@ -33,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]public bool facingRight = true;
 
     // --------------------------------------------------------------------------------------------------------- //    
-
+    public override void OnStartLocalPlayer()
+    {
+    }
 
     void Start()
     {
@@ -41,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //joystick = FindObjectOfType<FixedJoystick>();
+
+        
 
         // Find out the player number.
         if(managerObjects[0].name == gameObject.name)
@@ -56,21 +61,42 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("isLocalPlayer: " + gameObject.name + " " + isLocalPlayer);
+        Debug.Log("isServer: " + gameObject.name + " " +  isServer);
+        Debug.Log("isClient: " + gameObject.name + " " +  isClient);
+
         // If the player can jump and the player jumped, play the jump animation.
         if (!canJump)
             anim.SetBool("Jumping", true);
         else
             anim.SetBool("Jumping", false);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(!isLocalPlayer)
+            {
+                return;
+            }
+
+            Debug.LogError("I am local!");
+        }
+        
+
     }
 
     void FixedUpdate()
     {
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+
         //float h = joystick.Horizontal;
         //float v = joystick.Vertical;
 
         // Player 1 controls.
-        if(player1)
-        {
+        // if(player1)
+        // {
             h = Input.GetAxis("Horizontal");
 
             if(canJump && Input.GetKeyDown(KeyCode.W)) //&& v > 0.8)
@@ -79,20 +105,20 @@ public class PlayerMovement : MonoBehaviour
                 canJump = false;
             }
         
-        }
+        // }
         
-        // Player 2 Controls.
-        if(player2)
-        {
-            h = Input.GetAxis("Horizontal1");
+        // // Player 2 Controls.
+        // if(player2)
+        // {
+        //     h = Input.GetAxis("Horizontal1");
 
-            if(canJump && Input.GetKeyDown(KeyCode.UpArrow)) //&& v > 0.8)
-            {
-                rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-                canJump = false;
-            }
+        //     if(canJump && Input.GetKeyDown(KeyCode.UpArrow)) //&& v > 0.8)
+        //     {
+        //         rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+        //         canJump = false;
+        //     }
             
-        }
+        // }
             
         // Move in direction.
         if (h * rb.velocity.x < maxSpeed)

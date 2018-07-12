@@ -29,10 +29,11 @@ public class PlayerIndicators : MonoBehaviour
 		
 		// Used to find out how many players are in the game.
 		LevelManager levelManager = FindObjectOfType<LevelManager>();
-		
+
 		foreach(GameObject t in levelManager.players)
 		{
 			players.Add(t);
+
 		}
 
 

@@ -1827,6 +1827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  syncPlayers: []
   spawns:
   - {fileID: 1460643531}
   - {fileID: 1670620933}
@@ -1881,7 +1882,7 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 0
+  m_ServerOnly: 1
   m_LocalPlayerAuthority: 0
 --- !u!1 &667019908
 GameObject:
@@ -2774,7 +2775,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1119034272}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b434636cdd9c96f47bf6d895ab5afc5d, type: 3}
   m_Name: 

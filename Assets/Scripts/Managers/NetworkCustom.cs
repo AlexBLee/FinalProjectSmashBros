@@ -68,8 +68,11 @@ public class NetworkCustom : NetworkManager
 
          if(sceneName == "Level1" || sceneName == "Level2" || sceneName == "Level3")
          {
+            LevelManager lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
-            GameObject.Find("LevelManager").GetComponent<LevelManager>().CmdSpawnUnits();
+            lvlManager.CmdSpawnUnits();
+            lvlManager.RpcAddToList();
+
          }
 
 

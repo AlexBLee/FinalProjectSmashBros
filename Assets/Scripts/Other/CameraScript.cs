@@ -23,16 +23,22 @@ public class CameraScript : MonoBehaviour
 
 	// Use this for initialization
 
-	void Start () 
+	IEnumerator Start () 
 	{	
+		// The delay is here for the online mode as the stuff below executes faster than the server can finish loading everything.
+		yield return new WaitForSeconds(0.1f);
+
 		levelManager = FindObjectOfType<LevelManager>();
 
 		foreach(GameObject t in levelManager.players)
 		{
 			players.Add(t);
+			Debug.LogError(t);
 		}
 		
 		players.Add(levelFocus.gameObject);
+
+
 
 
 	}

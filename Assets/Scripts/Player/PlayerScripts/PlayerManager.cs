@@ -68,6 +68,8 @@ public class PlayerManager : MonoBehaviour
 
         // Find the index of the player (The LevelManager and CameraScript have lists where order is the same.)
         index = levelManager.players.IndexOf(this.gameObject);
+
+
         
         // Gamemode is KO Fest.
         if(GameManager.instance.gameModeNumber == 0)
@@ -80,6 +82,8 @@ public class PlayerManager : MonoBehaviour
         {
             lives = 9999;
         }
+
+
 
         // If the player is dead, remove them from the camera script list.
         Observable.EveryUpdate()

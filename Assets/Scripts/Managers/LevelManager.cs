@@ -11,6 +11,8 @@ public class LevelManager : NetworkBehaviour
 
 	// List for things in level.
 	public List<GameObject> players;
+	public List<GameObject> syncPlayers;
+
 
 	// Where the player initially spawns
 	public Transform[] spawns;
@@ -31,14 +33,14 @@ public class LevelManager : NetworkBehaviour
 	// When there is one more player remaining, end the game.
 	private void Update() 
 	{
-		if(players.Count == 1)
+		if(players.Count == 99)
 		{
 			SceneManager.LoadScene("EndResult");
 		}
 	}
 
 	
-	[Command]
+	[Server]
 	public void CmdSpawnUnits()
 	{
 		// If the players exist, instantiate them in their respective areas, add to the level list and set their spawn positions.
@@ -49,7 +51,7 @@ public class LevelManager : NetworkBehaviour
 			GameObject player1 = Instantiate(GameManager.instance.players[0], spawns[0].position ,Quaternion.identity);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[0], player1, 0);
 			player1.name = GameManager.instance.players[0].name;
-			players.Add(player1);
+			syncPlayers.Add(player1);
 			PlayerManager playerManager = player1.GetComponent<PlayerManager>();
 			playerManager.spawnPosition = respawns[0];
 
@@ -62,11 +64,13 @@ public class LevelManager : NetworkBehaviour
 			NetworkServer.Spawn(player2);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[1], player2, 1);
 			player2.name = GameManager.instance.players[1].name;
-			players.Add(player2);
+			syncPlayers.Add(player2);
 			PlayerManager playerManager = player2.GetComponent<PlayerManager>();
 			playerManager.spawnPosition = respawns[1];
 
 		}
+
+
 		
 		// PLAYER 3
 		// if(GameManager.instance.players[2] != null)
@@ -88,6 +92,19 @@ public class LevelManager : NetworkBehaviour
 		
 		// }
 
+	}
+
+	[ClientRpc]
+	public void RpcAddToList()
+	{
+		if(!isServer)
+		{
+			Debug.Log("not server!");
+		}
+		foreach(GameObject t in syncPlayers)
+		{
+			players.Add(t);
+		}
 	}
 
 	

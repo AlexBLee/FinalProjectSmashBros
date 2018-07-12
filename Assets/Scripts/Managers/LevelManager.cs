@@ -24,10 +24,7 @@ public class LevelManager : NetworkBehaviour
 	
 	void Start () 
 	{
-		foreach(NetworkConnection conn in NetworkServer.connections)
-		{
-			Debug.Log(conn);
-		}
+
 	}
 	
 

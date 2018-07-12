@@ -31,13 +31,11 @@ public class PlayerMovement : NetworkBehaviour
 
     // For moving.
     private Rigidbody2D rb;
+
+    [SyncVar(hook = "FacingCallback")]
     [HideInInspector]public bool facingRight = true;
 
     // --------------------------------------------------------------------------------------------------------- //    
-    public override void OnStartLocalPlayer()
-    {
-    }
-
     void Start()
     {
         managerObjects = GameManager.instance.players;
@@ -61,25 +59,16 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update()
     {
-        Debug.Log("isLocalPlayer: " + gameObject.name + " " + isLocalPlayer);
-        Debug.Log("isServer: " + gameObject.name + " " +  isServer);
-        Debug.Log("isClient: " + gameObject.name + " " +  isClient);
+        if(!isLocalPlayer)
+        {
+            return;
+        }
 
         // If the player can jump and the player jumped, play the jump animation.
         if (!canJump)
             anim.SetBool("Jumping", true);
         else
             anim.SetBool("Jumping", false);
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            if(!isLocalPlayer)
-            {
-                return;
-            }
-
-            Debug.LogError("I am local!");
-        }
         
 
     }
@@ -91,19 +80,20 @@ public class PlayerMovement : NetworkBehaviour
             return;
         }
 
+        h = Input.GetAxis("Horizontal");
+
+        if(canJump && Input.GetKeyDown(KeyCode.W)) //&& v > 0.8)
+        {
+            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+            canJump = false;
+        }
+
         //float h = joystick.Horizontal;
         //float v = joystick.Vertical;
 
         // Player 1 controls.
         // if(player1)
         // {
-            h = Input.GetAxis("Horizontal");
-
-            if(canJump && Input.GetKeyDown(KeyCode.W)) //&& v > 0.8)
-            {
-                rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-                canJump = false;
-            }
         
         // }
         
@@ -145,22 +135,59 @@ public class PlayerMovement : NetworkBehaviour
         }
 
         // If player has clicked right and is not already facing right, flip the character
-        if (h > 0 && !facingRight)
-            Flip();
+        if (h > 0 && !facingRight || h < 0 && facingRight)
+        {
+            facingRight = !facingRight;
+            CmdFlip(facingRight);
+        }
 
         // If player has clicked left and is not already facing left, flip the character
-        else if (h < 0 && facingRight)
-            Flip();
+        // else if (h < 0 && facingRight)
+        //     CmdFlip();
         
     }
 
     // Flip the character.
-    void Flip()
+    [Command]
+    void CmdFlip(bool facing)
     {
-        facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        facingRight = facing;
+        if(facingRight)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = 5;
+            transform.localScale = theScale;
+        }
+        else
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = -5;
+            transform.localScale = theScale;
+        }
+
+        // facingRight = !facingRight;
+        // Vector3 theScale = transform.localScale;
+        // theScale.x *= -1;
+        // transform.localScale = theScale;
+        // Debug.Log("flipped!");
+    }
+
+    // Flip the character.
+    void FacingCallback(bool facing)
+    {
+        facingRight = facing;
+        if(facingRight)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = 5;
+            transform.localScale = theScale;
+        }
+        else
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = -5;
+            transform.localScale = theScale;
+        }
     }
 
     // Hit the floor, can now jump.

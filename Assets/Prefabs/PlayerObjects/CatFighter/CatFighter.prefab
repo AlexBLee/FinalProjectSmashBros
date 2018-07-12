@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 82637028623525662}
   - component: {fileID: 114557931641985306}
   - component: {fileID: 114855224857815726}
+  - component: {fileID: 114700571456030922}
   m_Layer: 10
   m_Name: CatFighter
   m_TagString: Player
@@ -371,6 +372,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8b412f76b37f1704080089bdcb65f806, type: 3}
   - {fileID: 8300000, guid: 0a7ecaa8188cbe24ead5e2fa2ba3d098, type: 3}
   - {fileID: 8300000, guid: 8fad65b561e668e4291ccf81fd1f5bca, type: 3}
+--- !u!114 &114700571456030922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258905793114654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95064213010158422}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114855224857815726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: 0.033333335
+  m_SendInterval: 0.11111111
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
   m_SyncSpin: 0

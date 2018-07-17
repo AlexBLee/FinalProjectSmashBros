@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
-
 using System.Collections;
 
 public class PlayerMovement : NetworkBehaviour
@@ -22,9 +21,10 @@ public class PlayerMovement : NetworkBehaviour
     public float moveForce = 365f;
     public float maxSpeed = 5f;
     private float h = 0.0f;
+    private float v = 0.0f;
 
     // FOR MOBILE!
-    //private Joystick joystick;
+    public Joystick joystick;
 
     // Animation
     private Animator anim;
@@ -41,8 +41,11 @@ public class PlayerMovement : NetworkBehaviour
         managerObjects = GameManager.instance.players;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        //joystick = FindObjectOfType<FixedJoystick>();
 
+        // Find joystick if on mobile.
+        #if UNITY_ANDROID
+            joystick = FindObjectOfType<FixedJoystick>();
+        #endif
         
 
         // Find out the player number.
@@ -79,36 +82,30 @@ public class PlayerMovement : NetworkBehaviour
         {
             return;
         }
-
+        
         h = Input.GetAxis("Horizontal");
 
+        // For mobile implementation.
+        #if UNITY_ANDROID
+
+        h = joystick.Horizontal;
+        v = joystick.Vertical;
+
+        if(canJump && v > 0.8)
+        {
+            rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+            canJump = false;
+        }
+        
+        #endif
+
+        
+        // If the player has clicked jump, jump.
         if(canJump && Input.GetKeyDown(KeyCode.W)) //&& v > 0.8)
         {
             rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
             canJump = false;
         }
-
-        //float h = joystick.Horizontal;
-        //float v = joystick.Vertical;
-
-        // Player 1 controls.
-        // if(player1)
-        // {
-        
-        // }
-        
-        // // Player 2 Controls.
-        // if(player2)
-        // {
-        //     h = Input.GetAxis("Horizontal1");
-
-        //     if(canJump && Input.GetKeyDown(KeyCode.UpArrow)) //&& v > 0.8)
-        //     {
-        //         rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
-        //         canJump = false;
-        //     }
-            
-        // }
             
         // Move in direction.
         if (h * rb.velocity.x < maxSpeed)
@@ -164,12 +161,6 @@ public class PlayerMovement : NetworkBehaviour
             theScale.x = -5;
             transform.localScale = theScale;
         }
-
-        // facingRight = !facingRight;
-        // Vector3 theScale = transform.localScale;
-        // theScale.x *= -1;
-        // transform.localScale = theScale;
-        // Debug.Log("flipped!");
     }
 
     // Flip the character.

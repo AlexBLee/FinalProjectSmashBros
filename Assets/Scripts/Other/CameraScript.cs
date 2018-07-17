@@ -33,7 +33,6 @@ public class CameraScript : MonoBehaviour
 		foreach(GameObject t in levelManager.players)
 		{
 			players.Add(t);
-			Debug.LogError(t);
 		}
 		
 		players.Add(levelFocus.gameObject);

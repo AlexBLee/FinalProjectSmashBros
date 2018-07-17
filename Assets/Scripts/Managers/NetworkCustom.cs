@@ -70,9 +70,7 @@ public class NetworkCustom : NetworkManager
          {
             LevelManager lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
-            lvlManager.CmdSpawnUnits();
-            lvlManager.RpcAddToList();
-
+            lvlManager.RpcSpawnUnits();
          }
 
 

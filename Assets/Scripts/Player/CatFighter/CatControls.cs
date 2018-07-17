@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
 #pragma warning disable 0414
 
 
-public class CatControls : MonoBehaviour
+public class CatControls : NetworkBehaviour
 {
     // To determine when you can hit and when you clicked last.
     private bool canHit = true;
@@ -48,6 +50,11 @@ public class CatControls : MonoBehaviour
         hit = GetComponent<Hit>();
         source = GetComponent<AudioSource>();
 	}
+
+     public override void OnStartLocalPlayer()
+    {
+        FindObjectOfType<MobileButtons>().player = this.gameObject;
+    }
 
     void Update ()
     {
@@ -254,6 +261,26 @@ public class CatControls : MonoBehaviour
         playerMovement.enabled = true;
         canHit = true;
         canKick = true;
+    }
+
+    public void AButton()
+    {
+        OneTwoComboFirstHit();
+    }
+
+    public void BButton()
+    {
+        FlyingUppercut();
+    }
+
+    public void CButton()
+    {
+        TwoSideAttack();
+    }
+
+    public void DButton()
+    {
+        SpinKick();
     }
 
 }

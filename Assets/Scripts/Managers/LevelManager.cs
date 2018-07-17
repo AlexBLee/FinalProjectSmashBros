@@ -9,9 +9,23 @@ using UniRx;
 public class LevelManager : NetworkBehaviour 
 {
 
+	public class SyncListPlayers : SyncList<GameObject>
+	{
+		
+		protected override void SerializeItem(NetworkWriter writer, GameObject item)
+		{
+			writer.Write(item);
+		}
+
+		protected override GameObject DeserializeItem(NetworkReader reader)
+		{
+			return reader.ReadGameObject();
+		}
+
+	}
+
 	// List for things in level.
 	public List<GameObject> players;
-	public List<GameObject> syncPlayers;
 
 
 	// Where the player initially spawns
@@ -39,9 +53,11 @@ public class LevelManager : NetworkBehaviour
 		}
 	}
 
+
+
 	
 	[Server]
-	public void CmdSpawnUnits()
+	public void RpcSpawnUnits()
 	{
 		// If the players exist, instantiate them in their respective areas, add to the level list and set their spawn positions.
 
@@ -49,9 +65,10 @@ public class LevelManager : NetworkBehaviour
 		if(GameManager.instance.players[0] != null)
 		{
 			GameObject player1 = Instantiate(GameManager.instance.players[0], spawns[0].position ,Quaternion.identity);
+			NetworkServer.Spawn(player1);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[0], player1, 0);
 			player1.name = GameManager.instance.players[0].name;
-			syncPlayers.Add(player1);
+			RpcAddToList(player1);
 			PlayerManager playerManager = player1.GetComponent<PlayerManager>();
 			playerManager.spawnPosition = respawns[0];
 
@@ -64,11 +81,12 @@ public class LevelManager : NetworkBehaviour
 			NetworkServer.Spawn(player2);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[1], player2, 1);
 			player2.name = GameManager.instance.players[1].name;
-			syncPlayers.Add(player2);
+			RpcAddToList(player2);
 			PlayerManager playerManager = player2.GetComponent<PlayerManager>();
 			playerManager.spawnPosition = respawns[1];
 
 		}
+
 
 
 		
@@ -95,18 +113,19 @@ public class LevelManager : NetworkBehaviour
 	}
 
 	[ClientRpc]
-	public void RpcAddToList()
+	void RpcAddToList(GameObject item)
 	{
-		if(!isServer)
-		{
-			Debug.Log("not server!");
-		}
-		foreach(GameObject t in syncPlayers)
-		{
-			players.Add(t);
-		}
+		Debug.Log("!");
+		players.Add(item);
 	}
+
 
 	
 
 }
+
+
+ 
+
+ 
+

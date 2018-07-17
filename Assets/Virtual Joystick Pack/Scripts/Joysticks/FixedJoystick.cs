@@ -12,6 +12,14 @@ public class FixedJoystick : Joystick
     void Start()
     {
         joystickPosition = RectTransformUtility.WorldToScreenPoint(cam, background.position);
+
+        #if UNITY_EDITOR || UNITY_STANDALONE
+            gameObject.SetActive(false);
+        #endif
+
+        #if UNITY_ANDROID
+            gameObject.SetActive(true);
+        #endif
     }
 
     public override void OnDrag(PointerEventData eventData)

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DogControls : MonoBehaviour
+public class DogControls : NetworkBehaviour
 {
     // To determine when you can hit and when you clicked last.
     bool canHit = true;
@@ -51,6 +52,11 @@ public class DogControls : MonoBehaviour
         hit = GetComponent<Hit>();
         source = GetComponent<AudioSource>();
 	}
+
+    public override void OnStartLocalPlayer()
+    {
+        FindObjectOfType<MobileButtons>().player = this.gameObject;
+    }
 
 
     void Update ()
@@ -296,6 +302,26 @@ public class DogControls : MonoBehaviour
     {
         playerMovement.enabled = true;
         canHit = true;
+    }
+
+    public void AButton()
+    {
+        KickComboFirstHit();
+    }
+
+    public void BButton()
+    {
+        JumpKick();
+    }
+
+    public void CButton()
+    {
+        KiBlast();
+    }
+
+    public void DButton()
+    {
+        ForwardKick();
     }
 
 }

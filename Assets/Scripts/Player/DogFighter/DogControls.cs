@@ -87,7 +87,11 @@ public class DogControls : NetworkBehaviour
             }
 
             lastClicked = Time.time;
-            mobileButtons.A = false;
+
+            if(mobileButtons != null)
+            {
+                mobileButtons.A = false;
+            }
         }
 
         // Flying Kick
@@ -95,7 +99,10 @@ public class DogControls : NetworkBehaviour
         {
 
             JumpKick();
-            mobileButtons.B = false;
+            if(mobileButtons != null)
+            {
+                mobileButtons.B = false;
+            }
         }
 
         // Two Side Attack
@@ -106,14 +113,22 @@ public class DogControls : NetworkBehaviour
                 shotCounter = timeBetweenShots;
                 StartCoroutine(KiBlast());
             }
-            mobileButtons.C = false;
+
+            if(mobileButtons != null)
+            {
+                mobileButtons.C = false;
+            }
         }
 
         // Forward Kick
         if (Input.GetKeyDown(KeyCode.P) || (mobileButtons != null && mobileButtons.D))
         {
             ForwardKick();
-            mobileButtons.D = false;
+            
+            if(mobileButtons != null)
+            {
+                mobileButtons.D = false;
+            }
         }
 
     }

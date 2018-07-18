@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : NetworkBehaviour
 {
     // Tags for objects
     private const string TAG_CHARACTER = "Character";
@@ -65,13 +66,27 @@ public class PlayerHealth : MonoBehaviour
             // If the player gets hit from the right.
             if (collision.transform.position.x > transform.position.x)
             {
-                HitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);          
+                if(!isServer)
+                {
+                    CmdHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);          
+                }
+                else
+                {
+                    RpcHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);
+                }
             }
 
             // If the player gets hit from the left.
             if (collision.transform.position.x < transform.position.x)
             {   
-                HitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),1);
+                if(!isServer)
+                {
+                    CmdHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);          
+                }
+                else
+                {
+                    RpcHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);
+                }
             }
 
             // koPlayer marks the player that last hit you so the system is able to figure out who to give the kill to.
@@ -135,7 +150,14 @@ public class PlayerHealth : MonoBehaviour
 
     // When hit, determine damage, knockback and the direction that the player has been hit.
     // In terms of direction -- if they take damage from the right, it is -1, if left then 1.
-    void HitTaken(float damage, Vector2 knockback, int direction)
+    [Command]
+    void CmdHitTaken(float damage, Vector2 knockback, int direction)
+    {
+        RpcHitTaken(damage,knockback,direction);
+    }
+
+    [ClientRpc]
+    void RpcHitTaken(float damage, Vector2 knockback, int direction)
     {
         anim.SetTrigger("Hit");
         health += damage;

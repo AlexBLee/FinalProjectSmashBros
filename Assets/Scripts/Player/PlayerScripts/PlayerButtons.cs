@@ -4,59 +4,30 @@ using UnityEngine;
 
 public class PlayerButtons : MonoBehaviour 
 {
-
+	public bool A;
+    public bool B;
+    public bool C;
+    public bool D;
 
 	public void MobileButtonA()
 	{
-		if(gameObject.name == "DogFighter")
-		{
-			GetComponent<DogControls>().AButton();
-		}
-
-		if(gameObject.name == "CatFighter")
-		{
-			GetComponent<CatControls>().AButton();
-		}
-
-			
+		A = true;
 	}
 
 	public void MobileButtonB()
 	{
-		if(gameObject.name == "DogFighter")
-		{
-			GetComponent<DogControls>().BButton();
-		}
-
-		if(gameObject.name == "CatFighter")
-		{
-			GetComponent<CatControls>().BButton();
-		}
+		B = true;
 	}
 
 	public void MobileButtonC()
 	{
-		if(gameObject.name == "DogFighter")
-		{
-			GetComponent<DogControls>().CButton();
-		}
-
-		if(gameObject.name == "CatFighter")
-		{
-			GetComponent<CatControls>().CButton();
-		}
+		C = true;
 	}
 
 	public void MobileButtonD()
 	{
-		if(gameObject.name == "DogFighter")
-		{
-			GetComponent<DogControls>().DButton();
-		}
-
-		if(gameObject.name == "CatFighter")
-		{
-			GetComponent<CatControls>().DButton();
-		}
+		D = true;
 	}
+
+	
 }

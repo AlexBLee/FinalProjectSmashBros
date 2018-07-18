@@ -42,6 +42,10 @@ public class CatControls : NetworkBehaviour
     private AudioSource source;
     public AudioClip[] clips;
 
+    // Mobile buttons
+    MobileButtons mobileButtons;
+
+
     void Start ()
     {
         anim = GetComponent<Animator>();
@@ -49,20 +53,19 @@ public class CatControls : NetworkBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
         source = GetComponent<AudioSource>();
-	}
 
-     public override void OnStartLocalPlayer()
-    {
-        FindObjectOfType<MobileButtons>().player = this.gameObject;
-    }
+        #if UNITY_ANDROID
+            mobileButtons = FindObjectOfType<MobileButtons>();
+        #endif
+	}
 
     void Update ()
     {
         // If player 1
-        if(playerMovement.player1)
-        {
+        // if(playerMovement.player1)
+        // {
             // Two Punch Combo
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.U) || mobileButtons.A)
             {
                 if (Time.time - lastClicked < 0.5)
                 {
@@ -73,62 +76,69 @@ public class CatControls : NetworkBehaviour
                     OneTwoComboFirstHit();
                 }
                 lastClicked = Time.time;
+                mobileButtons.A = false;
             }
 
             // Flying Uppercut
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetKeyDown(KeyCode.I) || mobileButtons.B)
             {
                 FlyingUppercut();
+                mobileButtons.B = false;
+
             }
 
             // Two Side Attack
-            if(Input.GetKeyDown(KeyCode.O))
+            if(Input.GetKeyDown(KeyCode.O) || mobileButtons.C)
             {
                 TwoSideAttack();
+                mobileButtons.C = false;
+
             }
 
             // Spinning Kick
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P) || mobileButtons.D)
             {
                 SpinKick();
+                mobileButtons.D = false;
+
             }
-        }
+        // }
 
         // If player 2
-        if(playerMovement.player2)
-        {
-            // Two Punch Combo
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                if (Time.time - lastClicked < 0.5)
-                {
-                    OneTwoComboSecondHit();
-                }
-                else
-                {
-                    OneTwoComboFirstHit();
-                }
-                lastClicked = Time.time;
-            }
+        // if(playerMovement.player2)
+        // {
+        //     Two Punch Combo
+        //     if (Input.GetKeyDown(KeyCode.Keypad1))
+        //     {
+        //         if (Time.time - lastClicked < 0.5)
+        //         {
+        //             OneTwoComboSecondHit();
+        //         }
+        //         else
+        //         {
+        //             OneTwoComboFirstHit();
+        //         }
+        //         lastClicked = Time.time;
+        //     }
 
-            // Flying Uppercut
-            if (Input.GetKeyDown(KeyCode.Keypad5))
-            {
-                FlyingUppercut();
-            }
+        //     Flying Uppercut
+        //     if (Input.GetKeyDown(KeyCode.Keypad5))
+        //     {
+        //         FlyingUppercut();
+        //     }
 
-            // Two Side Attack
-            if(Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                TwoSideAttack();
-            }
+        //     Two Side Attack
+        //     if(Input.GetKeyDown(KeyCode.Keypad2))
+        //     {
+        //         TwoSideAttack();
+        //     }
 
-            // Spinning Kick
-            if (Input.GetKeyDown(KeyCode.Keypad3))
-            {
-                SpinKick();
-            }
-        }
+        //     Spinning Kick
+        //     if (Input.GetKeyDown(KeyCode.Keypad3))
+        //     {
+        //         SpinKick();
+        //     }
+        // }
     }
 
     // --------------------------------------------------------------------------------------------------------- //

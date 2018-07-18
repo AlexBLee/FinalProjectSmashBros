@@ -44,6 +44,9 @@ public class DogControls : NetworkBehaviour
     private AudioSource source;
     public AudioClip[] clips;
 
+    // Mobile buttons
+    MobileButtons mobileButtons;
+
     void Start ()
     {
         anim = GetComponent<Animator>();
@@ -51,115 +54,66 @@ public class DogControls : NetworkBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         hit = GetComponent<Hit>();
         source = GetComponent<AudioSource>();
+        
+        #if UNITY_ANDROID
+            mobileButtons = FindObjectOfType<MobileButtons>();
+        #endif
 	}
-
-    public override void OnStartLocalPlayer()
-    {
-        FindObjectOfType<MobileButtons>().player = this.gameObject;
-    }
-
 
     void Update ()
     {
         // So you can't spam blast.
         shotCounter -= Time.deltaTime;
 
-        // If player 1
-        if(playerMovement.player1)
+
+        // Two Kick Combo
+        if (Input.GetKeyDown(KeyCode.U) || mobileButtons.A)
         {
-             // Two Kick Combo
-            if (Input.GetKeyDown(KeyCode.U))
+
+            thirdKick = false;
+            KickComboFirstHit();
+            
+            if (Time.time - lastClicked < 0.5 && thirdKick == false)
             {
+                KickComboSecondHit();
+                thirdKick = true;              
+            }
+
+            if(Time.time - lastClicked < 0.5 && thirdKick == true)
+            {
+                KickComboThirdHit();                
                 thirdKick = false;
-                KickComboFirstHit();
-                
-                if (Time.time - lastClicked < 0.5 && thirdKick == false)
-                {
-                    KickComboSecondHit();
-                    thirdKick = true;              
-                }
 
-                if(Time.time - lastClicked < 0.5 && thirdKick == true)
-                {
-                    KickComboThirdHit();                
-                    thirdKick = false;
-
-                }
-
-                lastClicked = Time.time;
             }
 
-            // Flying Kick
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                JumpKick();
-            }
-
-            // Two Side Attack
-            if(Input.GetKeyDown(KeyCode.O))
-            {
-                if(shotCounter <= 0)
-                {
-                    shotCounter = timeBetweenShots;
-                    StartCoroutine(KiBlast());
-                }
-            }
-
-            // Forward Kick
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                ForwardKick();
-            }
-
+            lastClicked = Time.time;
+            mobileButtons.A = false;
         }
 
-        // If player 2
-        if(playerMovement.player2)
+        // Flying Kick
+        if (Input.GetKeyDown(KeyCode.I) || mobileButtons.B)
         {
-             // Two Kick Combo
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+
+            JumpKick();
+            mobileButtons.B = false;
+        }
+
+        // Two Side Attack
+        if(Input.GetKeyDown(KeyCode.O) || mobileButtons.C)
+        {
+            if(shotCounter <= 0)
             {
-                thirdKick = false;
-                KickComboFirstHit();
-                
-                if (Time.time - lastClicked < 0.5 && thirdKick == false)
-                {
-                    KickComboSecondHit();
-                    thirdKick = true;              
-                }
-
-                if(Time.time - lastClicked < 0.5 && thirdKick == true)
-                {
-                    KickComboThirdHit();                
-                    thirdKick = false;
-
-                }
-
-                lastClicked = Time.time;
+                shotCounter = timeBetweenShots;
+                StartCoroutine(KiBlast());
             }
+            mobileButtons.C = false;
+        }
 
-            // Flying Kick
-            if (Input.GetKeyDown(KeyCode.Keypad5))
-            {
-                JumpKick();
-            }
-
-            // Two Side Attack
-            if(Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                if(shotCounter <= 0)
-                {
-                    shotCounter = timeBetweenShots;
-                    StartCoroutine(KiBlast());
-                }
-            }
-
-            // Forward Kick
-            if (Input.GetKeyDown(KeyCode.Keypad3))
-            {
-                ForwardKick();
-            }
-
+        // Forward Kick
+        if (Input.GetKeyDown(KeyCode.P) || mobileButtons.D)
+        {
+            ForwardKick();
+            mobileButtons.D = false;
         }
 
     }

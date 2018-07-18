@@ -67,7 +67,7 @@ public class DogControls : NetworkBehaviour
 
 
         // Two Kick Combo
-        if (Input.GetKeyDown(KeyCode.U) || mobileButtons.A)
+        if (Input.GetKeyDown(KeyCode.U) || (mobileButtons != null && mobileButtons.A))
         {
 
             thirdKick = false;
@@ -91,7 +91,7 @@ public class DogControls : NetworkBehaviour
         }
 
         // Flying Kick
-        if (Input.GetKeyDown(KeyCode.I) || mobileButtons.B)
+        if (Input.GetKeyDown(KeyCode.I) || (mobileButtons != null && mobileButtons.B))
         {
 
             JumpKick();
@@ -99,7 +99,7 @@ public class DogControls : NetworkBehaviour
         }
 
         // Two Side Attack
-        if(Input.GetKeyDown(KeyCode.O) || mobileButtons.C)
+        if(Input.GetKeyDown(KeyCode.O) || (mobileButtons != null && mobileButtons.C))
         {
             if(shotCounter <= 0)
             {
@@ -110,7 +110,7 @@ public class DogControls : NetworkBehaviour
         }
 
         // Forward Kick
-        if (Input.GetKeyDown(KeyCode.P) || mobileButtons.D)
+        if (Input.GetKeyDown(KeyCode.P) || (mobileButtons != null && mobileButtons.D))
         {
             ForwardKick();
             mobileButtons.D = false;

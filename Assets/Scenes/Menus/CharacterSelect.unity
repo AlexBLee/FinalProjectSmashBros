@@ -664,17 +664,16 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1258905793114654, guid: ab5c0b02835c4fd4d901974144795139,
-    type: 2}
+  m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
-  - {fileID: 1581846708922320, guid: 019ea5818ce224e42a63f4e7a8554db3, type: 2}
-  - {fileID: 1025389734136946, guid: 15c7df8c139a4b34fb3362f6f9cf0d7d, type: 2}
   - {fileID: 1258905793114654, guid: ab5c0b02835c4fd4d901974144795139, type: 2}
   - {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
+  - {fileID: 1581846708922320, guid: 019ea5818ce224e42a63f4e7a8554db3, type: 2}
+  - {fileID: 1025389734136946, guid: 15c7df8c139a4b34fb3362f6f9cf0d7d, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -2084,7 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7dcf9f233a2c23419e7ab5a9b3adcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1837212426}
+  prefab: {fileID: 0}
   mode: {fileID: 1628286653}
   minLives: {fileID: 249978213}
 --- !u!114 &1837212432
@@ -2152,12 +2151,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ready: 0
-  playerNumber: 0
+  playerNumber: 2
   spawn: {x: -0.7, y: 0.55}
   p1Number: 0
   p2Number: 0
-  lives: 0
-  timeInSeconds: 0
+  lives: 5
+  timeInSeconds: 5
   p1Kills: 0
   p2Kills: 0
   p1Deaths: 0

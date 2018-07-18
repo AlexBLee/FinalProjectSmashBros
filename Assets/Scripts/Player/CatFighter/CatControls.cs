@@ -65,7 +65,7 @@ public class CatControls : NetworkBehaviour
         // if(playerMovement.player1)
         // {
             // Two Punch Combo
-            if (Input.GetKeyDown(KeyCode.U) || mobileButtons.A)
+            if (Input.GetKeyDown(KeyCode.U) || (mobileButtons != null && mobileButtons.A))
             {
                 if (Time.time - lastClicked < 0.5)
                 {
@@ -76,30 +76,46 @@ public class CatControls : NetworkBehaviour
                     OneTwoComboFirstHit();
                 }
                 lastClicked = Time.time;
-                mobileButtons.A = false;
+
+                if(mobileButtons != null)
+                {
+                    mobileButtons.A = false;
+                }
             }
 
             // Flying Uppercut
-            if (Input.GetKeyDown(KeyCode.I) || mobileButtons.B)
+            if (Input.GetKeyDown(KeyCode.I) || (mobileButtons != null && mobileButtons.B))
             {
                 FlyingUppercut();
-                mobileButtons.B = false;
+
+                if(mobileButtons != null)
+                {
+                    mobileButtons.B = false;
+                }
 
             }
 
             // Two Side Attack
-            if(Input.GetKeyDown(KeyCode.O) || mobileButtons.C)
+            if(Input.GetKeyDown(KeyCode.O) || (mobileButtons != null && mobileButtons.C))
             {
                 TwoSideAttack();
-                mobileButtons.C = false;
+
+                if(mobileButtons != null)
+                {
+                    mobileButtons.C = false;
+                }
 
             }
 
             // Spinning Kick
-            if (Input.GetKeyDown(KeyCode.P) || mobileButtons.D)
+            if (Input.GetKeyDown(KeyCode.P) || (mobileButtons != null && mobileButtons.D))
             {
                 SpinKick();
-                mobileButtons.D = false;
+
+                if(mobileButtons != null)
+                {
+                    mobileButtons.D = false;
+                }
 
             }
         // }

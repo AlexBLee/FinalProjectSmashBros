@@ -16,7 +16,11 @@ public class MobileButtons : MonoBehaviour
 	void Start () 
 	{
 		#if UNITY_STANDALONE || UNITY_EDITOR
-			gameObject.SetActive(false);
+			foreach(Button btn in buttons)
+			{
+				btn.gameObject.SetActive(false);
+				gameObject.SetActive(false);
+			}
 		#endif
 
 		#if UNITY_ANDROID

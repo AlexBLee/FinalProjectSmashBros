@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+
 using UniRx;
 
-public class PlayerManager : MonoBehaviour 
+public class PlayerManager : NetworkBehaviour 
 {
     // Tag for objects
     private const string TAG_DOG = "DogFighter";
@@ -43,6 +45,7 @@ public class PlayerManager : MonoBehaviour
     public bool dead = false;
 
     // Variables to keep track of.
+    [SyncVar]
     public int lives = 0;
     public int index = 0;
     public int deaths = 0;
@@ -50,7 +53,7 @@ public class PlayerManager : MonoBehaviour
 
     // --------------------------------------------------------------------------------------------------------- //
 
-    void Start()
+    IEnumerator Start()
     {
         cameraScript = FindObjectOfType<CameraScript>();
         levelManager = FindObjectOfType<LevelManager>();
@@ -58,6 +61,7 @@ public class PlayerManager : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>(); 
         source = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+
 
         // Differentiate between characters.
         if(gameObject.name == TAG_DOG)
@@ -67,9 +71,6 @@ public class PlayerManager : MonoBehaviour
             catControls = GetComponent<CatControls>();
 
         // Find the index of the player (The LevelManager and CameraScript have lists where order is the same.)
-        index = levelManager.players.IndexOf(this.gameObject);
-
-
         
         // Gamemode is KO Fest.
         if(GameManager.instance.gameModeNumber == 0)
@@ -83,16 +84,16 @@ public class PlayerManager : MonoBehaviour
             lives = 9999;
         }
 
-
+        yield return new WaitForSeconds(0.2f);
+        index = cameraScript.players.IndexOf(this.gameObject);
 
         // If the player is dead, remove them from the camera script list.
         Observable.EveryUpdate()
-        .Where(_ => lives == 0)
+        .Where(_ => lives <= 0)
         .Subscribe(_ =>
         {
             cameraScript.players.RemoveAt(index);
-            levelManager.players[index] = null;
-            levelManager.players.RemoveAt(index);
+            levelManager.syncPlayers.RemoveAt(index);
             Destroy(gameObject);
         }).AddTo(this);
     }

@@ -22,10 +22,17 @@ public class StartGameButton : NetworkBehaviour
 	// Go to level select.
 	public void GoToLevelSelect()
 	{
-		if(GameManager.instance.ready == true)
+		if(isServer)
 		{
-			//SceneManager.LoadScene("LevelSelect");
-			NetworkManager.singleton.ServerChangeScene("LevelSelect");
+			if(GameManager.instance.ready == true)
+			{
+				//SceneManager.LoadScene("LevelSelect");
+				NetworkManager.singleton.ServerChangeScene("LevelSelect");
+			}
+		}
+		else
+		{
+			Debug.Log("not server!");
 		}
 	}
 	

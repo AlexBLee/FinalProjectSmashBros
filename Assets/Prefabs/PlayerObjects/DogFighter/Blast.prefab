@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 114885829048874100}
   - component: {fileID: 50345472293329210}
   - component: {fileID: 61289013072261754}
-  - component: {fileID: 114386009420553878}
   - component: {fileID: 114888081258320674}
+  - component: {fileID: 114115833246976998}
+  - component: {fileID: 114604802820917030}
   m_Layer: 10
   m_Name: Blast
   m_TagString: Blast
@@ -90,7 +91,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14571762, y: 0.13741851}
   m_EdgeRadius: 0
---- !u!114 &114386009420553878
+--- !u!114 &114115833246976998
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -98,11 +99,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703489262586198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71860fb576a065f42aacf920f023789e, type: 3}
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  knockback: {x: 0, y: 0}
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 209
+    i1: 151
+    i2: 238
+    i3: 226
+    i4: 246
+    i5: 227
+    i6: 181
+    i7: 100
+    i8: 168
+    i9: 235
+    i10: 85
+    i11: 75
+    i12: 180
+    i13: 195
+    i14: 161
+    i15: 245
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114604802820917030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703489262586198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114885829048874100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,8 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71860fb576a065f42aacf920f023789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   knockback: {x: 0, y: 0}
+  player: {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
 --- !u!114 &114888081258320674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +183,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

@@ -111,7 +111,10 @@ public class DogControls : NetworkBehaviour
             if(shotCounter <= 0)
             {
                 shotCounter = timeBetweenShots;
-                StartCoroutine(KiBlast());
+                if(!isServer)
+                    CmdKiBlast();
+                else
+                    RpcKiBlast();
             }
 
             if(mobileButtons != null)
@@ -219,6 +222,18 @@ public class DogControls : NetworkBehaviour
 
     }
 
+    [Command]
+    void CmdKiBlast()
+    {
+        RpcKiBlast();
+    }
+
+    [ClientRpc]
+    void RpcKiBlast()
+    {
+        StartCoroutine(KiBlast());
+    }
+
     // --------------------------------------------------------------------------------------------------------- //
 
     public void ForwardKick()
@@ -266,31 +281,10 @@ public class DogControls : NetworkBehaviour
         }
     }
 
-
     public void EnableDogControl()
     {
         playerMovement.enabled = true;
         canHit = true;
     }
-
-    public void AButton()
-    {
-        KickComboFirstHit();
-    }
-
-    public void BButton()
-    {
-        JumpKick();
-    }
-
-    public void CButton()
-    {
-        KiBlast();
-    }
-
-    public void DButton()
-    {
-        ForwardKick();
-    }
-
 }
+

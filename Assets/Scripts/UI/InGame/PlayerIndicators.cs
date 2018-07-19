@@ -25,7 +25,7 @@ public class PlayerIndicators : NetworkBehaviour
 	IEnumerator Start () 
 	{
 		// The delay is here for the online mode as the stuff below executes faster than the server can finish loading everything.
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.1f);
 
 		
 		// Used to find out how many players are in the game.

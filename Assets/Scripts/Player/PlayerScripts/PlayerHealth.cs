@@ -19,6 +19,7 @@ public class PlayerHealth : NetworkBehaviour
     private Rigidbody2D rb;
 
     // Health/Damage
+    [SyncVar]
     public float health = 0f;
     private Hit hit;
     public Vector2 damage;

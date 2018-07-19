@@ -20,6 +20,7 @@ public class Cursor : NetworkBehaviour
 
 		if(gameObject.name == "P2Cursor(Clone)")
 		{
+			
 			GameObject.Find("P2").GetComponent<CharacterSelect>().cursor = this;
 		}
 	}

@@ -22,7 +22,7 @@ public class BlastController : MonoBehaviour
 	void Start ()
     {
         // Only the dog fighter uses this, so finding only the DogFighter is appropriate.
-        playerMovement = GameObject.Find("DogFighter").GetComponent<PlayerMovement>();
+        playerMovement = player.GetComponent<PlayerMovement>();
 
         rBody = GetComponent<Rigidbody2D>();
         hit = GetComponent<Hit>();

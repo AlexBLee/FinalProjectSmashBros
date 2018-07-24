@@ -23,6 +23,8 @@ public class Cursor : NetworkBehaviour
 			
 			GameObject.Find("P2").GetComponent<CharacterSelect>().cursor = this;
 		}
+		Mathf.Abs(Camera.main.orthographicSize - (GetComponent<SpriteRenderer>().sprite.texture.height / GetComponent<SpriteRenderer>().sprite.pixelsPerUnit));
+		
 	}
 
 	private void Update() 

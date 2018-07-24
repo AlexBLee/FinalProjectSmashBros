@@ -58,7 +58,7 @@ public class NetworkCustom : NetworkManager
 
      public override void OnServerDisconnect(NetworkConnection conn)
      {
-         Debug.Log("!!");
+         NetworkServer.DestroyPlayersForConnection(conn);
          GameManager.instance.spawn.x -= 1.2f;
          GameManager.instance.playerNumber--;
 

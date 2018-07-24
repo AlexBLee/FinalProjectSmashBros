@@ -96,6 +96,16 @@ public class PlayerManager : NetworkBehaviour
             levelManager.syncPlayers.RemoveAt(index);
             Destroy(gameObject);
         }).AddTo(this);
+
+        spawnPosition = levelManager.respawns[(index == 0) ? 0 : 1];
+
+
+
+
+        if(spawnPosition == null)
+        {
+            Debug.LogError("no spawn!");
+        }
     }
 
 

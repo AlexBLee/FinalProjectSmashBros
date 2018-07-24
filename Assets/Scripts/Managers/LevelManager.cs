@@ -24,6 +24,7 @@ public class LevelManager : NetworkBehaviour
 	{
 		
 	}
+	public int a = 0;
 
 	// List for things in level.
 	public List<GameObject> players = new List<GameObject>(2);
@@ -61,10 +62,7 @@ public class LevelManager : NetworkBehaviour
 			GameObject player1 = Instantiate(GameManager.instance.players[0], spawns[0].position ,Quaternion.identity);
 			NetworkServer.Spawn(player1);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[0], player1, 0);
-			player1.name = GameManager.instance.players[0].name;
             CmdAddToList(player1.GetComponent<NetworkIdentity>().netId);
-			PlayerManager playerManager = player1.GetComponent<PlayerManager>();
-			playerManager.spawnPosition = respawns[0];
 
 		}
 		
@@ -74,10 +72,8 @@ public class LevelManager : NetworkBehaviour
 			GameObject player2 = Instantiate(GameManager.instance.players[1], spawns[1].position ,Quaternion.identity);
 			NetworkServer.Spawn(player2);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[1], player2, 1);
-			player2.name = GameManager.instance.players[1].name;
             CmdAddToList(player2.GetComponent<NetworkIdentity>().netId);
-			PlayerManager playerManager = player2.GetComponent<PlayerManager>();
-			playerManager.spawnPosition = respawns[1];
+
 		}
 
 	}
@@ -94,6 +90,8 @@ public class LevelManager : NetworkBehaviour
 		syncPlayers.Add(new ID(id));
 		//RpcAddToList(id);
 	}
+
+
 
 
 }

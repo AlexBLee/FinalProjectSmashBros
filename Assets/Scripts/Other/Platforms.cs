@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UniRx;
 
 public class Platforms : MonoBehaviour 
@@ -42,10 +43,11 @@ public class Platforms : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D collision)
     {
 		tempObject = collision.gameObject;
-
+		// Client dead not true?
         if (tempObject.GetComponent<PlayerManager>().dead && !done.Value && ready == false)
         {
-			anim.SetTrigger("IsDead");
+			//anim.SetTrigger("IsDead");
+			GetComponent<NetworkAnimator>().SetTrigger("IsDead");
             ready = true;
 
         }
@@ -58,8 +60,12 @@ public class Platforms : MonoBehaviour
 		tempObject.GetComponent<PlayerManager>().SetDeath(false);
 		ready = false;
 
-		anim.SetTrigger("IsIdle");
-		anim.SetTrigger("StandStill");
+		//anim.SetTrigger("IsIdle");
+		GetComponent<NetworkAnimator>().SetTrigger("IsIdle");
+
+		//anim.SetTrigger("StandStill");
+		GetComponent<NetworkAnimator>().SetTrigger("StandStill");
+
 
 	}
 

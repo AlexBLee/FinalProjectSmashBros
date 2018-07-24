@@ -58,9 +58,16 @@ public class NetworkCustom : NetworkManager
 
      public override void OnServerDisconnect(NetworkConnection conn)
      {
+         Debug.Log("!!");
          GameManager.instance.spawn.x -= 1.2f;
          GameManager.instance.playerNumber--;
 
+     }
+
+     public override void OnStopServer()
+     {
+         GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
+         GameManager.instance.playerNumber = 2;
      }
 
      public override void OnServerSceneChanged(string sceneName)

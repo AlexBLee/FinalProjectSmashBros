@@ -65,6 +65,13 @@ public class CatControls : NetworkBehaviour
         // if(playerMovement.player1)
         // {
             // Two Punch Combo
+
+            if(!isLocalPlayer)
+            {
+                return;
+            }
+
+            
             if (Input.GetKeyDown(KeyCode.U) || (mobileButtons != null && mobileButtons.A))
             {
                 if (Time.time - lastClicked < 0.5)

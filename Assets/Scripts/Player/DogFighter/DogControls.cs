@@ -65,6 +65,11 @@ public class DogControls : NetworkBehaviour
         // So you can't spam blast.
         shotCounter -= Time.deltaTime;
 
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+
 
         // Two Kick Combo
         if (Input.GetKeyDown(KeyCode.U) || (mobileButtons != null && mobileButtons.A))

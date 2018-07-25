@@ -128,7 +128,7 @@ public class PlayerManager : NetworkBehaviour
             // Subtract lives, add to deaths.
             --lives;
             ++deaths;
-            dead = true;
+            CmdDeath();
 
             // For spawning on platform.
             rb.velocity = new Vector2(0,0);
@@ -193,6 +193,12 @@ public class PlayerManager : NetworkBehaviour
     public void SetDeath(bool death)
     {
         dead = death;
+    }
+
+    [Command]
+    public void CmdDeath()
+    {
+        dead = true;
     }
 
     

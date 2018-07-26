@@ -12,6 +12,7 @@ TagManager:
   - Platform
   - catSelect
   - dogSelect
+  - Block
   layers:
   - Default
   - TransparentFX

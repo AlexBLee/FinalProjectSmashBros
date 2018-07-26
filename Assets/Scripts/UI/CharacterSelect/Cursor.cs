@@ -13,6 +13,7 @@ public class Cursor : NetworkBehaviour
 	{
 		box = GetComponent<BoxCollider2D>();
 
+		// Assign cursors to images
 		if(gameObject.name == "P1Cursor(Clone)")
 		{
 			GameObject.Find("P1").GetComponent<CharacterSelect>().cursor = this;

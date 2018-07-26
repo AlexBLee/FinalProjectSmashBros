@@ -64,20 +64,32 @@ public class CharacterSelect : MonoBehaviour
 				// For player 1.
 				if(cursor.name == "P1Cursor(Clone)")
 				{
-					GameManager.instance.players[0] = characterList[listNumber - 1];
-					p1Chosen = true;
+					if(listNumber > 0)
+					{
+						GameManager.instance.players[0] = characterList[listNumber - 1];
+						p1Chosen = true;
+					}
 				}
 
 				// For player 2.
 				if(cursor.name == "P2Cursor(Clone)")
 				{
-					GameManager.instance.players[1] = characterList[listNumber - 1];
-					p2Chosen = true;
+					if(listNumber > 0)
+					{
+						GameManager.instance.players[1] = characterList[listNumber - 1];
+						p2Chosen = true;
+					}
 					
 				}
 
 				// To show the character chosen in the character selection images.
 				rend.sprite = spriteList[listNumber];
+			}
+
+			if(cursor.overlap.Length == 1)
+			{
+				listNumber = 0;
+				rend.sprite = spriteList[0];
 			}
 		}
 	}

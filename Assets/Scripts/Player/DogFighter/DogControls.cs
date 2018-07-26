@@ -47,6 +47,8 @@ public class DogControls : NetworkBehaviour
     // Mobile buttons
     MobileButtons mobileButtons;
 
+    // ----------------------------------------------------------------------------------------------------
+
     void Start ()
     {
         anim = GetComponent<Animator>();
@@ -76,17 +78,27 @@ public class DogControls : NetworkBehaviour
         {
 
             thirdKick = false;
-            KickComboFirstHit();
+            if(!isServer)
+                CmdKickComboFirst();
+            else
+                RpcKickCombo();
             
             if (Time.time - lastClicked < 0.5 && thirdKick == false)
             {
-                KickComboSecondHit();
+                if(!isServer)
+                    CmdKickComboSecond();
+                else
+                    RpcKickComboSecond();
                 thirdKick = true;              
             }
 
             if(Time.time - lastClicked < 0.5 && thirdKick == true)
             {
-                KickComboThirdHit();                
+                if(!isServer)
+                    CmdKickComboThird();
+                else
+                    RpcKickComboThird(); 
+
                 thirdKick = false;
 
             }
@@ -103,7 +115,11 @@ public class DogControls : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.I) || (mobileButtons != null && mobileButtons.B))
         {
 
-            JumpKick();
+            if(!isServer)
+                CmdJumpKick();
+            else
+                RpcJumpKick();
+
             if(mobileButtons != null)
             {
                 mobileButtons.B = false;
@@ -131,7 +147,10 @@ public class DogControls : NetworkBehaviour
         // Forward Kick
         if (Input.GetKeyDown(KeyCode.P) || (mobileButtons != null && mobileButtons.D))
         {
-            ForwardKick();
+            if(!isServer)
+                CmdForwardKick();
+            else
+                RpcForwardKick();
             
             if(mobileButtons != null)
             {
@@ -227,17 +246,6 @@ public class DogControls : NetworkBehaviour
 
     }
 
-    [Command]
-    void CmdKiBlast()
-    {
-        RpcKiBlast();
-    }
-
-    [ClientRpc]
-    void RpcKiBlast()
-    {
-        StartCoroutine(KiBlast());
-    }
 
     // --------------------------------------------------------------------------------------------------------- //
 
@@ -290,6 +298,94 @@ public class DogControls : NetworkBehaviour
     {
         playerMovement.enabled = true;
         canHit = true;
+    }
+
+    // -----------------------------------------------------------------------------------
+    // For networking.
+
+    [Command]
+    void CmdKiBlast()
+    {
+        RpcKiBlast();
+    }
+
+    [ClientRpc]
+    void RpcKiBlast()
+    {
+        StartCoroutine(KiBlast());
+    }
+
+    // -----------------------------------------------------------------------------------
+
+
+    [Command]
+    void CmdForwardKick()
+    {
+        RpcForwardKick();
+    }
+
+    [ClientRpc]
+    void RpcForwardKick()
+    {
+        ForwardKick();
+    }
+    // -----------------------------------------------------------------------------------
+
+
+    [Command]
+    void CmdJumpKick()
+    {
+        RpcJumpKick();
+    }
+
+    [ClientRpc]
+    void RpcJumpKick()
+    {
+        JumpKick();
+    }
+    // -----------------------------------------------------------------------------------
+
+
+    [Command]
+    void CmdKickComboFirst()
+    {
+        RpcKickCombo();
+    }
+
+    [ClientRpc]
+    void RpcKickCombo()
+    {
+        KickComboFirstHit();
+    }
+
+    // -----------------------------------------------------------------------------------
+
+
+    [Command]
+    void CmdKickComboSecond()
+    {
+        RpcKickComboSecond();
+    }
+
+    [ClientRpc]
+    void RpcKickComboSecond()
+    {
+        KickComboSecondHit();
+    }
+
+    // -----------------------------------------------------------------------------------
+
+
+    [Command]
+    void CmdKickComboThird()
+    {
+        RpcKickComboThird();
+    }
+
+    [ClientRpc]
+    void RpcKickComboThird()
+    {
+        KickComboThirdHit();
     }
 }
 

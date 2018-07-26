@@ -61,107 +61,82 @@ public class CatControls : NetworkBehaviour
 
     void Update ()
     {
-        // If player 1
-        // if(playerMovement.player1)
-        // {
-            // Two Punch Combo
 
-            if(!isLocalPlayer)
-            {
-                return;
-            }
+        if(!isLocalPlayer)
+        {
+            return;
+        }
 
-            
-            if (Input.GetKeyDown(KeyCode.U) || (mobileButtons != null && mobileButtons.A))
+        
+        if (Input.GetKeyDown(KeyCode.U) || (mobileButtons != null && mobileButtons.A))
+        {
+            if (Time.time - lastClicked < 0.5)
             {
-                if (Time.time - lastClicked < 0.5)
-                {
-                    OneTwoComboSecondHit();
-                }
+                if(!isServer)
+                    CmdOneTwo();
                 else
-                {
-                    OneTwoComboFirstHit();
-                }
-                lastClicked = Time.time;
-
-                if(mobileButtons != null)
-                {
-                    mobileButtons.A = false;
-                }
+                    RpcOneTwo();
             }
-
-            // Flying Uppercut
-            if (Input.GetKeyDown(KeyCode.I) || (mobileButtons != null && mobileButtons.B))
+            else
             {
-                FlyingUppercut();
-
-                if(mobileButtons != null)
-                {
-                    mobileButtons.B = false;
-                }
-
+                if(!isServer)
+                    CmdOneTwoSecond();
+                else
+                    RpcOneTwoSecond();
             }
+            lastClicked = Time.time;
 
-            // Two Side Attack
-            if(Input.GetKeyDown(KeyCode.O) || (mobileButtons != null && mobileButtons.C))
+            if(mobileButtons != null)
             {
-                TwoSideAttack();
-
-                if(mobileButtons != null)
-                {
-                    mobileButtons.C = false;
-                }
-
+                mobileButtons.A = false;
             }
+        }
 
-            // Spinning Kick
-            if (Input.GetKeyDown(KeyCode.P) || (mobileButtons != null && mobileButtons.D))
+        // Flying Uppercut
+        if (Input.GetKeyDown(KeyCode.I) || (mobileButtons != null && mobileButtons.B))
+        {
+            if(!isServer)
+                CmdFlyingUppercut();
+            else
+                RpcFlyingUppercut();
+
+            if(mobileButtons != null)
             {
-                SpinKick();
-
-                if(mobileButtons != null)
-                {
-                    mobileButtons.D = false;
-                }
-
+                mobileButtons.B = false;
             }
-        // }
 
-        // If player 2
-        // if(playerMovement.player2)
-        // {
-        //     Two Punch Combo
-        //     if (Input.GetKeyDown(KeyCode.Keypad1))
-        //     {
-        //         if (Time.time - lastClicked < 0.5)
-        //         {
-        //             OneTwoComboSecondHit();
-        //         }
-        //         else
-        //         {
-        //             OneTwoComboFirstHit();
-        //         }
-        //         lastClicked = Time.time;
-        //     }
+        }
 
-        //     Flying Uppercut
-        //     if (Input.GetKeyDown(KeyCode.Keypad5))
-        //     {
-        //         FlyingUppercut();
-        //     }
+        // Two Side Attack
+        if(Input.GetKeyDown(KeyCode.O) || (mobileButtons != null && mobileButtons.C))
+        {
+            if(!isServer)
+                CmdTwoSideAttack();
+            else
+                RpcTwoSideAttack();
 
-        //     Two Side Attack
-        //     if(Input.GetKeyDown(KeyCode.Keypad2))
-        //     {
-        //         TwoSideAttack();
-        //     }
+            if(mobileButtons != null)
+            {
+                mobileButtons.C = false;
+            }
 
-        //     Spinning Kick
-        //     if (Input.GetKeyDown(KeyCode.Keypad3))
-        //     {
-        //         SpinKick();
-        //     }
-        // }
+        }
+
+        // Spinning Kick
+        if (Input.GetKeyDown(KeyCode.P) || (mobileButtons != null && mobileButtons.D))
+        {
+            if(!isServer)
+                CmdSpinKick();
+            else
+                RpcSpinKick();
+
+            if(mobileButtons != null)
+            {
+                mobileButtons.D = false;
+            }
+
+        }
+
     }
 
     // --------------------------------------------------------------------------------------------------------- //
@@ -296,24 +271,77 @@ public class CatControls : NetworkBehaviour
         canKick = true;
     }
 
-    public void AButton()
+    // -----------------------------------------------------------------------------------
+    // For networking.
+
+    [Command]
+    void CmdOneTwo()
+    {
+        RpcOneTwo();
+    }
+
+    [ClientRpc]
+    void RpcOneTwo()
     {
         OneTwoComboFirstHit();
     }
 
-    public void BButton()
+     [Command]
+    void CmdOneTwoSecond()
+    {
+        RpcOneTwoSecond();
+    }
+
+    [ClientRpc]
+    void RpcOneTwoSecond()
+    {
+        OneTwoComboSecondHit();
+    }
+
+    // -----------------------------------------------------------------------------------
+
+
+    [Command]
+    void CmdFlyingUppercut()
+    {
+        RpcFlyingUppercut();
+    }
+
+    [ClientRpc]
+    void RpcFlyingUppercut()
     {
         FlyingUppercut();
     }
+    // -----------------------------------------------------------------------------------
 
-    public void CButton()
+
+    [Command]
+    void CmdTwoSideAttack()
+    {
+        RpcTwoSideAttack();
+    }
+
+    [ClientRpc]
+    void RpcTwoSideAttack()
     {
         TwoSideAttack();
     }
+    // -----------------------------------------------------------------------------------
 
-    public void DButton()
+
+    [Command]
+    void CmdSpinKick()
+    {
+        RpcSpinKick();
+    }
+
+    [ClientRpc]
+    void RpcSpinKick()
     {
         SpinKick();
     }
+
+
+
 
 }

@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class LevelSelect : NetworkBehaviour {
+public class LevelSelect : MonoBehaviour {
 
 	// Button
 	private Button button;
+
 	
     // --------------------------------------------------------------------------------------------------------- //    
 

@@ -353,6 +353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13eac16d57679aa4390899c01e16c3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  A: 0
+  B: 0
+  C: 0
+  D: 0
 --- !u!114 &114530950690870158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -408,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
-  m_SendInterval: 0.11111111
+  m_SendInterval: 0.09090909
   m_SyncRotationAxis: 3
   m_RotationSyncCompression: 0
   m_SyncSpin: 0

@@ -9,7 +9,6 @@ public class LevelSelect : MonoBehaviour {
 
 	// Button
 	private Button button;
-
 	
     // --------------------------------------------------------------------------------------------------------- //    
 

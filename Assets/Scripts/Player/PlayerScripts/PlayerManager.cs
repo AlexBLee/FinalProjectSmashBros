@@ -45,7 +45,6 @@ public class PlayerManager : NetworkBehaviour
     public bool dead = false;
 
     // Variables to keep track of.
-    [SyncVar]
     public int lives = 0;
     public int index = 0;
     public int deaths = 0;
@@ -70,7 +69,6 @@ public class PlayerManager : NetworkBehaviour
         if(gameObject.name == TAG_CAT)
             catControls = GetComponent<CatControls>();
 
-        // Find the index of the player (The LevelManager and CameraScript have lists where order is the same.)
         
         // Gamemode is KO Fest.
         if(GameManager.instance.gameModeNumber == 0)
@@ -85,6 +83,8 @@ public class PlayerManager : NetworkBehaviour
         }
 
         yield return new WaitForSeconds(0.2f);
+
+        // Find the index of the player (The LevelManager and CameraScript have lists where order is the same.)
         index = cameraScript.players.IndexOf(this.gameObject);
 
         // If the player is dead, remove them from the camera script list.
@@ -97,15 +97,9 @@ public class PlayerManager : NetworkBehaviour
             Destroy(gameObject);
         }).AddTo(this);
 
+        // Set spawn position depending on which player you are.
         spawnPosition = levelManager.respawns[(index == 0) ? 0 : 1];
 
-
-
-
-        if(spawnPosition == null)
-        {
-            Debug.LogError("no spawn!");
-        }
     }
 
 
@@ -113,7 +107,7 @@ public class PlayerManager : NetworkBehaviour
     {
         if (collision.gameObject.tag == TAG_KILLZONE)
         {
-            playerHealth.health = 0;
+            CmdSetStats();
             if(playerHealth.koPlayer != null)
             {
                 // Award kill to player.
@@ -126,8 +120,7 @@ public class PlayerManager : NetworkBehaviour
             }
         
             // Subtract lives, add to deaths.
-            --lives;
-            ++deaths;
+            
             CmdDeath();
 
             // For spawning on platform.
@@ -199,6 +192,14 @@ public class PlayerManager : NetworkBehaviour
     public void CmdDeath()
     {
         dead = true;
+    }
+
+    [Command]
+    public void CmdSetStats()
+    {
+        playerHealth.health = 0;
+        --lives;
+        ++deaths;
     }
 
     

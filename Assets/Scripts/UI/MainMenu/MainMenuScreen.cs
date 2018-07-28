@@ -38,7 +38,7 @@ public class MainMenuScreen : MonoBehaviour
 
         if (quitButton != null)
         {
-            optionsButton.onClick.AddListener(Quit);
+            quitButton.onClick.AddListener(Quit);
         } 
     }
 

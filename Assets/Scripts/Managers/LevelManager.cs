@@ -24,10 +24,9 @@ public class LevelManager : NetworkBehaviour
 	{
 		
 	}
-	public int a = 0;
 
 	// List for things in level.
-	public List<GameObject> players = new List<GameObject>(2);
+	public List<GameObject> players;
 	public SyncPlayers syncPlayers = new SyncPlayers();
 
 	// Where the player initially spawns
@@ -38,13 +37,19 @@ public class LevelManager : NetworkBehaviour
 	
 	// Text
 	public Text text;
+
+	private void Start() {
+
+		players = FindObjectOfType<CameraScript>().players;
+	}
 	
 	// When there is one more player remaining, end the game.
 	private void Update() 
 	{
-		if(players.Count == 1)
+		// Looking for two, as there is an extra object that is neccesary but isn't a player.
+		if(players.Count == 2)
 		{
-			SceneManager.LoadScene("EndResult");
+			NetworkManager.singleton.ServerChangeScene("EndResult");
 		}
 	}
 

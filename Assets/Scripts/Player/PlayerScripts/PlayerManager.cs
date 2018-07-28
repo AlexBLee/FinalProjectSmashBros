@@ -45,9 +45,12 @@ public class PlayerManager : NetworkBehaviour
     public bool dead = false;
 
     // Variables to keep track of.
+    [SyncVar]
     public int lives = 0;
     public int index = 0;
+    [SyncVar]
     public int deaths = 0;
+    [SyncVar]
     public int kills = 0;
 
     // --------------------------------------------------------------------------------------------------------- //
@@ -119,8 +122,6 @@ public class PlayerManager : NetworkBehaviour
                     GameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().kills;
             }
         
-            // Subtract lives, add to deaths.
-            
             CmdDeath();
 
             // For spawning on platform.
@@ -197,6 +198,7 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdSetStats()
     {
+        // Subtract lives, add to deaths.
         playerHealth.health = 0;
         --lives;
         ++deaths;

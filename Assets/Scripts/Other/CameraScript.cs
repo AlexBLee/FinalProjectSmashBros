@@ -80,19 +80,22 @@ public class CameraScript : NetworkBehaviour
 
 		for(int i = 0; i < players.Count; i++)
 		{
-			Vector3 playerPosition = players[i].transform.position;
-
-			if(levelFocus.focusBounds.Contains(playerPosition))
+			if(players[i] != null)
 			{
-				float playerX = Mathf.Clamp(playerPosition.x, levelFocus.focusBounds.min.x, levelFocus.focusBounds.max.x);
-				float playerY = Mathf.Clamp(playerPosition.y, levelFocus.focusBounds.min.y, levelFocus.focusBounds.max.y);
-				float playerZ = Mathf.Clamp(playerPosition.z, levelFocus.focusBounds.min.z, levelFocus.focusBounds.max.z);
-				playerPosition = new Vector3(playerX,playerY,playerZ);
-				
-			}
+				Vector3 playerPosition = players[i].transform.position;
 
-			totalPositions += playerPosition;
-			playerBounds.Encapsulate(playerPosition);
+				if(levelFocus.focusBounds.Contains(playerPosition))
+				{
+					float playerX = Mathf.Clamp(playerPosition.x, levelFocus.focusBounds.min.x, levelFocus.focusBounds.max.x);
+					float playerY = Mathf.Clamp(playerPosition.y, levelFocus.focusBounds.min.y, levelFocus.focusBounds.max.y);
+					float playerZ = Mathf.Clamp(playerPosition.z, levelFocus.focusBounds.min.z, levelFocus.focusBounds.max.z);
+					playerPosition = new Vector3(playerX,playerY,playerZ);
+					
+				}
+
+				totalPositions += playerPosition;
+				playerBounds.Encapsulate(playerPosition);
+			}
 		}
 
 		averageCenter = (totalPositions / players.Count);

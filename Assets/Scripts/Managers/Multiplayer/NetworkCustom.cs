@@ -12,6 +12,14 @@ public class NetworkCustom : NetworkManager
 	public Transform spawnPosition;
 	public int curPlayer;
     private GameObject player;
+    public bool singlePlayer;
+
+    private void Start() {
+        if(singlePlayer)
+        {
+            StartHost();
+        }
+    }
 	
 	public override void OnClientConnect(NetworkConnection conn)
 	{

@@ -82,10 +82,10 @@ public class GameManager : NetworkBehaviour {
 	
 	// QUIT the game.
 	private void Update() {
-		if(Input.GetKey(KeyCode.Escape))
-		{
-			SceneManager.LoadScene("CharacterSelect");
-		}
+		// if(Input.GetKey(KeyCode.Escape))
+		// {
+		// 	SceneManager.LoadScene("CharacterSelect");
+		// }
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------//

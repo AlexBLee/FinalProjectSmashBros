@@ -11,22 +11,17 @@ public class NetworkCustom : NetworkManager
 {
 	public Transform spawnPosition;
 	public int curPlayer;
+    private short clientNumber = 1;
     private GameObject player;
-    public bool singlePlayer;
-
-    private void Start() {
-        if(singlePlayer)
-        {
-            StartHost();
-        }
-    }
 	
 	public override void OnClientConnect(NetworkConnection conn)
 	{
 		Debug.Log("Player Connected!");
 
 		IntegerMessage msg = new IntegerMessage(curPlayer);
-        ClientScene.AddPlayer(conn, 0, msg);
+        ClientScene.AddPlayer(conn, clientNumber, msg);
+
+        clientNumber++;
 
         
 	}
@@ -38,7 +33,7 @@ public class NetworkCustom : NetworkManager
 
          foreach(NetworkConnection conna in NetworkServer.connections)
          {
-             Debug.Log(conna);
+             //Debug.Log(conna);
          }
          // Read client message and receive index
          if (extraMessageReader != null) 
@@ -76,10 +71,23 @@ public class NetworkCustom : NetworkManager
      {
          GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
          GameManager.instance.playerNumber = 2;
+
+        NetworkClient.ShutdownAll();
+ 
+        foreach(NetworkConnection conn in NetworkServer.connections)
+        {
+            conn.Disconnect();
+        }
+
      }
 
      public override void OnServerSceneChanged(string sceneName)
      {
+         if(sceneName == "CharacterSelect")
+         {
+            NetworkManager.singleton.StopHost();
+             
+         }
 
          if(sceneName == "Level1" || sceneName == "Level2" || sceneName == "Level3")
          {

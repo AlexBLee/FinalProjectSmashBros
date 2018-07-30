@@ -735,7 +735,6 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   spawnPosition: {fileID: 0}
   curPlayer: 0
-  singlePlayer: 1
 --- !u!4 &560313473
 Transform:
   m_ObjectHideFlags: 0
@@ -2164,7 +2163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2023324622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c78604493d618745bb0e3d7b964ef88, type: 3}
+  m_Script: {fileID: 11500000, guid: ddf416104d6facf40b3c2ad59bcdd1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameModeNumber: 0

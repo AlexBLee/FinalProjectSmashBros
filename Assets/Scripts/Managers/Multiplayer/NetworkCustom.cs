@@ -11,7 +11,6 @@ public class NetworkCustom : NetworkManager
 {
 	public Transform spawnPosition;
 	public int curPlayer;
-    private short clientNumber = 1;
     private GameObject player;
 	
 	public override void OnClientConnect(NetworkConnection conn)
@@ -19,9 +18,8 @@ public class NetworkCustom : NetworkManager
 		Debug.Log("Player Connected!");
 
 		IntegerMessage msg = new IntegerMessage(curPlayer);
-        ClientScene.AddPlayer(conn, clientNumber, msg);
+        ClientScene.AddPlayer(conn, 0, msg);
 
-        clientNumber++;
 
         
 	}
@@ -33,7 +31,7 @@ public class NetworkCustom : NetworkManager
 
          foreach(NetworkConnection conna in NetworkServer.connections)
          {
-             //Debug.Log(conna);
+             Debug.Log(conna);
          }
          // Read client message and receive index
          if (extraMessageReader != null) 
@@ -85,7 +83,7 @@ public class NetworkCustom : NetworkManager
      {
          if(sceneName == "CharacterSelect")
          {
-            NetworkManager.singleton.StopHost();
+            
              
          }
 

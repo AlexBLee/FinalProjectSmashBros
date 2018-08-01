@@ -56,12 +56,12 @@ public class MainMenuUIManager : MonoBehaviour
             float xPos = nextScreen.rect.width;
             nextScreen.position = new Vector3(xPos*1.5f, nextScreen.position.y, nextScreen.position.z);
             // tween current screen out and deactivate
-            LeanTween.moveX(currentScreen, xPos, 1.0f).setOnComplete(() => 
+            LeanTween.moveX(currentScreen, xPos, 0.5f).setOnComplete(() => 
             {
                 currentScreen.gameObject.SetActive(false);
                 // activate and tween next screen in
                 nextScreen.gameObject.SetActive(true);
-                LeanTween.moveX(nextScreen, 0.0f, 1.0f).setOnComplete(() => { currentScreen = nextScreen; });
+                LeanTween.moveX(nextScreen, 0.0f, 0.5f).setOnComplete(() => { currentScreen = nextScreen; });
             });
 
             // Set the current screen to the screen that you're going to be on.

@@ -27,36 +27,23 @@ public class OptionsScreen : MonoBehaviour
         if (qualityDropdown != null) resolutionDropdown.onValueChanged.AddListener(SetResolution);
         if (toggle != null) toggle.onValueChanged.AddListener(SetFullScreen);
 
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
+        GetResolutions();
+        GetQualityLevel();
+        IsFullscreen();
 
-        List<string> options = new List<string>();
 
-        int currentResolutionIndex = 0;
-
-        for(int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
-            options.Add(option);
-
-            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        
         
     }
 
-    // Goes back to the default menu screen.
+    // --------------------------------------------------------------------------------------------------------------------
+    // Setting options..
+
     public void BackButtonPressed()
     {
         MainMenuUIManager.instance.ToMainMenuScreen();
     }
 
-    // Change Audio
     public void SetVolume(float val)
     {
         audioMixer.SetFloat("Volume", val);
@@ -76,6 +63,43 @@ public class OptionsScreen : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    // --------------------------------------------------------------------------------------------------------------------
+    // Getting options..
+
+    public void GetResolutions()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int currentResolutionIndex = 0;
+
+        for(int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + "x" + resolutions[i].height;
+            options.Add(option);
+
+            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+    }
+
+    public void GetQualityLevel()
+    {
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
+    }
+
+    public void IsFullscreen()
+    {
+        toggle.isOn = Screen.fullScreen;
     }
 
 }

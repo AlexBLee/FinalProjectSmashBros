@@ -14,6 +14,7 @@ public class OptionsScreen : MonoBehaviour
 
     // Options
     public AudioMixer audioMixer;
+    public Slider slider;
     public Dropdown qualityDropdown;
     public Dropdown resolutionDropdown;
     public Toggle toggle;
@@ -24,7 +25,8 @@ public class OptionsScreen : MonoBehaviour
     {
         if (backButton != null) backButton.onClick.AddListener(BackButtonPressed);
         if (qualityDropdown != null) qualityDropdown.onValueChanged.AddListener(SetQuality);
-        if (qualityDropdown != null) resolutionDropdown.onValueChanged.AddListener(SetResolution);
+        if (resolutionDropdown != null) resolutionDropdown.onValueChanged.AddListener(SetResolution);
+        if (slider != null) slider.onValueChanged.AddListener(SetVolume);
         if (toggle != null) toggle.onValueChanged.AddListener(SetFullScreen);
 
         GetResolutions();
@@ -47,6 +49,7 @@ public class OptionsScreen : MonoBehaviour
     public void SetVolume(float val)
     {
         audioMixer.SetFloat("Volume", val);
+        Debug.Log(val);
     }
 
     public void SetQuality(int qualityIndex)

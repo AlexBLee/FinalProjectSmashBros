@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 public class SResults : MonoBehaviour 
 {
 	// Text
-	public Text[] textList;
+	public TextMeshProUGUI[] textList;
 
 	// For finding the right positions for the players.
 	public int index;

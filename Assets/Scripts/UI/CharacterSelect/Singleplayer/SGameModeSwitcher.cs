@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +10,10 @@ public class SGameModeSwitcher : MonoBehaviour
 	private SGameManager instance;
 
 	// Text for the mode chosen.
-	public Text mode;
+	public TextMeshProUGUI mode;
 
 	// To display the lives or time.
-	public Text minLives;
+	public TextMeshProUGUI minLives;
 
     // --------------------------------------------------------------------------------------------------------- //    
 

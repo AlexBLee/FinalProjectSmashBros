@@ -5,7 +5,7 @@ using UnityEngine;
 public class SBlastController : MonoBehaviour
 {
     // Speed of blast.
-    private float speed = 0.5f;
+    private float speed = 5.0f;
 
     // Determine the direction of the player
     private Rigidbody2D rBody;
@@ -22,7 +22,7 @@ public class SBlastController : MonoBehaviour
 	void Start ()
     {
         // Only the dog fighter uses this, so finding only the DogFighter is appropriate.
-        playerMovement = GameObject.Find("DogFighter").GetComponent<SPlayerMovement>();
+        playerMovement = GameObject.Find("SDogFighter").GetComponent<SPlayerMovement>();
 
         rBody = GetComponent<Rigidbody2D>();
         hit = GetComponent<Hit>();

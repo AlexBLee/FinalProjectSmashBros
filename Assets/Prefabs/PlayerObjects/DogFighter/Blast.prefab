@@ -20,12 +20,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4652950654898896}
   - component: {fileID: 212009446366096682}
-  - component: {fileID: 114885829048874100}
   - component: {fileID: 50345472293329210}
   - component: {fileID: 61289013072261754}
   - component: {fileID: 114888081258320674}
   - component: {fileID: 114115833246976998}
   - component: {fileID: 114604802820917030}
+  - component: {fileID: 114229567225191874}
   m_Layer: 10
   m_Name: Blast
   m_TagString: Blast
@@ -123,6 +123,19 @@ MonoBehaviour:
     i15: 245
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114229567225191874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703489262586198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd004afc377fb554fa14536e73ae537d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockback: {x: 0, y: 0}
+  player: {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
 --- !u!114 &114604802820917030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,19 +157,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &114885829048874100
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703489262586198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71860fb576a065f42aacf920f023789e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockback: {x: 0, y: 0}
-  player: {fileID: 1802695048475120, guid: fde9393b67eaf3a4499e8fa233539095, type: 2}
 --- !u!114 &114888081258320674
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -28,7 +28,7 @@ public class SResults : MonoBehaviour
 	private void Update() {
 		if(Input.GetKeyDown(KeyCode.Return))
 		{
-			SceneManager.LoadScene("CharacterSelect");	
+			SceneManager.LoadScene("SCharacterSelect");	
 		}
 	}
 }

@@ -37,7 +37,7 @@ public class SCatControls : MonoBehaviour
     private bool facingRight;
 
     // Audio
-    private AudioSource source;
+    public AudioSource source;
     public AudioClip[] clips;
 
     void Start ()

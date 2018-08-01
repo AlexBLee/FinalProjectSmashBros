@@ -11,7 +11,7 @@ public class PlayScreen : MonoBehaviour
     public Button multiplayerButton;
 
     // Tags
-    private const string CHARACTER_SELECT = "CharacterSelect";
+    private const string CHARACTER_SELECT = "SCharacterSelect";
     private const string MULTIPLAYER = "CharacterSelect";
     
     // --------------------------------------------------------------------------------------------------------- //        

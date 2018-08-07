@@ -23,6 +23,9 @@ public class SLevelManager : MonoBehaviour
 
 	void Awake () 
 	{
+		// To stop the main menu music.
+		Destroy(GameObject.Find("Music"));
+
 		managerObjects = SGameManager.instance.players;
 
 		// If the players exist, instantiate them in their respective areas, add to the level list and set their spawn positions.

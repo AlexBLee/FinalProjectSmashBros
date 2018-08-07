@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class Results : MonoBehaviour 
+public class Results : NetworkBehaviour 
 {
 	// Text
 	public TextMeshProUGUI[] textList;
@@ -29,7 +30,7 @@ public class Results : MonoBehaviour
 	private void Update() {
 		if(Input.GetKeyDown(KeyCode.Return))
 		{
-			SceneManager.LoadScene("CharacterSelect");	
+			NetworkManager.singleton.ServerChangeScene("CharacterSelect");
 		}
 	}
 }

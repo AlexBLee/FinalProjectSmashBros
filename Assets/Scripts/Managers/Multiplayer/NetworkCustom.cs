@@ -18,7 +18,7 @@ public class NetworkCustom : NetworkManager
 		Debug.Log("Player Connected!");
 
 		IntegerMessage msg = new IntegerMessage(curPlayer);
-        ClientScene.AddPlayer(conn, 0, msg);
+        ClientScene.AddPlayer(conn,0,msg);
 
 
         
@@ -57,6 +57,8 @@ public class NetworkCustom : NetworkManager
 
      }
 
+
+
      public override void OnServerDisconnect(NetworkConnection conn)
      {
          NetworkServer.DestroyPlayersForConnection(conn);
@@ -69,21 +71,24 @@ public class NetworkCustom : NetworkManager
      {
          GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
          GameManager.instance.playerNumber = 2;
-
-        NetworkClient.ShutdownAll();
- 
-        foreach(NetworkConnection conn in NetworkServer.connections)
-        {
-            conn.Disconnect();
-        }
-
      }
 
      public override void OnServerSceneChanged(string sceneName)
      {
          if(sceneName == "CharacterSelect")
          {
-            
+            Debug.Log("!");
+            NetworkServer.Reset();
+            Destroy(GameObject.Find("LobbyManager"));
+            for(int i = 0; i < GameManager.instance.players.Count; i++)
+            {
+                GameManager.instance.players[i] = null;
+            }
+            GameManager.instance.ready = false;
+            GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
+            GameManager.instance.playerNumber = 2;
+            NetworkServer.Shutdown();
+            StartHost();
              
          }
 
@@ -97,7 +102,6 @@ public class NetworkCustom : NetworkManager
 
      }
 
-     
 
      private void Update() {
 

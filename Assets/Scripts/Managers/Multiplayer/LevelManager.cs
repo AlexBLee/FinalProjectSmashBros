@@ -39,6 +39,8 @@ public class LevelManager : NetworkBehaviour
 	public Text text;
 
 	private void Start() {
+		// To stop the main menu music.
+		Destroy(GameObject.Find("Music"));
 
 		players = FindObjectOfType<CameraScript>().players;
 	}

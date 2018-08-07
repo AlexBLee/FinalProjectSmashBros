@@ -516,8 +516,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114609559791994612, guid: f3af8ba45cd28f94d8308de2e7b9dfa3,
         type: 2}
-      propertyPath: m_OfflineScene
-      value: 
+      propertyPath: m_ServerBindToIP
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3af8ba45cd28f94d8308de2e7b9dfa3, type: 2}

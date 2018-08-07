@@ -12,6 +12,20 @@ public class NetworkCustom : NetworkManager
 	public Transform spawnPosition;
 	public int curPlayer;
     private GameObject player;
+
+    private void Start() {
+        networkAddress = ConnectScreen.ip;
+        
+        if(ConnectScreen.host)
+        {
+            StartServer();
+        }
+        else
+        {
+            StartClient();
+
+        }
+    }
 	
 	public override void OnClientConnect(NetworkConnection conn)
 	{
@@ -19,9 +33,6 @@ public class NetworkCustom : NetworkManager
 
 		IntegerMessage msg = new IntegerMessage(curPlayer);
         ClientScene.AddPlayer(conn,0,msg);
-
-
-        
 	}
 
 	 //Server

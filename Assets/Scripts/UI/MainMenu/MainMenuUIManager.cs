@@ -12,7 +12,7 @@ public class MainMenuUIManager : MonoBehaviour
     public PlayScreen playScreen;
     public MainMenuScreen mainMenuScreen;
     public OptionsScreen optionsScreen;
-    //public IPConnect ipConnect;
+    public ConnectScreen connectScreen;
 
     // Title screen.
     public RectTransform titleRT;
@@ -49,9 +49,9 @@ public class MainMenuUIManager : MonoBehaviour
         ChangeScreen(optionsScreen.GetComponent<RectTransform>());
     }
 
-    public void IPConnectScreen()
+    public void ToConnectScreen()
     {
-        //ChangeScreen(ipConnect.GetComponent<RectTransform>());
+        ChangeScreen(connectScreen.GetComponent<RectTransform>());
     }
 
     // Using LeanTween - to animate screens to go to the side.

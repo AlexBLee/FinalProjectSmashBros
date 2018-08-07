@@ -25,7 +25,7 @@ public class PlayScreen : MonoBehaviour
 
         if (multiplayerButton != null)
         {
-            multiplayerButton.onClick.AddListener(ToMultiplayer);
+            //multiplayerButton.onClick.AddListener(ToMultiplayer);
         }
     }
 

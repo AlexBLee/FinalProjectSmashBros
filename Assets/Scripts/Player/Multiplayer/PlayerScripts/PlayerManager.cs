@@ -37,6 +37,9 @@ public class PlayerManager : NetworkBehaviour
     // To subtract lives.
     private PlayerHealth playerHealth;
 
+    // Explosion death prefab.
+    public GameObject explosion;
+
     // Audio
     private AudioSource source;
     public AudioClip death;
@@ -124,6 +127,38 @@ public class PlayerManager : NetworkBehaviour
         
             CmdDeath();
 
+            // Explode in certain directions.
+            switch(collision.gameObject.name)
+            {
+                case "KillZoneLeft":
+                    if(!isServer)
+                        CmdExplode(Quaternion.Euler(0,0,-90));
+                    else
+                        RpcExplode(Quaternion.Euler(0,0,-90));
+                    break;
+
+                case "KillZoneBottom":
+                    if(!isServer)
+                        CmdExplode(Quaternion.identity);
+                    else
+                        RpcExplode(Quaternion.identity);
+                    break;
+
+                case "KillZoneRight":
+                    if(!isServer)
+                        CmdExplode(Quaternion.Euler(0,0,-270));
+                    else
+                        RpcExplode(Quaternion.Euler(0,0,-270));
+                    break;
+
+                case "KillZoneTop":
+                    if(!isServer)
+                        CmdExplode(Quaternion.Euler(0,0,-180));
+                    else
+                        RpcExplode(Quaternion.Euler(0,0,-180));
+                    break;
+            }
+
             // For spawning on platform.
             rb.velocity = new Vector2(0,0);
             source.PlayOneShot(death);
@@ -202,6 +237,18 @@ public class PlayerManager : NetworkBehaviour
         playerHealth.health = 0;
         --lives;
         ++deaths;
+    }
+
+    [Command]
+    public void CmdExplode(Quaternion qt)
+    {
+        RpcExplode(qt);
+    }
+
+    [ClientRpc]
+    public void RpcExplode(Quaternion qt)
+    {
+        Instantiate(explosion, transform.position, qt);
     }
 
     

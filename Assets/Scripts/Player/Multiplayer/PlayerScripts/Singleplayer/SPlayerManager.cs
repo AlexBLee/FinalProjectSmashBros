@@ -35,6 +35,9 @@ public class SPlayerManager : MonoBehaviour
     // To subtract lives.
     private SPlayerHealth playerHealth;
 
+    // Explosion death prefab.
+    public GameObject explosion;
+
     // Audio
     private AudioSource source;
     public AudioClip death;
@@ -115,6 +118,28 @@ public class SPlayerManager : MonoBehaviour
             ++deaths;
             dead = true;
 
+
+            // Explode in certain directions.
+            switch(collision.gameObject.name)
+            {
+                case "KillZoneLeft":
+                    Instantiate(explosion, transform.position, Quaternion.Euler(0,0,-90));
+                    break;
+
+                case "KillZoneBottom":
+                    Instantiate(explosion, transform.position, Quaternion.identity);
+                    break;
+
+                case "KillZoneRight":
+                    Instantiate(explosion, transform.position, Quaternion.Euler(0,0,-270));
+                    break;
+
+                case "KillZoneTop":
+                    Instantiate(explosion, transform.position, Quaternion.Euler(0,0,-180));
+                    break;
+            }
+
+
             // For spawning on platform.
             rb.velocity = new Vector2(0,0);
             source.PlayOneShot(death);
@@ -179,6 +204,8 @@ public class SPlayerManager : MonoBehaviour
     {
         dead = death;
     }
+
+
 
     
 }

@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71860fb576a065f42aacf920f023789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
   knockback: {x: 0, y: 0}
+  player: {fileID: 0}
 --- !u!114 &114885829048874100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71860fb576a065f42aacf920f023789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   knockback: {x: 0, y: 0}
+  player: {fileID: 0}
 --- !u!114 &114888081258320674
 MonoBehaviour:
   m_ObjectHideFlags: 1

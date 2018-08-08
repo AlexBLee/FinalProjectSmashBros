@@ -31,6 +31,7 @@ public class Results : NetworkBehaviour
 		if(Input.GetKeyDown(KeyCode.Return))
 		{
 			NetworkManager.singleton.ServerChangeScene("CharacterSelect");
+
 		}
 	}
 }

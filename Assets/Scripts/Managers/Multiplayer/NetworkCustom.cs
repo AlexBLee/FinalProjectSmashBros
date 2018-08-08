@@ -13,7 +13,8 @@ public class NetworkCustom : NetworkManager
 	public int curPlayer;
     private GameObject player;
 
-    private void Start() {
+    private void Start() 
+    {
         networkAddress = ConnectScreen.ip;
         
         if(ConnectScreen.host)
@@ -23,7 +24,6 @@ public class NetworkCustom : NetworkManager
         else
         {
             StartClient();
-
         }
     }
 	
@@ -32,6 +32,7 @@ public class NetworkCustom : NetworkManager
 		Debug.Log("Player Connected!");
 
 		IntegerMessage msg = new IntegerMessage(curPlayer);
+
         ClientScene.AddPlayer(conn,0,msg);
 	}
 
@@ -40,10 +41,6 @@ public class NetworkCustom : NetworkManager
 	 { 
          Debug.Log("add player!");
 
-         foreach(NetworkConnection conna in NetworkServer.connections)
-         {
-             Debug.Log(conna);
-         }
          // Read client message and receive index
          if (extraMessageReader != null) 
 		 {
@@ -88,9 +85,8 @@ public class NetworkCustom : NetworkManager
      {
          if(sceneName == "CharacterSelect")
          {
-            Debug.Log("!");
             NetworkServer.Reset();
-            Destroy(GameObject.Find("LobbyManager"));
+
             for(int i = 0; i < GameManager.instance.players.Count; i++)
             {
                 GameManager.instance.players[i] = null;
@@ -98,9 +94,16 @@ public class NetworkCustom : NetworkManager
             GameManager.instance.ready = false;
             GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
             GameManager.instance.playerNumber = 2;
-            NetworkServer.Shutdown();
-            StartHost();
-             
+
+            NetworkTransport.RemoveHost(NetworkManager.singleton.client.connection.hostId);
+
+
+            NetworkManager.singleton.client.Shutdown();
+            NetworkManager.singleton.client = null;
+
+
+            NetworkTransport.Shutdown();
+            Destroy(gameObject);
          }
 
          if(sceneName == "Level1" || sceneName == "Level2" || sceneName == "Level3")
@@ -113,11 +116,12 @@ public class NetworkCustom : NetworkManager
 
      }
 
-
-     private void Update() {
-
+     public override void OnClientSceneChanged(NetworkConnection conn)
+     {
 
      }
+
+
  }
 	
 

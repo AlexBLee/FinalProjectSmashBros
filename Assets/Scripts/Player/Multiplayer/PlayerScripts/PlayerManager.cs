@@ -218,6 +218,8 @@ public class PlayerManager : NetworkBehaviour
             
     }
 
+    // -------------------------------------------------------- Networking stuff --------------------------------------------
+
     // Dead check (For platforms)
     public void SetDeath(bool death)
     {

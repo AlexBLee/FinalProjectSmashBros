@@ -7,17 +7,24 @@ using TMPro;
 
 public class ConnectScreen : MonoBehaviour 
 {
+	// Buttons
 	public Button joinButton;
 	public Button hostButton;
 
+	// Input field for IP input field
 	public TMP_InputField inputField;
 	public static string ip;
 
+	// To determine if host or not
 	public static bool host;
+
+    // --------------------------------------------------------------------------------------------------------- //    
+
 
 	// Use this for initialization
 	void Start () 
 	{
+		// Add functions to buttons
 		if(joinButton != null)
 			joinButton.onClick.AddListener(Join);
 
@@ -26,6 +33,7 @@ public class ConnectScreen : MonoBehaviour
 
 	}
 
+	// Join the server.
 	void Join()
 	{
 		ip = inputField.text;
@@ -33,6 +41,7 @@ public class ConnectScreen : MonoBehaviour
 		host = false;
 	}
 
+	// Host a server.
 	void Host()
 	{
 		ip = inputField.text;

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour {
 
-	// Use this for initialization
+	// Don't destroy self going through scenes.
 	void Start () {
 		DontDestroyOnLoad(gameObject);
 	}

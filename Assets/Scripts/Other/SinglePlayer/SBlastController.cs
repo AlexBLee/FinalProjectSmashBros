@@ -22,7 +22,7 @@ public class SBlastController : MonoBehaviour
 	void Start ()
     {
         // Only the dog fighter uses this, so finding only the DogFighter is appropriate.
-        playerMovement = GameObject.Find("SDogFighter").GetComponent<SPlayerMovement>();
+        playerMovement = GameObject.Find("DogFighter").GetComponent<SPlayerMovement>();
 
         rBody = GetComponent<Rigidbody2D>();
         hit = GetComponent<Hit>();

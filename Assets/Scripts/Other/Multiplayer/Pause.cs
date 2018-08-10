@@ -11,6 +11,7 @@ public class Pause : NetworkBehaviour
 
 	void Update () 
 	{
+		// Pause the game
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(!paused)
@@ -23,7 +24,7 @@ public class Pause : NetworkBehaviour
 			}
 		}
 
-
+		// If backspace is clicked when paused, go back to character select.
 		if(paused)
 		{
 			Time.timeScale = 0.0f;

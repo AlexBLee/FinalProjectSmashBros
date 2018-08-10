@@ -9,12 +9,14 @@ public class Hit : MonoBehaviour
 	 public float damage;
 	 public Vector2 knockback;
 	
+	// Initalizer/Constructor
 	public Hit(int dmg, Vector2 kback)
 	{
 		damage = dmg;
 		knockback = kback;
 	}
 
+	// Getters
 	public float GetDamage()
     {
         return damage;
@@ -25,6 +27,7 @@ public class Hit : MonoBehaviour
         return knockback;
     }
 
+	// Setters
 	public void SetDamage(float dmg)
 	{
 		damage = dmg;

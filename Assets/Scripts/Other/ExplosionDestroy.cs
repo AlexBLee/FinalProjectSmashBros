@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplosionDestroy : MonoBehaviour {
 
-	// Use this for initialization
+	// Destroy when done animation.
 	IEnumerator Start () 
 	{
 		yield return new WaitForSeconds(0.6f);

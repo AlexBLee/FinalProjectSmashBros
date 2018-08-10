@@ -19,7 +19,7 @@ public class SLevelManager : MonoBehaviour
 	// Where the player will respawn after death
 	public Transform[] respawns;
 	
-	
+	// -----------------------------------------------------------------------------------------------------------------------//	
 
 	void Awake () 
 	{

@@ -38,7 +38,10 @@ public class LevelManager : NetworkBehaviour
 	// Text
 	public Text text;
 
-	private void Start() {
+	// -----------------------------------------------------------------------------------------------------------------------//
+
+	private void Start() 
+	{
 		// To stop the main menu music.
 		Destroy(GameObject.Find("Music"));
 
@@ -85,6 +88,7 @@ public class LevelManager : NetworkBehaviour
 
 	}
 
+	// Add players to list.
 	[ClientRpc]
 	void RpcAddToList(NetworkInstanceId id)
 	{
@@ -95,7 +99,6 @@ public class LevelManager : NetworkBehaviour
 	void CmdAddToList(NetworkInstanceId id)
 	{
 		syncPlayers.Add(new ID(id));
-		//RpcAddToList(id);
 	}
 
 

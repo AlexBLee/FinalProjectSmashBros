@@ -15,8 +15,10 @@ public class NetworkCustom : NetworkManager
 
     private void Start() 
     {
+        // Get the address from the input in the connect screen.
         networkAddress = ConnectScreen.ip;
         
+        // If the player chose to host, start server, if they chose to join, connect to an IP.
         if(ConnectScreen.host)
         {
             StartServer();
@@ -27,6 +29,7 @@ public class NetworkCustom : NetworkManager
         }
     }
 	
+    // Add player when they connect
 	public override void OnClientConnect(NetworkConnection conn)
 	{
 		Debug.Log("Player Connected!");

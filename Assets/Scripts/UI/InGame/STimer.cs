@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -8,13 +9,13 @@ using System;
 public class STimer : MonoBehaviour 
 {
 	// Text
-	private Text text;
+	private TextMeshProUGUI text;
 
     // --------------------------------------------------------------------------------------------------------- //    
 
 	void Awake()
 	{
-		text = GetComponent<Text>();
+		text = GetComponent<TextMeshProUGUI>();
 
 		// If the mode isn't the timed mode, then don't use the timer.
 		if(SGameManager.instance.gameModeNumber == 0)

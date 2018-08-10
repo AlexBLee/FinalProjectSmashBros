@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -17,8 +18,8 @@ public class PlayerIndicators : NetworkBehaviour
 	private PlayerManager[] playerManagers = new PlayerManager[4];
 
 	// Text displays
-	public Text[] playerHealthDisplays;
-	public Text[] playerLivesKillDisplay;
+	public TextMeshProUGUI[] playerHealthDisplays;
+	public TextMeshProUGUI[] playerLivesKillDisplay;
 
     // --------------------------------------------------------------------------------------------------------- //    
 

@@ -116,11 +116,6 @@ public class NetworkCustom : NetworkManager
 
      }
 
-     public override void OnClientSceneChanged(NetworkConnection conn)
-     {
-
-     }
-
 
  }
 	

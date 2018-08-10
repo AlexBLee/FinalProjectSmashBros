@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +16,10 @@ public class SPlayerIndicators : MonoBehaviour
 	private SPlayerHealth[] playerHealths = new SPlayerHealth[4];
 	private SPlayerManager[] playerManagers = new SPlayerManager[4];
 
+	
 	// Text displays
-	public Text[] playerHealthDisplays;
-	public Text[] playerLivesKillDisplay;
+	public TextMeshProUGUI[] playerHealthDisplays;
+	public TextMeshProUGUI[] playerLivesKillDisplay;
 
     // --------------------------------------------------------------------------------------------------------- //    
 

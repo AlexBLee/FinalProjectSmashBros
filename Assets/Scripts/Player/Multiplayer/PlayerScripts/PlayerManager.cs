@@ -39,6 +39,7 @@ public class PlayerManager : NetworkBehaviour
 
     // Explosion death prefab.
     public GameObject explosion;
+    public Vector2 explosionPosition;
 
     // Audio
     private AudioSource source;
@@ -113,6 +114,8 @@ public class PlayerManager : NetworkBehaviour
     {
         if (collision.gameObject.tag == TAG_KILLZONE)
         {
+            explosionPosition = transform.position;
+
             CmdSetStats();
             if(playerHealth.koPlayer != null)
             {
@@ -134,28 +137,28 @@ public class PlayerManager : NetworkBehaviour
                     if(!isServer)
                         CmdExplode(Quaternion.Euler(0,0,-90));
                     else
-                        RpcExplode(Quaternion.Euler(0,0,-90));
+                        RpcExplode(Quaternion.Euler(0,0,-90), explosionPosition);
                     break;
 
                 case "KillZoneBottom":
                     if(!isServer)
                         CmdExplode(Quaternion.identity);
                     else
-                        RpcExplode(Quaternion.identity);
+                        RpcExplode(Quaternion.identity, explosionPosition);
                     break;
 
                 case "KillZoneRight":
                     if(!isServer)
                         CmdExplode(Quaternion.Euler(0,0,-270));
                     else
-                        RpcExplode(Quaternion.Euler(0,0,-270));
+                        RpcExplode(Quaternion.Euler(0,0,-270), explosionPosition);
                     break;
 
                 case "KillZoneTop":
                     if(!isServer)
                         CmdExplode(Quaternion.Euler(0,0,-180));
                     else
-                        RpcExplode(Quaternion.Euler(0,0,-180));
+                        RpcExplode(Quaternion.Euler(0,0,-180), explosionPosition);
                     break;
             }
 
@@ -244,13 +247,22 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdExplode(Quaternion qt)
     {
-        RpcExplode(qt);
+        explosionPosition = transform.position;
+        RpcExplode(qt, explosionPosition);
     }
 
+    // [ClientRpc]
+    // public void RpcExplode(Quaternion qt)
+    // {
+    //     explosionPosition = transform.position;
+    //     Instantiate(explosion, explosionPosition, qt);
+    // }
+
     [ClientRpc]
-    public void RpcExplode(Quaternion qt)
+    public void RpcExplode(Quaternion qt, Vector3 pos)
     {
-        Instantiate(explosion, transform.position, qt);
+        explosionPosition = transform.position;
+        Instantiate(explosion, pos, qt);
     }
 
     

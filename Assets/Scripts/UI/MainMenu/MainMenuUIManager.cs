@@ -71,7 +71,6 @@ public class MainMenuUIManager : MonoBehaviour
             });
 
             // Set the current screen to the screen that you're going to be on.
-            currentScreen = nextScreen;
         }
     }
 }

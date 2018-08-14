@@ -38,6 +38,7 @@ public class SLevelManager : MonoBehaviour
 			players.Add(player1);
 			SPlayerManager playerManager = player1.GetComponent<SPlayerManager>();
 			playerManager.spawnPosition = respawns[0];
+			playerManager.id = 0;
 		}
 		
 		// PLAYER 2
@@ -48,6 +49,8 @@ public class SLevelManager : MonoBehaviour
 			players.Add(player2);
 			SPlayerManager playerManager = player2.GetComponent<SPlayerManager>();
 			playerManager.spawnPosition = respawns[1];
+			playerManager.id = 1;
+
 			
 		}
 		

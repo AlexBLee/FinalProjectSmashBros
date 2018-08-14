@@ -43,11 +43,11 @@ public class SPlayerMovement : MonoBehaviour
         //joystick = FindObjectOfType<FixedJoystick>();
 
         // Find out the player number.
-        if(managerObjects[0].name == gameObject.name)
+        if(gameObject.GetComponent<SPlayerManager>().id == 0)
         {
             player1 = true;
         }
-        else if(managerObjects[1].name == gameObject.name)
+        else if(gameObject.GetComponent<SPlayerManager>().id == 1)
         {
             player2 = true;
         }

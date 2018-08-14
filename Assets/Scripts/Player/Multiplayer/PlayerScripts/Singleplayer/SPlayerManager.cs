@@ -6,6 +6,9 @@ using UniRx;
 
 public class SPlayerManager : MonoBehaviour 
 {
+    // To indentify each player
+    public int id;
+
     // Tag for objects
     private const string TAG_DOG = "DogFighter";
     private const string TAG_CAT = "CatFighter";

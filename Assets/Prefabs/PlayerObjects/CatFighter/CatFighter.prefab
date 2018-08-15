@@ -32,7 +32,6 @@ GameObject:
   - component: {fileID: 114557931641985306}
   - component: {fileID: 114855224857815726}
   - component: {fileID: 114700571456030922}
-  - component: {fileID: 114048424032837670}
   m_Layer: 10
   m_Name: CatFighter
   m_TagString: Player
@@ -266,21 +265,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114048424032837670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258905793114654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13eac16d57679aa4390899c01e16c3ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  A: 0
-  B: 0
-  C: 0
-  D: 0
 --- !u!114 &114149412341765236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,6 +279,7 @@ MonoBehaviour:
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
   explosion: {fileID: 1145611358284742, guid: 1b39dcd5e1429f54b96b6a78edb77f09, type: 2}
+  explosionPosition: {x: 0, y: 0}
   death: {fileID: 8300000, guid: 5326efa4de78c9146ad0247260bda7a9, type: 3}
   dead: 0
   lives: 5

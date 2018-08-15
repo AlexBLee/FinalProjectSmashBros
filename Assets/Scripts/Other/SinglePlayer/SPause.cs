@@ -38,7 +38,6 @@ public class SPause : MonoBehaviour
 			Time.timeScale = 1.0f;
 		}
 
-		Debug.Log(paused);
 
 
 	}

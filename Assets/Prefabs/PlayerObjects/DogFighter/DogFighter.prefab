@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 114252558594561686}
   - component: {fileID: 114791611553362494}
   - component: {fileID: 114938755264279542}
-  - component: {fileID: 114394315733227442}
   m_Layer: 10
   m_Name: DogFighter
   m_TagString: Player
@@ -342,21 +341,6 @@ MonoBehaviour:
   damage: {x: 0, y: 0}
   koPlayer: {fileID: 0}
   clip: {fileID: 8300000, guid: 6ab00d6b064beb64d99417709d18a368, type: 3}
---- !u!114 &114394315733227442
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1802695048475120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13eac16d57679aa4390899c01e16c3ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  A: 0
-  B: 0
-  C: 0
-  D: 0
 --- !u!114 &114530950690870158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -448,6 +432,7 @@ MonoBehaviour:
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
   explosion: {fileID: 1145611358284742, guid: 1b39dcd5e1429f54b96b6a78edb77f09, type: 2}
+  explosionPosition: {x: 0, y: 0}
   death: {fileID: 8300000, guid: 5326efa4de78c9146ad0247260bda7a9, type: 3}
   dead: 0
   lives: 5

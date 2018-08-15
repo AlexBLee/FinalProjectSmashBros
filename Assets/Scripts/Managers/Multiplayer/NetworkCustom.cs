@@ -51,7 +51,64 @@ public class NetworkCustom : NetworkManager
              curPlayer = stream.value;
          }
 
-		Vector2 spawn = GameManager.instance.spawn;
+        // Spawn players
+        SpawnPlayers(conn, playerControllerId, true);
+		
+
+     }
+
+
+
+     public override void OnServerDisconnect(NetworkConnection conn)
+     {
+         // Destroy and go back down a player number.
+         NetworkServer.DestroyPlayersForConnection(conn);
+         GameManager.instance.spawn.x -= 1.2f;
+         GameManager.instance.playerNumber--;
+
+     }
+
+     public override void OnStopServer()
+     {
+         // Reset server
+         GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
+         GameManager.instance.playerNumber = 2;
+     }
+
+     public override void OnServerSceneChanged(string sceneName)
+     {
+         if(sceneName == "CharacterSelect")
+         {
+            // Reset the server values
+            for(int i = 0; i < GameManager.instance.players.Count; i++)
+            {
+                GameManager.instance.players[i] = null;
+            }
+            GameManager.instance.ready = false;
+            GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
+            GameManager.instance.playerNumber = 2;
+
+            // Respawn the players
+            SpawnPlayers(NetworkServer.connections[0], 0, false);
+            SpawnPlayers(NetworkServer.connections[1], 1, false);
+
+
+         }
+
+         if(sceneName == "Level1" || sceneName == "Level2" || sceneName == "Level3")
+         {
+            LevelManager lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
+            lvlManager.CmdSpawnUnits();
+         }
+
+
+     }
+
+     // Spawn the necessary players.
+     public void SpawnPlayers(NetworkConnection conn, short playerControllerId, bool firstTime)
+     {
+         Vector2 spawn = GameManager.instance.spawn;
         int n = GameManager.instance.playerNumber;
 
          //Select the prefab from the spawnable objects list
@@ -64,59 +121,14 @@ public class NetworkCustom : NetworkManager
         GameManager.instance.playerNumber++;
 
          // Add player object for connection
-         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-
-     }
-
-
-
-     public override void OnServerDisconnect(NetworkConnection conn)
-     {
-         NetworkServer.DestroyPlayersForConnection(conn);
-         GameManager.instance.spawn.x -= 1.2f;
-         GameManager.instance.playerNumber--;
-
-     }
-
-     public override void OnStopServer()
-     {
-         GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
-         GameManager.instance.playerNumber = 2;
-     }
-
-     public override void OnServerSceneChanged(string sceneName)
-     {
-         if(sceneName == "CharacterSelect")
+         if(firstTime)
          {
-            NetworkServer.Reset();
-
-            for(int i = 0; i < GameManager.instance.players.Count; i++)
-            {
-                GameManager.instance.players[i] = null;
-            }
-            GameManager.instance.ready = false;
-            GameManager.instance.spawn = new Vector2(-0.7f,0.55f);
-            GameManager.instance.playerNumber = 2;
-
-            NetworkTransport.RemoveHost(NetworkManager.singleton.client.connection.hostId);
-
-
-            NetworkManager.singleton.client.Shutdown();
-            NetworkManager.singleton.client = null;
-
-
-            NetworkTransport.Shutdown();
-            Destroy(gameObject);
+            NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
          }
-
-         if(sceneName == "Level1" || sceneName == "Level2" || sceneName == "Level3")
+         else
          {
-            LevelManager lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-
-            lvlManager.CmdSpawnUnits();
+             NetworkServer.ReplacePlayerForConnection(conn,player,playerControllerId);
          }
-
-
      }
 
 

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class SPause : MonoBehaviour 
 {
 	public bool paused = false;
+	public GameObject text;
 
 	void Update () 
 	{
@@ -26,6 +28,7 @@ public class SPause : MonoBehaviour
 		if(paused)
 		{
 			Time.timeScale = 0.0f;
+			text.SetActive(true);
 
 			if(Input.GetKeyDown(KeyCode.Backspace))
 			{
@@ -35,6 +38,7 @@ public class SPause : MonoBehaviour
 
 		if(!paused)
 		{
+			text.SetActive(false);
 			Time.timeScale = 1.0f;
 		}
 

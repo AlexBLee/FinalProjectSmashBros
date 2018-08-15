@@ -22,6 +22,9 @@ public class CharacterSelect : MonoBehaviour
 	private static bool p1Chosen;
 	private static bool p2Chosen;
 
+	// Show this button when players are ready.
+	public GameObject startButton;
+
     // --------------------------------------------------------------------------------------------------------- //    
 
 
@@ -32,7 +35,7 @@ public class CharacterSelect : MonoBehaviour
 
 		// When both players have chosen their characters, the game is ready to start.
 		Observable.EveryUpdate()
-		.Where(_ => p1Chosen)// && p2Chosen)
+		.Where(_ => p1Chosen && p2Chosen)
 		.Subscribe(_ => GameManager.instance.ready = true);
 		
 		
@@ -41,6 +44,7 @@ public class CharacterSelect : MonoBehaviour
 
 	private void Update() 
 	{
+		
 		if(cursor != null)
 		{
 
@@ -92,6 +96,11 @@ public class CharacterSelect : MonoBehaviour
 				rend.sprite = spriteList[0];
 			}
 		}
+
+		if(GameManager.instance.ready)
+			startButton.gameObject.SetActive(true);
+		else
+			startButton.gameObject.SetActive(false);
 	}
 	
 }

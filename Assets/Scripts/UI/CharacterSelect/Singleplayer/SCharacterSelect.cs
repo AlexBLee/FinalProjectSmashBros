@@ -23,6 +23,9 @@ public class SCharacterSelect : MonoBehaviour
 	private static bool p1Chosen;
 	private static bool p2Chosen;
 
+	// Show this button when players are ready.
+	public GameObject startButton;
+	
     // --------------------------------------------------------------------------------------------------------- //    
 
 
@@ -105,9 +108,20 @@ public class SCharacterSelect : MonoBehaviour
 		// When both players have chosen their characters, the game is ready to start.
 		Observable.EveryUpdate()
 		.Where(_ => p1Chosen && p2Chosen)
-		.Subscribe(_ => SGameManager.instance.ready = true);
+		.Subscribe(_ => 
+		{
+			SGameManager.instance.ready = true;
+		});
 		
 		
+	}
+
+	private void Update() {
+		if(SGameManager.instance.ready)
+			startButton.gameObject.SetActive(true);
+		else
+			startButton.gameObject.SetActive(false);
+
 	}
 
 	// Go to main menu.

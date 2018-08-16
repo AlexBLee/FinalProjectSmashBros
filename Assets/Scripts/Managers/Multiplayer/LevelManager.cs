@@ -52,7 +52,7 @@ public class LevelManager : NetworkBehaviour
 	private void Update() 
 	{
 		// Looking for two, as there is an extra object that is neccesary but isn't a player.
-		if(players.Count == 2)
+		if(players.Count == 55)
 		{
 			NetworkManager.singleton.ServerChangeScene("EndResult");
 		}

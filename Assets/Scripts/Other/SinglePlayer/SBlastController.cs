@@ -53,7 +53,7 @@ public class SBlastController : MonoBehaviour
     {
         if (collision.gameObject)
         {
-            hit.SetDamage(3);
+            hit.SetDamage(10);
             hit.SetKnockback(knockback);
             Destroy(gameObject);
         }

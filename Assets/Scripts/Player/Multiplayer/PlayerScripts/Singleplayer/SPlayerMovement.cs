@@ -61,6 +61,7 @@ public class SPlayerMovement : MonoBehaviour
             anim.SetBool("Jumping", true);
         else
             anim.SetBool("Jumping", false);
+
     }
 
     void FixedUpdate()
@@ -140,9 +141,10 @@ public class SPlayerMovement : MonoBehaviour
     // Hit the floor, can now jump.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == TAG_FLOOR)
+        if (collision.gameObject.tag == TAG_FLOOR && !canJump)
         {
             canJump = true;
+            Debug.Log("l o l");
         }
     }
 

@@ -259,7 +259,7 @@ public class SDogControls : MonoBehaviour
                 {
                     forwardKickForce.x *= -1;
                 }
-                rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
+                rb.AddForce(forwardKickForce);
             }
             else
             {
@@ -267,7 +267,7 @@ public class SDogControls : MonoBehaviour
                 {
                     forwardKickForce.x *= -1;
                 }
-                rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
+                rb.AddForce(forwardKickForce);
             }
             playerMovement.enabled = false;
             canHit = false;

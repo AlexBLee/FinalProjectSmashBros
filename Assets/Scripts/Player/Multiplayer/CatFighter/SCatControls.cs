@@ -57,14 +57,13 @@ public class SCatControls : MonoBehaviour
             // Two Punch Combo
             if (Input.GetKeyDown(KeyCode.U))
             {
+                OneTwoComboFirstHit();
+                
                 if (Time.time - lastClicked < 0.5)
                 {
                     OneTwoComboSecondHit();
                 }
-                else
-                {
-                    OneTwoComboFirstHit();
-                }
+
                 lastClicked = Time.time;
             }
 
@@ -149,7 +148,7 @@ public class SCatControls : MonoBehaviour
 
     public void FlyingUppercut()
     {
-        if(canUppercut && canHit)
+        if(canUppercut)
         {
             facingRight = playerMovement.facingRight;
             anim.SetTrigger("SpinUppercut");
@@ -250,6 +249,14 @@ public class SCatControls : MonoBehaviour
     }
 
     public void EnableCatControl()
+    {
+        playerMovement.enabled = true;
+        canHit = true;
+        canKick = true;
+        canUppercut = true;
+    }
+
+    public void EnableCatControlU()
     {
         playerMovement.enabled = true;
         canHit = true;

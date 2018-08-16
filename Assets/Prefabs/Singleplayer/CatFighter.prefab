@@ -32,6 +32,30 @@ Prefab:
       value: 
       objectReference: {fileID: 1145611358284742, guid: 1b39dcd5e1429f54b96b6a78edb77f09,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1258905793114654}
@@ -97,7 +121,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258905793114654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.304443, y: -3.2038906, z: -0.154894}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4269552104266254}
@@ -122,7 +146,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61289697894801838
 BoxCollider2D:
@@ -355,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba2e58ddabb8954f81fb59cd0be935a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
   levelManager: {fileID: 0}

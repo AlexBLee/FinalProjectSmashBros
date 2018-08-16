@@ -28,6 +28,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1145611358284742, guid: 1b39dcd5e1429f54b96b6a78edb77f09,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: blast
+      value: 
+      objectReference: {fileID: 1703489262586198, guid: 0c3594a3df2fafc4aa225fb22c067355,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1802695048475120}
@@ -342,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba2e58ddabb8954f81fb59cd0be935a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
   levelManager: {fileID: 0}
@@ -369,7 +375,7 @@ MonoBehaviour:
   jumpKickKnockback: {x: 0, y: 400}
   forwardKickKnockback: {x: 150, y: 0}
   kickKnockback: {x: 20, y: 0}
-  blast: {fileID: 1703489262586198, guid: d197eee2f6e3b564a8eb554bb4c3a1f5, type: 2}
+  blast: {fileID: 1703489262586198, guid: 0c3594a3df2fafc4aa225fb22c067355, type: 2}
   blastPosition: {fileID: 4678392724319034}
   clips:
   - {fileID: 8300000, guid: d91644a0f5fad694cb9e58b6d72ea56c, type: 3}

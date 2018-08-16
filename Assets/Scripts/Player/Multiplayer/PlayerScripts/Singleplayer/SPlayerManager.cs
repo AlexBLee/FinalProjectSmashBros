@@ -186,7 +186,16 @@ public class SPlayerManager : MonoBehaviour
     private void Update() 
     {
         // If you're alive, enable everything.
-        if(!dead)
+
+            
+    }
+
+    // Dead check (For platforms)
+    public void SetDeath(bool death)
+    {
+        dead = death;
+
+        if(!death)
         {
             transform.parent = null;
             playerMovement.enabled = true;
@@ -199,13 +208,6 @@ public class SPlayerManager : MonoBehaviour
                 catControls.enabled = true;
             }
         }
-            
-    }
-
-    // Dead check (For platforms)
-    public void SetDeath(bool death)
-    {
-        dead = death;
     }
 
 

@@ -58,7 +58,7 @@ public class SPlayerHealth : MonoBehaviour
         }
 	}
 
-    private IEnumerator OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == TAG_CHARACTER || collision.gameObject.tag == TAG_BLAST)
         {
@@ -91,18 +91,18 @@ public class SPlayerHealth : MonoBehaviour
             source.PlayOneShot(clip);
 
             // Small stun, flash white and enable controls.
-            DisableControls();
             spriteRenderer.material.color = white;
-            yield return new WaitForSeconds(0.1f);
-            spriteRenderer.material.color = Color.white;
-            EnableControls();      
+            StartCoroutine(DisableControls());
+            
+            //EnableControls();      
         }
         
     }
 
     // When you get hit, you'll be very briefly "stunned" (not be able to move or hit anything)
-    public void DisableControls()
+    public IEnumerator DisableControls()
     {
+        
         playerMovement.enabled = false;
         if(catControls != null)
         {
@@ -114,11 +114,16 @@ public class SPlayerHealth : MonoBehaviour
             dogControls.enabled = false;
         }
 
+        yield return new WaitForSeconds(0.2f);
+        EnableControls();
+
     }
 
     // Re-enable controls after hit.
     public void EnableControls()
     {
+        spriteRenderer.material.color = Color.white;
+
         playerMovement.enabled = true;
         
         

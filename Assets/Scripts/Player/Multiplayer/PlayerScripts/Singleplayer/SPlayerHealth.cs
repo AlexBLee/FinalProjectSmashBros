@@ -93,8 +93,6 @@ public class SPlayerHealth : MonoBehaviour
             // Small stun, flash white and enable controls.
             spriteRenderer.material.color = white;
             StartCoroutine(DisableControls());
-            
-            //EnableControls();      
         }
         
     }
@@ -115,7 +113,7 @@ public class SPlayerHealth : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.2f);
-        EnableControls();
+        EnableControls();      
 
     }
 
@@ -146,7 +144,7 @@ public class SPlayerHealth : MonoBehaviour
         health += damage;
 
         float x = (((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f)*(health/10));
-        Vector2 totalKnockback = new Vector2(direction*(x+knockback.x),(x+knockback.y));
+        Vector2 totalKnockback = new Vector2(direction*(x+knockback.x),0.8f*(x+knockback.y));
         
         rb.AddForce(totalKnockback);
     }

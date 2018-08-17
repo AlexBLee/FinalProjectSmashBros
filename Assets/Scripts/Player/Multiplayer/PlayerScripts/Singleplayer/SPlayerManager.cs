@@ -183,18 +183,12 @@ public class SPlayerManager : MonoBehaviour
     }
 
 
-    private void Update() 
-    {
-        // If you're alive, enable everything.
-
-            
-    }
-
     // Dead check (For platforms)
     public void SetDeath(bool death)
     {
         dead = death;
 
+        // If you're alive, enable everything.
         if(!death)
         {
             transform.parent = null;

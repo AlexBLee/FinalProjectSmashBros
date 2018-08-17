@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -202,8 +203,13 @@ public class PlayerManager : NetworkBehaviour
     }
 
 
-    private void Update() 
+    // -------------------------------------------------------- Networking stuff --------------------------------------------
+
+    // Dead check (For platforms)
+    public void SetDeath(bool death)
     {
+        dead = death;
+
         // If you're alive, enable everything.
         if(!dead)
         {
@@ -218,15 +224,6 @@ public class PlayerManager : NetworkBehaviour
                 catControls.enabled = true;
             }
         }
-            
-    }
-
-    // -------------------------------------------------------- Networking stuff --------------------------------------------
-
-    // Dead check (For platforms)
-    public void SetDeath(bool death)
-    {
-        dead = death;
     }
 
     [Command]

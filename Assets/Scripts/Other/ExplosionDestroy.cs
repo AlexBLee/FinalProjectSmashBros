@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ExplosionDestroy : MonoBehaviour {
 
+	public float time;
+
 	// Destroy when done animation.
 	IEnumerator Start () 
 	{
-		yield return new WaitForSeconds(0.6f);
+		yield return new WaitForSeconds(time);
 		Destroy(gameObject);
 	}
 	

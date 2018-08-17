@@ -17,17 +17,20 @@ public class SPause : MonoBehaviour
 			if(!paused)
 			{
 				paused = true;
+				Time.timeScale = 0.0f;
+
 			}
 			else
 			{
 				paused = false;
+				Time.timeScale = 1.0f;
+
 			}
 		}
 
 		// If backspace is clicked when paused, go back to character select.
 		if(paused)
 		{
-			Time.timeScale = 0.0f;
 			text.SetActive(true);
 
 			if(Input.GetKeyDown(KeyCode.Backspace))
@@ -39,7 +42,6 @@ public class SPause : MonoBehaviour
 		if(!paused)
 		{
 			text.SetActive(false);
-			Time.timeScale = 1.0f;
 		}
 
 

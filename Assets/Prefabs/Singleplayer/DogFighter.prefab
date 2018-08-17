@@ -33,6 +33,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1703489262586198, guid: 0c3594a3df2fafc4aa225fb22c067355,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 1837200664189376, guid: 2808368986cf12b499c8afff8fcb3b35,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1802695048475120}
@@ -396,6 +401,7 @@ MonoBehaviour:
   damage: {x: 0, y: 0}
   koPlayer: {fileID: 0}
   clip: {fileID: 8300000, guid: 6ab00d6b064beb64d99417709d18a368, type: 3}
+  hitEffect: {fileID: 1837200664189376, guid: 2808368986cf12b499c8afff8fcb3b35, type: 2}
 --- !u!114 &114793880929589618
 MonoBehaviour:
   m_ObjectHideFlags: 1

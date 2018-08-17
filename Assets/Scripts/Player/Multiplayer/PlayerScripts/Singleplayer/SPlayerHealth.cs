@@ -34,6 +34,9 @@ public class SPlayerHealth : MonoBehaviour
     // Audio
     private AudioSource source;
     public AudioClip clip;
+    
+    // Hit effect
+    public GameObject hitEffect;
 
     // --------------------------------------------------------------------------------------------------------- //    
 
@@ -65,13 +68,13 @@ public class SPlayerHealth : MonoBehaviour
             // If the player gets hit from the right.
             if (collision.transform.position.x > transform.position.x)
             {
-                HitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);          
+                StartCoroutine(HitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1));          
             }
 
             // If the player gets hit from the left.
             if (collision.transform.position.x < transform.position.x)
             {   
-                HitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),1);
+                StartCoroutine(HitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),1));
             }
 
             // koPlayer marks the player that last hit you so the system is able to figure out who to give the kill to.
@@ -138,16 +141,29 @@ public class SPlayerHealth : MonoBehaviour
 
     // When hit, determine damage, knockback and the direction that the player has been hit.
     // In terms of direction -- if they take damage from the right, it is -1, if left then 1.
-    void HitTaken(float damage, Vector2 knockback, int direction)
+    IEnumerator HitTaken(float damage, Vector2 knockback, int direction)
     {
         anim.SetTrigger("Hit");
         health += damage;
 
         float x = (((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f)*(health/10));
         Vector2 totalKnockback = new Vector2(direction*(x+knockback.x),0.8f*(x+knockback.y));
+
+        if(health > 120)
+        {
+            float newXPos = transform.position.x + 1.0f;
+            Vector2 newPos = new Vector2(newXPos, transform.position.y);
+
+            Instantiate(hitEffect, newPos, Quaternion.identity);
+            Time.timeScale = 0.0f;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Time.timeScale = 1.0f;
+        }
         
         rb.AddForce(totalKnockback);
     }
+
+
 
     
 }

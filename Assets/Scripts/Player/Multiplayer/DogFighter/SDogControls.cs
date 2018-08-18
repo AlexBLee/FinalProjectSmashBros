@@ -89,7 +89,7 @@ public class SDogControls : MonoBehaviour
                 JumpKick();
             }
 
-            // Two Side Attack
+            // Ki blast
             if(Input.GetKeyDown(KeyCode.O))
             {
                 if(shotCounter <= 0)
@@ -138,7 +138,7 @@ public class SDogControls : MonoBehaviour
                 JumpKick();
             }
 
-            // Two Side Attack
+            // Ki Blast
             if(Input.GetKeyDown(KeyCode.Keypad2))
             {
                 if(shotCounter <= 0)
@@ -213,7 +213,6 @@ public class SDogControls : MonoBehaviour
                 }
                 rb.AddForce(jumpKickForce);
             }
-            playerMovement.enabled = false;            
             canHit = false;
             canJumpKick = false;
             source.PlayOneShot(clips[1]);
@@ -231,7 +230,6 @@ public class SDogControls : MonoBehaviour
     {
         if(canHit)
         {
-            playerMovement.enabled = false;
             anim.SetTrigger("KiBlast");
         
             yield return new WaitForSeconds(0.4f);
@@ -269,7 +267,6 @@ public class SDogControls : MonoBehaviour
                 }
                 rb.AddForce(forwardKickForce);
             }
-            playerMovement.enabled = false;
             canHit = false;
             source.PlayOneShot(clips[0]);
 

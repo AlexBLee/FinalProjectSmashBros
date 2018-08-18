@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SBlastController : MonoBehaviour
 {
+    // To find the character shooting this.
+    public GameObject player;
+
     // Speed of blast.
     private float speed = 5.0f;
 
@@ -14,7 +17,6 @@ public class SBlastController : MonoBehaviour
     // For damage/knockback on player.
     private Hit hit;
     public Vector2 knockback;
-    public GameObject player;
 
     // --------------------------------------------------------------------------------------------------------- //
 
@@ -22,7 +24,7 @@ public class SBlastController : MonoBehaviour
 	void Start ()
     {
         // Only the dog fighter uses this, so finding only the DogFighter is appropriate.
-        playerMovement = GameObject.Find("DogFighter").GetComponent<SPlayerMovement>();
+        playerMovement = player.GetComponent<SPlayerMovement>();
 
         rBody = GetComponent<Rigidbody2D>();
         hit = GetComponent<Hit>();

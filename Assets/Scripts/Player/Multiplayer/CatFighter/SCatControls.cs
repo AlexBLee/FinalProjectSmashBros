@@ -171,7 +171,6 @@ public class SCatControls : MonoBehaviour
                 rb.AddForce(uppercutForce);
             }
             source.PlayOneShot(clips[1]);
-            playerMovement.enabled = false;            
             canHit = false;
             canUppercut = false;
         }
@@ -188,7 +187,6 @@ public class SCatControls : MonoBehaviour
         if(canHit)
         {
             source.PlayOneShot(clips[0]);
-            playerMovement.enabled = false;
             anim.SetTrigger("TwoSide");
             hit.SetDamage(5);
             hit.SetKnockback(twoSideKnockback);
@@ -221,7 +219,6 @@ public class SCatControls : MonoBehaviour
                 }
                 rb.AddForce(sideKickForceR);
             }
-            playerMovement.enabled = false;
             canHit = false;
         }
         source.PlayOneShot(clips[2]);

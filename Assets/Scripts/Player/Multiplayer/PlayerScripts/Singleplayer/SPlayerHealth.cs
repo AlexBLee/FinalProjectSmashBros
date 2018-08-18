@@ -103,7 +103,7 @@ public class SPlayerHealth : MonoBehaviour
     // When you get hit, you'll be very briefly "stunned" (not be able to move or hit anything)
     public IEnumerator DisableControls()
     {
-        
+        Debug.Log("!");
         playerMovement.enabled = false;
         if(catControls != null)
         {

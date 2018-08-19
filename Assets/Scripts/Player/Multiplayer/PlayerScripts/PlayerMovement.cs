@@ -47,18 +47,6 @@ public class PlayerMovement : NetworkBehaviour
             joystick = FindObjectOfType<FixedJoystick>();
         #endif
         
-
-        // Find out the player number.
-
-        if(managerObjects[0] != null && managerObjects[0].name == gameObject.name)
-        {
-            player1 = true;
-        }
-
-        else if(managerObjects[1] != null && managerObjects[1].name == gameObject.name)
-        {
-            player2 = true;
-        }
         
     }
 

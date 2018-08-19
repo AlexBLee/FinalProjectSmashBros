@@ -8,6 +8,7 @@ public class Hit : MonoBehaviour
 
 	 public float damage;
 	 public Vector2 knockback;
+	 public bool isBasicAttack;
 	
 	// Initalizer/Constructor
 	public Hit(int dmg, Vector2 kback)

@@ -133,7 +133,10 @@ public class SCatControls : MonoBehaviour
         anim.SetTrigger("1-2Combo(1)");
         hit.SetDamage(4);
         hit.SetKnockback(punchKnockback);
+        hit.isBasicAttack = true;
         source.PlayOneShot(clips[0]);
+
+
     }
 
     void OneTwoComboSecondHit()
@@ -141,7 +144,9 @@ public class SCatControls : MonoBehaviour
         anim.SetTrigger("1-2Combo(2)");
         hit.SetDamage(4);
         hit.SetKnockback(punchKnockback);
-        source.PlayOneShot(clips[0]);        
+        hit.isBasicAttack = true;
+        source.PlayOneShot(clips[0]);
+
     }
 
     // --------------------------------------------------------------------------------------------------------- //
@@ -177,6 +182,8 @@ public class SCatControls : MonoBehaviour
 
         hit.SetDamage(10);
         hit.SetKnockback(uppercutKnockback);
+        hit.isBasicAttack = false;
+
         
     }
 
@@ -188,8 +195,11 @@ public class SCatControls : MonoBehaviour
         {
             source.PlayOneShot(clips[0]);
             anim.SetTrigger("TwoSide");
+            
             hit.SetDamage(5);
             hit.SetKnockback(twoSideKnockback);
+            hit.isBasicAttack = false;
+
         }
     }
 
@@ -224,6 +234,8 @@ public class SCatControls : MonoBehaviour
         source.PlayOneShot(clips[2]);
         hit.SetDamage(8);
         hit.SetKnockback(spinKickKnockback);
+        hit.isBasicAttack = false;
+
 
     }
 

@@ -37,6 +37,9 @@ public class PlayerHealth : NetworkBehaviour
     private AudioSource source;
     public AudioClip clip;
 
+    // Hit effect
+    public GameObject hitEffect;
+
     // --------------------------------------------------------------------------------------------------------- //    
 
 	// Use this for initialization
@@ -69,11 +72,17 @@ public class PlayerHealth : NetworkBehaviour
             {
                 if(!isServer)
                 {
-                    CmdHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);          
+                    CmdHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
+                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
+                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
+                                -1);          
                 }
                 else
                 {
-                    RpcHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),-1);
+                    StartCoroutine(RpcHitTaken( collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
+                                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
+                                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
+                                                -1));
                 }
             }
 
@@ -82,11 +91,17 @@ public class PlayerHealth : NetworkBehaviour
             {   
                 if(!isServer)
                 {
-                    CmdHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),1);          
+                    CmdHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
+                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
+                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
+                                1);          
                 }
                 else
                 {
-                    RpcHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),1);
+                    StartCoroutine(RpcHitTaken( collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
+                                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
+                                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
+                                                1));
                 }
             }
 
@@ -152,21 +167,39 @@ public class PlayerHealth : NetworkBehaviour
     // When hit, determine damage, knockback and the direction that the player has been hit.
     // In terms of direction -- if they take damage from the right, it is -1, if left then 1.
     [Command]
-    void CmdHitTaken(float damage, Vector2 knockback, int direction)
+    void CmdHitTaken(float damage, Vector2 knockback, bool isBasicAttack, int direction)
     {
-        RpcHitTaken(damage,knockback,direction);
+        StartCoroutine(RpcHitTaken(damage,knockback, isBasicAttack, direction));
     }
 
     [ClientRpc]
-    void RpcHitTaken(float damage, Vector2 knockback, int direction)
+    IEnumerator RpcHitTaken(float damage, Vector2 knockback, bool isBasicAttack,int direction)
     {
         anim.SetTrigger("Hit");
         health += damage;
 
         float x = (((((health/10) + ((health * damage)/20) * 2 * 1.4f) + 18) + 1.0f)*(health/10));
         Vector2 totalKnockback = new Vector2(direction*(x+knockback.x),(x+knockback.y));
+
+        if(health > 120)
+        {
+            // Explosion position when hitting critical damage - slightly offset.
+            float newXPos = transform.position.x + 1.0f;
+            Vector2 newPos = new Vector2(newXPos, transform.position.y);
+
+            // Do a quick pause when hitting the critical.
+            Instantiate(hitEffect, newPos, Quaternion.identity);
+            Time.timeScale = 0.0f;
+            yield return new WaitForSecondsRealtime(0.2f);
+            Time.timeScale = 1.0f;
+        }
         
-        rb.AddForce(totalKnockback);
+        if(isBasicAttack)
+            rb.AddForce(totalKnockback.normalized * 120);
+        else
+            // Unleash the force!
+            rb.AddForce(totalKnockback);
+        
     }
 
     

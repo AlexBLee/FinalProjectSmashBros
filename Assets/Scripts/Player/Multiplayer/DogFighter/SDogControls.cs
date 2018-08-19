@@ -168,6 +168,7 @@ public class SDogControls : MonoBehaviour
         anim.SetTrigger("KickCombo(0)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
+        hit.isBasicAttack = true;
         source.PlayOneShot(clips[0]);
     }
 
@@ -176,7 +177,9 @@ public class SDogControls : MonoBehaviour
         anim.SetTrigger("KickCombo(1)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
+        hit.isBasicAttack = true;
         source.PlayOneShot(clips[0]);
+
     }
 
 	public void KickComboThirdHit()
@@ -220,7 +223,9 @@ public class SDogControls : MonoBehaviour
             
         }
         hit.SetDamage(10);
-        hit.SetKnockback(jumpKickKnockback);       
+        hit.SetKnockback(jumpKickKnockback);
+        hit.isBasicAttack = false;
+
          
     }
 
@@ -273,6 +278,8 @@ public class SDogControls : MonoBehaviour
         }
         hit.SetDamage(5);
         hit.SetKnockback(forwardKickKnockback);
+        hit.isBasicAttack = false;
+
         
 
     }

@@ -170,6 +170,7 @@ public class DogControls : NetworkBehaviour
         anim.SetTrigger("KickCombo(0)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
+        hit.isBasicAttack = true;
         source.PlayOneShot(clips[0]);
     }
 
@@ -178,6 +179,7 @@ public class DogControls : NetworkBehaviour
         anim.SetTrigger("KickCombo(1)");
         hit.SetDamage(4);
         hit.SetKnockback(kickKnockback);
+        hit.isBasicAttack = true;
         source.PlayOneShot(clips[0]);
     }
 
@@ -215,7 +217,6 @@ public class DogControls : NetworkBehaviour
                 }
                 rb.AddForce(jumpKickForce);
             }
-            playerMovement.enabled = false;            
             canHit = false;
             canJumpKick = false;
             source.PlayOneShot(clips[1]);
@@ -223,7 +224,10 @@ public class DogControls : NetworkBehaviour
             
         }
         hit.SetDamage(10);
-        hit.SetKnockback(jumpKickKnockback);       
+        hit.SetKnockback(jumpKickKnockback); 
+        hit.isBasicAttack = false;
+
+
          
     }
 
@@ -272,13 +276,14 @@ public class DogControls : NetworkBehaviour
                 }
                 rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
             }
-            playerMovement.enabled = false;
             canHit = false;
             source.PlayOneShot(clips[0]);
 
         }
         hit.SetDamage(5);
         hit.SetKnockback(forwardKickKnockback);
+        hit.isBasicAttack = false;
+
         
 
     }

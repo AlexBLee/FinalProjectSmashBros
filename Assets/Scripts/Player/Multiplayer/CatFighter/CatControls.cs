@@ -149,6 +149,7 @@ public class CatControls : NetworkBehaviour
         anim.SetTrigger("1-2Combo(1)");
         hit.SetDamage(4);
         hit.SetKnockback(punchKnockback);
+        hit.isBasicAttack = true;
         source.PlayOneShot(clips[0]);
     }
 
@@ -157,6 +158,7 @@ public class CatControls : NetworkBehaviour
         anim.SetTrigger("1-2Combo(2)");
         hit.SetDamage(4);
         hit.SetKnockback(punchKnockback);
+        hit.isBasicAttack = true;
         source.PlayOneShot(clips[0]);        
     }
 
@@ -187,13 +189,14 @@ public class CatControls : NetworkBehaviour
                 rb.AddForce(uppercutForce);
             }
             source.PlayOneShot(clips[1]);
-            playerMovement.enabled = false;            
             canHit = false;
             canUppercut = false;
         }
 
         hit.SetDamage(10);
         hit.SetKnockback(uppercutKnockback);
+        hit.isBasicAttack = false;
+
         
     }
 
@@ -206,8 +209,11 @@ public class CatControls : NetworkBehaviour
             source.PlayOneShot(clips[0]);
             playerMovement.enabled = false;
             anim.SetTrigger("TwoSide");
+
             hit.SetDamage(5);
             hit.SetKnockback(twoSideKnockback);
+            hit.isBasicAttack = false;
+
         }
     }
 
@@ -237,12 +243,13 @@ public class CatControls : NetworkBehaviour
                 }
                 rb.AddForce(sideKickForceR);
             }
-            playerMovement.enabled = false;
             canHit = false;
         }
         source.PlayOneShot(clips[2]);
         hit.SetDamage(8);
         hit.SetKnockback(spinKickKnockback);
+        hit.isBasicAttack = false;
+
 
     }
 

@@ -38,6 +38,14 @@ Prefab:
       value: 
       objectReference: {fileID: 1837200664189376, guid: 2808368986cf12b499c8afff8fcb3b35,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: forwardKickForce.x
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: forwardKickForce.y
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1802695048475120}
@@ -353,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  place: 0
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
   levelManager: {fileID: 0}
@@ -376,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenShots: 0.7
   jumpKickForce: {x: 50, y: 900}
-  forwardKickForce: {x: 10, y: 6}
+  forwardKickForce: {x: 900, y: 300}
   jumpKickKnockback: {x: 0, y: 400}
   forwardKickKnockback: {x: 150, y: 0}
   kickKnockback: {x: 20, y: 0}

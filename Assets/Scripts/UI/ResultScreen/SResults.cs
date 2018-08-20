@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class SResults : MonoBehaviour 
 {
+	// To display the character
+	public List<GameObject> characters;
+	public List<Transform> spawnPosition;
+
 	// Text
 	public TextMeshProUGUI[] textList;
 
@@ -22,6 +26,15 @@ public class SResults : MonoBehaviour
 		textList[0].text = SGameManager.instance.placeList[index].name;
 		textList[1].text = "KOs: " + SGameManager.instance.placeList[index].kills;
 		textList[2].text = "Falls: " + SGameManager.instance.placeList[index].deaths;
+		
+		if(SGameManager.instance.placeList[index].name == "CatFighter")
+		{
+			Instantiate(characters[0], spawnPosition[index].position, Quaternion.identity);
+		}
+		else if(SGameManager.instance.placeList[index].name == "DogFighter")
+		{
+			Instantiate(characters[1], spawnPosition[index].position, Quaternion.identity);
+		}
 		
 	}
 

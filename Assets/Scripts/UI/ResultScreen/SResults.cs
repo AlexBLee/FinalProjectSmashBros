@@ -17,12 +17,11 @@ public class SResults : MonoBehaviour
     // --------------------------------------------------------------------------------------------------------- //    
 
 	// Show the name/kill/deaths.
-	// NOTE: currently works for only two players. will likely have to be refactored to work with more if needed.
 	void Start () 
 	{
-		textList[0].text = SGameManager.instance.players[index].name;
-		textList[1].text = "KOs: " + (index == 0 ? SGameManager.instance.p1Kills : SGameManager.instance.p2Kills);
-		textList[2].text = "Falls: " + (index == 0 ? SGameManager.instance.p1Deaths : SGameManager.instance.p2Deaths);
+		textList[0].text = SGameManager.instance.placeList[index].name;
+		textList[1].text = "KOs: " + SGameManager.instance.placeList[index].kills;
+		textList[2].text = "Falls: " + SGameManager.instance.placeList[index].deaths;
 		
 	}
 

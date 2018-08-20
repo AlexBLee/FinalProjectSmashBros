@@ -85,6 +85,7 @@ public class SCharacterSelect : MonoBehaviour
 			if(managerObjects[0] != null && p1Chosen == true)
 			{
 				managerObjects[0] = null;
+
 				p1Chosen = false;
 				SGameManager.instance.ready = false;				
 				
@@ -93,6 +94,7 @@ public class SCharacterSelect : MonoBehaviour
 			if(managerObjects[1] != null && p2Chosen == true)
 			{
 				managerObjects[1] = null;
+
 				p2Chosen = false;
 				SGameManager.instance.ready = false;	
 			}

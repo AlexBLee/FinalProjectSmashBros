@@ -34,6 +34,8 @@ public class SGameManager : MonoBehaviour
 	// ------------------|
 
 	// From going from In-Game to results screen
+	public List<Stats> placeList;
+	
 	public int p1Kills;
 	public int p2Kills;
 	
@@ -56,6 +58,7 @@ public class SGameManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 
 	}
+
 	
 	// QUIT the game.
 	private void Update() {

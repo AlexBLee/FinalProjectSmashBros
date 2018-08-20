@@ -4,6 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
+// For displaying stats at the end screen
+[System.Serializable]
+public struct Stats
+{
+    public string name;
+    public int kills;
+    public int deaths;
+}
+
 public class SPlayerManager : MonoBehaviour 
 {
     // To indentify each player
@@ -49,10 +58,9 @@ public class SPlayerManager : MonoBehaviour
     public bool dead = false;
 
     // Variables to keep track of.
+    public Stats stats;
     public int lives = 0;
     public int index = 0;
-    public int deaths = 0;
-    public int kills = 0;
 
     // --------------------------------------------------------------------------------------------------------- //
 
@@ -87,14 +95,18 @@ public class SPlayerManager : MonoBehaviour
             lives = 9999;
         }
 
+        // Adding name for stats.
+        stats.name = gameObject.name;
+
         // If the player is dead, remove them from the camera script list.
         Observable.EveryUpdate()
-        .Where(_ => lives == 0)
+        .Where(_ => lives == 0 || levelManager.players.Count == 1)
         .Subscribe(_ =>
         {
             cameraScript.players.RemoveAt(index);
             levelManager.players[index] = null;
             levelManager.players.RemoveAt(index);
+            SGameManager.instance.placeList.Add(stats);
             Destroy(gameObject);
         }).AddTo(this);
     }
@@ -108,17 +120,17 @@ public class SPlayerManager : MonoBehaviour
             if(playerHealth.koPlayer != null)
             {
                 // Award kill to player.
-                playerHealth.koPlayer.GetComponent<SPlayerManager>().kills++;
+                playerHealth.koPlayer.GetComponent<SPlayerManager>().stats.kills++;
                 
                 if(playerHealth.koPlayer.GetComponent<SPlayerManager>().index == 0)
-                    SGameManager.instance.p1Kills = playerHealth.koPlayer.GetComponent<SPlayerManager>().kills;
+                    SGameManager.instance.p1Kills = playerHealth.koPlayer.GetComponent<SPlayerManager>().stats.kills;
                 else
-                    SGameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<SPlayerManager>().kills;
+                    SGameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<SPlayerManager>().stats.kills;
             }
         
             // Subtract lives, add to deaths.
             --lives;
-            ++deaths;
+            ++stats.deaths;
             dead = true;
 
 
@@ -152,12 +164,12 @@ public class SPlayerManager : MonoBehaviour
             // Figure out who to give the deaths to.
             if(index == 0)
             {
-                SGameManager.instance.p1Deaths = deaths;
+                SGameManager.instance.p1Deaths = stats.deaths;
             }
 
             if(index == 1)
             {
-                SGameManager.instance.p2Deaths = deaths;
+                SGameManager.instance.p2Deaths = stats.deaths;
             }
 
             // Disable controls.

@@ -79,10 +79,10 @@ public class PlayerHealth : NetworkBehaviour
                 }
                 else
                 {
-                    StartCoroutine(RpcHitTaken( collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
-                                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
-                                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
-                                                -1));
+                    RpcHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
+                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
+                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
+                                -1);
                 }
             }
 
@@ -98,10 +98,10 @@ public class PlayerHealth : NetworkBehaviour
                 }
                 else
                 {
-                    StartCoroutine(RpcHitTaken( collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
-                                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
-                                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
-                                                1));
+                    RpcHitTaken(collision.gameObject.GetComponentInParent<Hit>().GetDamage(),
+                                collision.gameObject.GetComponentInParent<Hit>().GetKnockback(),
+                                collision.gameObject.GetComponentInParent<Hit>().isBasicAttack,
+                                1);
                 }
             }
 
@@ -169,11 +169,17 @@ public class PlayerHealth : NetworkBehaviour
     [Command]
     void CmdHitTaken(float damage, Vector2 knockback, bool isBasicAttack, int direction)
     {
-        StartCoroutine(RpcHitTaken(damage,knockback, isBasicAttack, direction));
+        RpcHitTaken(damage,knockback, isBasicAttack, direction);
     }
 
     [ClientRpc]
-    IEnumerator RpcHitTaken(float damage, Vector2 knockback, bool isBasicAttack,int direction)
+    void RpcHitTaken(float damage, Vector2 knockback, bool isBasicAttack,int direction)
+    {
+        StartCoroutine(HitTaken(damage,knockback, isBasicAttack, direction));
+        
+    }
+
+    IEnumerator HitTaken(float damage, Vector2 knockback, bool isBasicAttack,int direction)
     {
         anim.SetTrigger("Hit");
         health += damage;
@@ -199,8 +205,10 @@ public class PlayerHealth : NetworkBehaviour
         else
             // Unleash the force!
             rb.AddForce(totalKnockback);
-        
+            
+            
     }
+
 
     
 }

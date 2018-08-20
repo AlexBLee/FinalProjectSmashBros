@@ -192,7 +192,6 @@ public class DogControls : NetworkBehaviour
     }
 
     // --------------------------------------------------------------------------------------------------------- //
-
     public void JumpKick()
     {
         if(canJumpKick && canHit)

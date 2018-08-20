@@ -48,21 +48,12 @@ public class SPlayerIndicators : MonoBehaviour
 	
 	void Update () 
 	{
+		string[] message = {"Lives : ", "Kills : " };
 		// Show the health percentages and amount of lives for the player.
 		for(int i = 0; i < players.Count; i++)
 		{
 			playerHealthDisplays[i].text = playerHealths[i].health.ToString() + "%";
-
-			if(SGameManager.instance.gameModeNumber == 0)
-			{
-				playerLivesKillDisplay[i].text = "Lives: "+ playerManagers[i].lives.ToString();
-			}
-
-			if(SGameManager.instance.gameModeNumber == 1)
-			{
-				playerLivesKillDisplay[i].text = "Kills: "+ playerManagers[i].stats.kills.ToString();
-			}
-			
+			playerLivesKillDisplay[i].text = message[i] + playerManagers[i].lives.ToString();
 		}
 
 	}

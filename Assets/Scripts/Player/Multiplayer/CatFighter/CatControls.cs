@@ -276,6 +276,14 @@ public class CatControls : NetworkBehaviour
         playerMovement.enabled = true;
         canHit = true;
         canKick = true;
+        canUppercut = true;
+    }
+
+    public void EnableCatControlU()
+    {
+        playerMovement.enabled = true;
+        canHit = true;
+        canKick = true;
     }
 
     // -----------------------------------------------------------------------------------

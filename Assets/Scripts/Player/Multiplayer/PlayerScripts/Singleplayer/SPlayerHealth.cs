@@ -168,7 +168,7 @@ public class SPlayerHealth : MonoBehaviour
             Time.timeScale = 1.0f;
         }
         
-        if(isBasicAttack)
+        if(isBasicAttack && health < 120)
             rb.AddForce(totalKnockback.normalized * 120);
         else
             // Unleash the force!

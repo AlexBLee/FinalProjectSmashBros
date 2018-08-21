@@ -353,6 +353,7 @@ MonoBehaviour:
   damage: {x: 0, y: 0}
   koPlayer: {fileID: 0}
   clip: {fileID: 8300000, guid: 6ab00d6b064beb64d99417709d18a368, type: 3}
+  hitEffect: {fileID: 1837200664189376, guid: efbc408e43679f549be59ef1969fd693, type: 2}
 --- !u!114 &114679685687262378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -428,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockback: {x: 0, y: 0}
+  isBasicAttack: 0
 --- !u!212 &212719571458160220
 SpriteRenderer:
   m_ObjectHideFlags: 1

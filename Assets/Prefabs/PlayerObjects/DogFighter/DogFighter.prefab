@@ -341,6 +341,7 @@ MonoBehaviour:
   damage: {x: 0, y: 0}
   koPlayer: {fileID: 0}
   clip: {fileID: 8300000, guid: 6ab00d6b064beb64d99417709d18a368, type: 3}
+  hitEffect: {fileID: 1837200664189376, guid: 2808368986cf12b499c8afff8fcb3b35, type: 2}
 --- !u!114 &114530950690870158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenShots: 0.7
   jumpKickForce: {x: 50, y: 900}
-  forwardKickForce: {x: 10, y: 6}
+  forwardKickForce: {x: 900, y: 300}
   jumpKickKnockback: {x: 0, y: 400}
   forwardKickKnockback: {x: 150, y: 0}
   kickKnockback: {x: 20, y: 0}
@@ -418,6 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockback: {x: 0, y: 0}
+  isBasicAttack: 0
 --- !u!114 &114870020417840180
 MonoBehaviour:
   m_ObjectHideFlags: 1

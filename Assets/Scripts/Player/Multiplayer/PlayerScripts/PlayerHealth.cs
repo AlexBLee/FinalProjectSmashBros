@@ -193,20 +193,37 @@ public class PlayerHealth : NetworkBehaviour
             float newXPos = transform.position.x + 1.0f;
             Vector2 newPos = new Vector2(newXPos, transform.position.y);
 
-            // Do a quick pause when hitting the critical.
-            Instantiate(hitEffect, newPos, Quaternion.identity);
+            // Instantiate an explosion and do a quick pause when hitting the critical.
+            if(!isServer)
+                CmdExplode(newPos);
+            else
+                RpcExplode(newPos);
+
             Time.timeScale = 0.0f;
             yield return new WaitForSecondsRealtime(0.2f);
             Time.timeScale = 1.0f;
         }
         
-        if(isBasicAttack)
+        if(isBasicAttack && health < 120)
             rb.AddForce(totalKnockback.normalized * 120);
         else
             // Unleash the force!
             rb.AddForce(totalKnockback);
             
             
+    }
+
+    [Command]
+    public void CmdExplode(Vector2 pos)
+    {
+        Instantiate(hitEffect, pos, Quaternion.identity);
+        RpcExplode(pos);
+    }
+
+    [ClientRpc]
+    public void RpcExplode(Vector2 pos)
+    {
+        Instantiate(hitEffect, pos, Quaternion.identity);
     }
 
 

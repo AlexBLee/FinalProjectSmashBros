@@ -95,7 +95,7 @@ public class SDogControls : MonoBehaviour
                 if(shotCounter <= 0)
                 {
                     shotCounter = timeBetweenShots;
-                    StartCoroutine(KiBlast());
+                    KiBlast();
                 }
             }
 
@@ -144,7 +144,7 @@ public class SDogControls : MonoBehaviour
                 if(shotCounter <= 0)
                 {
                     shotCounter = timeBetweenShots;
-                    StartCoroutine(KiBlast());
+                    anim.SetTrigger("KiBlast");
                 }
             }
 
@@ -231,16 +231,15 @@ public class SDogControls : MonoBehaviour
 
     // --------------------------------------------------------------------------------------------------------- //
     
-    IEnumerator KiBlast()
+    void KiBlast()
     {
         if(canHit)
         {
-            anim.SetTrigger("KiBlast");
+            // anim.SetTrigger("KiBlast");
         
-            yield return new WaitForSeconds(0.4f);
             GameObject ball = Instantiate(blast,blastPosition.position,Quaternion.identity);
             ball.GetComponent<SBlastController>().player = gameObject;
-            StopCoroutine(KiBlast());
+            
             source.PlayOneShot(clips[2]);
             
         }

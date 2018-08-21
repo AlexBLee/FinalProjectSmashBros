@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71860fb576a065f42aacf920f023789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: {x: 0, y: 0}
+  knockback: {x: 350, y: 350}
   player: {fileID: 0}
 --- !u!114 &114115833246976998
 MonoBehaviour:
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockback: {x: 0, y: 0}
+  isBasicAttack: 0
 --- !u!212 &212009446366096682
 SpriteRenderer:
   m_ObjectHideFlags: 1

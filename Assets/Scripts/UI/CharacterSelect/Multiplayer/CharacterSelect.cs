@@ -35,7 +35,7 @@ public class CharacterSelect : MonoBehaviour
 
 		// When both players have chosen their characters, the game is ready to start.
 		Observable.EveryUpdate()
-		.Where(_ => p1Chosen && p2Chosen)
+		.Where(_ => p1Chosen) //&& p2Chosen)
 		.Subscribe(_ => GameManager.instance.ready = true);
 		
 		

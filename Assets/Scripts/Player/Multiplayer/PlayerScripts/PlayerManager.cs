@@ -181,15 +181,7 @@ public class PlayerManager : NetworkBehaviour
             }
 
             // Disable controls.
-            if(dogControls != null)
-            {
-                dogControls.enabled = false;
-            }
-
-            if(catControls != null)
-            {
-                catControls.enabled = false;
-            }
+            CmdDisable();
         }
     }
 
@@ -230,6 +222,13 @@ public class PlayerManager : NetworkBehaviour
     public void CmdDeath()
     {
         dead = true;
+        RpcDeath();
+    }
+
+    [ClientRpc]
+    public void RpcDeath()
+    {
+        dead = true;
     }
 
     [Command]
@@ -242,18 +241,41 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [Command]
+    public void CmdDisable()
+    {
+        if(dogControls != null)
+        {
+            dogControls.enabled = false;
+        }
+
+        if(catControls != null)
+        {
+            catControls.enabled = false;
+        }
+        RpcDisable();
+    }
+
+    [ClientRpc]
+    public void RpcDisable()
+    {
+        // Subtract lives, add to deaths.
+        if(dogControls != null)
+        {
+            dogControls.enabled = false;
+        }
+
+        if(catControls != null)
+        {
+            catControls.enabled = false;
+        }
+    }
+
+    [Command]
     public void CmdExplode(Quaternion qt)
     {
         explosionPosition = transform.position;
         RpcExplode(qt, explosionPosition);
     }
-
-    // [ClientRpc]
-    // public void RpcExplode(Quaternion qt)
-    // {
-    //     explosionPosition = transform.position;
-    //     Instantiate(explosion, explosionPosition, qt);
-    // }
 
     [ClientRpc]
     public void RpcExplode(Quaternion qt, Vector3 pos)

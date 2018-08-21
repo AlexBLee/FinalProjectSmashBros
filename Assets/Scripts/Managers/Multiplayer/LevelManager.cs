@@ -52,7 +52,7 @@ public class LevelManager : NetworkBehaviour
 	private void Update() 
 	{
 		// Looking for two, as there is an extra object that is neccesary but isn't a player.
-		if(players.Count == 55)
+		if(players.Count == 20)
 		{
 			NetworkManager.singleton.ServerChangeScene("EndResult");
 		}
@@ -70,6 +70,7 @@ public class LevelManager : NetworkBehaviour
 		if(GameManager.instance.players[0] != null)
 		{
 			GameObject player1 = Instantiate(GameManager.instance.players[0], spawns[0].position ,Quaternion.identity);
+			player1.name = GameManager.instance.players[0].name;
 			NetworkServer.Spawn(player1);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[0], player1, 0);
             CmdAddToList(player1.GetComponent<NetworkIdentity>().netId);
@@ -80,6 +81,7 @@ public class LevelManager : NetworkBehaviour
 		if(GameManager.instance.players[1] != null)
 		{
 			GameObject player2 = Instantiate(GameManager.instance.players[1], spawns[1].position ,Quaternion.identity);
+			player2.name = GameManager.instance.players[1].name;
 			NetworkServer.Spawn(player2);
 			NetworkServer.ReplacePlayerForConnection(NetworkServer.connections[1], player2, 1);
             CmdAddToList(player2.GetComponent<NetworkIdentity>().netId);

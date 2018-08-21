@@ -9,6 +9,10 @@ using UnityEngine.UI;
 
 public class Results : NetworkBehaviour 
 {
+	// To display the character
+	public List<GameObject> characters;
+	public List<Transform> spawnPosition;
+
 	// Text
 	public TextMeshProUGUI[] textList;
 
@@ -21,9 +25,18 @@ public class Results : NetworkBehaviour
 	// NOTE: currently works for only two players. will likely have to be refactored to work with more if needed.
 	void Start () 
 	{
-		textList[0].text = GameManager.instance.players[index].name;
-		textList[1].text = "KOs: " + (index == 0 ? GameManager.instance.p1Kills : GameManager.instance.p2Kills);
-		textList[2].text = "Falls: " + (index == 0 ? GameManager.instance.p1Deaths : GameManager.instance.p2Deaths);
+		textList[0].text = GameManager.instance.placeList[index].name;
+		textList[1].text = "KOs: " + GameManager.instance.placeList[index].kills;
+		textList[2].text = "Falls: " + GameManager.instance.placeList[index].deaths;
+
+		if(GameManager.instance.placeList[index].name == "CatFighter")
+		{
+			Instantiate(characters[0], spawnPosition[index].position, Quaternion.identity);
+		}
+		else if(GameManager.instance.placeList[index].name == "DogFighter")
+		{
+			Instantiate(characters[1], spawnPosition[index].position, Quaternion.identity);
+		}
 		
 	}
 

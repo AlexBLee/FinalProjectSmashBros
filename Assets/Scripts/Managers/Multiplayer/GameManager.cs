@@ -5,7 +5,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 
 
-public class GameManager : NetworkBehaviour {
+public class GameManager : NetworkBehaviour 
+{
+
+
+	public class SyncListStats : SyncListStruct<Stats>
+	{
+
+	}
+
 	
 	// Singleton to bring things between scenes.
 	public static GameManager instance;
@@ -52,6 +60,8 @@ public class GameManager : NetworkBehaviour {
 	// ------------------|
 
 	// From going from In-Game to results screen
+	public SyncListStats placeList = new SyncListStats();
+
 	[SyncVar]
 	public int p1Kills;
 
@@ -62,6 +72,8 @@ public class GameManager : NetworkBehaviour {
 	public int p1Deaths;
 	[SyncVar]
 	public int p2Deaths;
+
+
 
 	// -----------------------------------------------------------------------------------------------------------------------//
 

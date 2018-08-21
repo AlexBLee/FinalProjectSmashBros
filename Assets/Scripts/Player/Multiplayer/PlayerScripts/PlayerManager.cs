@@ -10,8 +10,8 @@ using UniRx;
 public class PlayerManager : NetworkBehaviour 
 {
     // Tag for objects
-    private const string TAG_DOG = "DogFighter(Clone)";
-    private const string TAG_CAT = "CatFighter(Clone)";
+    private const string TAG_DOG = "DogFighter";
+    private const string TAG_CAT = "CatFighter";
 	private string TAG_KILLZONE = "KillZone";
 	private string TAG_PLATFORM = "Platform";
 
@@ -50,6 +50,7 @@ public class PlayerManager : NetworkBehaviour
     public bool dead = false;
 
     // Variables to keep track of.
+    public Stats stats;
     [SyncVar]
     public int lives = 0;
     public int index = 0;
@@ -89,6 +90,9 @@ public class PlayerManager : NetworkBehaviour
             lives = 9999;
         }
 
+        // Adding name for stats.
+        stats.name = gameObject.name;
+
         yield return new WaitForSeconds(0.2f);
 
         // Find the index of the player (The LevelManager and CameraScript have lists where order is the same.)
@@ -96,11 +100,13 @@ public class PlayerManager : NetworkBehaviour
 
         // If the player is dead, remove them from the camera script list.
         Observable.EveryUpdate()
-        .Where(_ => lives <= 0)
+        .Where(_ => lives <= 0 || levelManager.players.Count == 2)
         .Subscribe(_ =>
         {
             cameraScript.players.RemoveAt(index);
             levelManager.syncPlayers.RemoveAt(index);
+            CmdAdd(stats);
+            RpcAdd(stats);
             Destroy(gameObject);
         }).AddTo(this);
 
@@ -120,12 +126,12 @@ public class PlayerManager : NetworkBehaviour
             if(playerHealth.koPlayer != null)
             {
                 // Award kill to player.
-                playerHealth.koPlayer.GetComponent<PlayerManager>().kills++;
+                playerHealth.koPlayer.GetComponent<PlayerManager>().stats.kills++;
                 
                 if(playerHealth.koPlayer.GetComponent<PlayerManager>().index == 0)
-                    GameManager.instance.p1Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().kills;
+                    GameManager.instance.p1Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().stats.kills;
                 else
-                    GameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().kills;
+                    GameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().stats.kills;
             }
         
             CmdDeath();
@@ -172,12 +178,12 @@ public class PlayerManager : NetworkBehaviour
             // Figure out who to give the deaths to.
             if(index == 0)
             {
-                GameManager.instance.p1Deaths = deaths;
+                GameManager.instance.p1Deaths = stats.deaths;
             }
 
             if(index == 1)
             {
-                GameManager.instance.p2Deaths = deaths;
+                GameManager.instance.p2Deaths = stats.deaths;
             }
 
             // Disable controls.
@@ -218,6 +224,22 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [Command]
+    public void CmdAdd(Stats stat)
+    {
+        Debug.Log("yeet");
+        GameManager.instance.placeList.Add(stat);
+        RpcAdd(stat);
+    }
+
+    [ClientRpc]
+    public void RpcAdd(Stats stat)
+    {
+        Debug.Log("yeetus");
+
+        GameManager.instance.placeList.Add(stat);
+    }
+
+    [Command]
     public void CmdDeath()
     {
         dead = true;
@@ -236,31 +258,12 @@ public class PlayerManager : NetworkBehaviour
         // Subtract lives, add to deaths.
         playerHealth.health = 0;
         --lives;
-        ++deaths;
+        ++stats.deaths;
     }
 
     [Command]
     public void CmdDisable()
     {
-        Debug.Log("disable!");
-        if(dogControls != null)
-        {
-            dogControls.enabled = false;
-        }
-
-        if(catControls != null)
-        {
-            catControls.enabled = false;
-        }
-        RpcDisable();
-    }
-
-    [ClientRpc]
-    public void RpcDisable()
-    {
-        Debug.Log("disable2!");
-
-        // Subtract lives, add to deaths.
         if(dogControls != null)
         {
             dogControls.enabled = false;
@@ -271,6 +274,8 @@ public class PlayerManager : NetworkBehaviour
             catControls.enabled = false;
         }
     }
+
+
 
     [Command]
     public void CmdExplode(Quaternion qt)

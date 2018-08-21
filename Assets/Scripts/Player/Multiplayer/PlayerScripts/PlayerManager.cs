@@ -10,8 +10,8 @@ using UniRx;
 public class PlayerManager : NetworkBehaviour 
 {
     // Tag for objects
-    private const string TAG_DOG = "DogFighter";
-    private const string TAG_CAT = "CatFighter";
+    private const string TAG_DOG = "DogFighter(Clone)";
+    private const string TAG_CAT = "CatFighter(Clone)";
 	private string TAG_KILLZONE = "KillZone";
 	private string TAG_PLATFORM = "Platform";
 
@@ -59,7 +59,6 @@ public class PlayerManager : NetworkBehaviour
     public int kills = 0;
 
     // --------------------------------------------------------------------------------------------------------- //
-
     IEnumerator Start()
     {
         cameraScript = FindObjectOfType<CameraScript>();
@@ -168,6 +167,7 @@ public class PlayerManager : NetworkBehaviour
             source.PlayOneShot(death);
             transform.position = spawnPosition.position;
             playerMovement.enabled = false;
+            CmdDisable();
 
             // Figure out who to give the deaths to.
             if(index == 0)
@@ -181,7 +181,6 @@ public class PlayerManager : NetworkBehaviour
             }
 
             // Disable controls.
-            CmdDisable();
         }
     }
 
@@ -203,7 +202,7 @@ public class PlayerManager : NetworkBehaviour
         dead = death;
 
         // If you're alive, enable everything.
-        if(!dead)
+        if(!death)
         {
             transform.parent = null;
             playerMovement.enabled = true;
@@ -243,6 +242,7 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdDisable()
     {
+        Debug.Log("disable!");
         if(dogControls != null)
         {
             dogControls.enabled = false;
@@ -258,6 +258,8 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     public void RpcDisable()
     {
+        Debug.Log("disable2!");
+
         // Subtract lives, add to deaths.
         if(dogControls != null)
         {

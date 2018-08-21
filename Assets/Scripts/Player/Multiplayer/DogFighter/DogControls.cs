@@ -132,10 +132,11 @@ public class DogControls : NetworkBehaviour
             if(shotCounter <= 0)
             {
                 shotCounter = timeBetweenShots;
-                if(!isServer)
-                    CmdKiBlast();
-                else
-                    RpcKiBlast();
+                // if(!isServer)
+                //     CmdKiBlast();
+                // else
+                //     RpcKiBlast();
+                anim.SetTrigger("KiBlast");
             }
 
             if(mobileButtons != null)
@@ -232,17 +233,12 @@ public class DogControls : NetworkBehaviour
 
     // --------------------------------------------------------------------------------------------------------- //
     
-    IEnumerator KiBlast()
+    void KiBlast()
     {
         if(canHit)
         {
-            playerMovement.enabled = false;
-            anim.SetTrigger("KiBlast");
-        
-            yield return new WaitForSeconds(0.4f);
             GameObject ball = Instantiate(blast,blastPosition.position,Quaternion.identity);
             ball.GetComponent<BlastController>().player = gameObject;
-            StopCoroutine(KiBlast());
             source.PlayOneShot(clips[2]);
             
         }
@@ -265,7 +261,7 @@ public class DogControls : NetworkBehaviour
                 {
                     forwardKickForce.x *= -1;
                 }
-                rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
+                rb.AddForce(forwardKickForce);
             }
             else
             {
@@ -273,7 +269,7 @@ public class DogControls : NetworkBehaviour
                 {
                     forwardKickForce.x *= -1;
                 }
-                rb.AddForce(forwardKickForce, ForceMode2D.Impulse);
+                rb.AddForce(forwardKickForce);
             }
             canHit = false;
             source.PlayOneShot(clips[0]);
@@ -316,7 +312,7 @@ public class DogControls : NetworkBehaviour
     [ClientRpc]
     void RpcKiBlast()
     {
-        StartCoroutine(KiBlast());
+        KiBlast();
     }
 
     // -----------------------------------------------------------------------------------

@@ -43,5 +43,12 @@ public class SResults : MonoBehaviour
 		{
 			SceneManager.LoadScene("SCharacterSelect");	
 		}
+
+		#if UNITY_ANDROID
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+				SceneManager.LoadScene("SCharacterSelect");	
+            }
+        #endif
 	}
 }

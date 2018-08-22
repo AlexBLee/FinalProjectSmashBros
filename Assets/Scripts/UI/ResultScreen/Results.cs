@@ -46,5 +46,13 @@ public class Results : NetworkBehaviour
 			NetworkManager.singleton.ServerChangeScene("CharacterSelect");
 
 		}
+
+		#if UNITY_ANDROID
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+				NetworkManager.singleton.ServerChangeScene("CharacterSelect");
+            }
+        #endif
+		
 	}
 }

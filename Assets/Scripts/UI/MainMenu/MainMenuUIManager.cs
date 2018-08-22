@@ -31,6 +31,10 @@ public class MainMenuUIManager : MonoBehaviour
     private void Start() 
     {
         currentScreen = titleRT;
+        if(BackButton.play)
+        {
+            ChangeScreen(playScreen.GetComponent<RectTransform>());
+        }
     }
 
     // Go to menu screens when called.

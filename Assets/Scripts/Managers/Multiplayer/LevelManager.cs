@@ -25,6 +25,9 @@ public class LevelManager : NetworkBehaviour
 		
 	}
 
+	// Game over check
+	public GameObject gameOverText;
+
 	// List for things in level.
 	public List<GameObject> players;
 	public SyncPlayers syncPlayers = new SyncPlayers();
@@ -35,8 +38,6 @@ public class LevelManager : NetworkBehaviour
 	// Where the player will respawn after death
 	public Transform[] respawns;
 	
-	// Text
-	public Text text;
 
 	// -----------------------------------------------------------------------------------------------------------------------//
 
@@ -106,7 +107,8 @@ public class LevelManager : NetworkBehaviour
 
 	IEnumerator SwitchScene()
 	{
-		yield return new WaitForSecondsRealtime(2);
+		gameOverText.SetActive(true);
+		yield return new WaitForSecondsRealtime(4);
 		NetworkManager.singleton.ServerChangeScene("EndResult");
 
 	}

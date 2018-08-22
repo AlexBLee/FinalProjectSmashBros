@@ -46,6 +46,10 @@ Prefab:
       propertyPath: forwardKickForce.y
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpVelocity
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1802695048475120}
@@ -345,7 +349,7 @@ MonoBehaviour:
   player1: 0
   player2: 0
   canJump: 1
-  jumpVelocity: 15
+  jumpVelocity: 20
   moveForce: 365
   maxSpeed: 5
   facingRight: 1
@@ -361,17 +365,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  place: 0
   spawnPosition: {fileID: 0}
   anim: {fileID: 0}
   levelManager: {fileID: 0}
   explosion: {fileID: 1145611358284742, guid: 1b39dcd5e1429f54b96b6a78edb77f09, type: 2}
   death: {fileID: 8300000, guid: 5326efa4de78c9146ad0247260bda7a9, type: 3}
   dead: 0
+  stats:
+    name: 
+    kills: 0
+    deaths: 0
   lives: 5
   index: 0
-  deaths: 0
-  kills: 0
 --- !u!114 &114737939940668228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -424,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   knockback: {x: 0, y: 0}
+  isBasicAttack: 0
 --- !u!212 &212416234537557488
 SpriteRenderer:
   m_ObjectHideFlags: 1

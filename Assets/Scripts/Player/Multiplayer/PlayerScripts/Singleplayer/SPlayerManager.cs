@@ -65,7 +65,7 @@ public class SPlayerManager : MonoBehaviour
     public bool dead = false;
 
     // Variables to keep track of.
-    public Stats stats;
+    public Stats stats = new Stats("",0,0);
     public int lives = 0;
     public int index = 0;
 

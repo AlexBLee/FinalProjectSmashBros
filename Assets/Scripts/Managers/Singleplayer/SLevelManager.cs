@@ -18,6 +18,9 @@ public class SLevelManager : MonoBehaviour
 
 	// Where the player will respawn after death
 	public Transform[] respawns;
+
+	// Display the Game over text
+	public GameObject gameOverText;
 	
 	// -----------------------------------------------------------------------------------------------------------------------//	
 
@@ -83,8 +86,15 @@ public class SLevelManager : MonoBehaviour
 	{
 		if(players.Count == 1)
 		{
-			SceneManager.LoadScene("SEndResult");
+			StartCoroutine(GameOverAndChangeScene());
 		}
+	}
+
+	IEnumerator GameOverAndChangeScene()
+	{
+		gameOverText.SetActive(true);
+		yield return new WaitForSecondsRealtime(4);
+		SceneManager.LoadScene("SEndResult");
 	}
 
 	

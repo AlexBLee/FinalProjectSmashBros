@@ -50,7 +50,7 @@ public class PlayerManager : NetworkBehaviour
     public bool dead = false;
 
     // Variables to keep track of.
-    public Stats stats;
+    public Stats stats = new Stats("",0,0);
     [SyncVar]
     public int lives = 0;
     public int index = 0;

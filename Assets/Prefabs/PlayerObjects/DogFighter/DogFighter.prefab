@@ -380,7 +380,7 @@ MonoBehaviour:
   player1: 0
   player2: 0
   canJump: 1
-  jumpVelocity: 15
+  jumpVelocity: 20
   moveForce: 365
   maxSpeed: 5
   joystick: {fileID: 0}
@@ -437,6 +437,10 @@ MonoBehaviour:
   explosionPosition: {x: 0, y: 0}
   death: {fileID: 8300000, guid: 5326efa4de78c9146ad0247260bda7a9, type: 3}
   dead: 0
+  stats:
+    name: 
+    kills: 0
+    deaths: 0
   lives: 5
   index: 0
   deaths: 0

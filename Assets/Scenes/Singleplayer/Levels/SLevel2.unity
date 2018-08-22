@@ -2548,6 +2548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55396467f5623f548b8b782455a28b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  done: 0
 --- !u!222 &396218522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6267,7 +6268,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   gameOverText: {fileID: 850051353}
+  source: {fileID: 1567826707}
+  audio: {fileID: 8300000, guid: 4ddf48defbc53724698daf162a1931f2, type: 3}
   countdownText: {fileID: 1798577740}
+  timer: {fileID: 0}
 --- !u!4 &951297906
 Transform:
   m_ObjectHideFlags: 0

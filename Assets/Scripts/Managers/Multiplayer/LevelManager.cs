@@ -42,6 +42,10 @@ public class LevelManager : NetworkBehaviour
 	// Where the player will respawn after death
 	public Transform[] respawns;
 
+	// For game over sound
+	public AudioSource source;
+	public AudioClip audio;
+
 	// For timer condition
 	public Timer timer;
 	[SyncVar]
@@ -135,6 +139,7 @@ public class LevelManager : NetworkBehaviour
 
 	IEnumerator SwitchScene()
 	{
+		source.PlayOneShot(audio);
 		gameOverText.SetActive(true);
 		yield return new WaitForSecondsRealtime(4);
 		NetworkManager.singleton.ServerChangeScene("EndResult");

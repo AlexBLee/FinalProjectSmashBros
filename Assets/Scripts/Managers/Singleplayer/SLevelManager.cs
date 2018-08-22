@@ -23,6 +23,10 @@ public class SLevelManager : MonoBehaviour
 	// Display the Game over text
 	public GameObject gameOverText;
 
+	// For game over sound
+	public AudioSource source;
+	public AudioClip audio;
+
 	// Display the countdown text
 	public TextMeshProUGUI countdownText;
 
@@ -73,14 +77,14 @@ public class SLevelManager : MonoBehaviour
 	// When there is one more player remaining, end the game.
 	private void Update() 
 	{
-		if(SGameManager.instance.gameModeNumber == 1)
+		if(SGameManager.instance.gameModeNumber == 0)
 		{
 			if(players.Count == 1)
 			{
 				StartCoroutine(GameOverAndChangeScene());
 			}
 		}
-		else if(SGameManager.instance.gameModeNumber == 0)
+		else if(SGameManager.instance.gameModeNumber == 1)
 		{
 			if(timer != null && timer.done)
 			{
@@ -92,6 +96,7 @@ public class SLevelManager : MonoBehaviour
 	// Once game over has been reached, displayed victory text and load next scene.
 	IEnumerator GameOverAndChangeScene()
 	{
+		source.PlayOneShot(audio);
 		gameOverText.SetActive(true);
 		yield return new WaitForSecondsRealtime(4);
 		SceneManager.LoadScene("SEndResult");

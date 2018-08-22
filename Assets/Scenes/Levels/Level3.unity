@@ -942,6 +942,10 @@ MonoBehaviour:
   - {fileID: 2043859943}
   - {fileID: 0}
   - {fileID: 0}
+  source: {fileID: 2109890472}
+  audio: {fileID: 8300000, guid: 4ddf48defbc53724698daf162a1931f2, type: 3}
+  timer: {fileID: 0}
+  countdown: 0
 --- !u!4 &231600415
 Transform:
   m_ObjectHideFlags: 0
@@ -5225,6 +5229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee36946aa0d423a4fb6bdce7aea562e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  done: 0
 --- !u!222 &1275685506
 CanvasRenderer:
   m_ObjectHideFlags: 0

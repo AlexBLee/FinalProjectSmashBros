@@ -160,7 +160,8 @@ AudioSource:
   m_GameObject: {fileID: 1258905793114654}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243947461159339426, guid: b2d339315f33d0245b1d3a210253983b,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -377,7 +378,7 @@ MonoBehaviour:
   twoSideKnockback: {x: 175, y: 0}
   spinKickKnockback: {x: 350, y: 0}
   clips:
-  - {fileID: 8300000, guid: 8b412f76b37f1704080089bdcb65f806, type: 3}
+  - {fileID: 8300000, guid: d91644a0f5fad694cb9e58b6d72ea56c, type: 3}
   - {fileID: 8300000, guid: 0a7ecaa8188cbe24ead5e2fa2ba3d098, type: 3}
   - {fileID: 8300000, guid: 8fad65b561e668e4291ccf81fd1f5bca, type: 3}
 --- !u!114 &114700571456030922

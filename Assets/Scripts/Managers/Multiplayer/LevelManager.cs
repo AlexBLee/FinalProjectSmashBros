@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UniRx;
+using TMPro;
 
 public class LevelManager : NetworkBehaviour 
 {
@@ -28,6 +29,9 @@ public class LevelManager : NetworkBehaviour
 	// Game over check
 	public GameObject gameOverText;
 
+	// Countdown timer before game start
+	public TextMeshProUGUI countdownText;
+
 	// List for things in level.
 	public List<GameObject> players;
 	public SyncPlayers syncPlayers = new SyncPlayers();
@@ -47,6 +51,7 @@ public class LevelManager : NetworkBehaviour
 		Destroy(GameObject.Find("Music"));
 
 		players = FindObjectOfType<CameraScript>().players;
+		StartCoroutine(StartLevel());
 	}
 	
 	// When there is one more player remaining, end the game.
@@ -112,6 +117,26 @@ public class LevelManager : NetworkBehaviour
 		NetworkManager.singleton.ServerChangeScene("EndResult");
 
 	}
+
+	// Level start countdown
+	IEnumerator StartLevel()
+	{
+		Time.timeScale = 0.0f;
+
+		countdownText.text = "3";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.text = "2";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.text = "1";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.text = "START!";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.gameObject.SetActive(false);
+
+
+		Time.timeScale = 1.0f;
+	}
+
 
 
 

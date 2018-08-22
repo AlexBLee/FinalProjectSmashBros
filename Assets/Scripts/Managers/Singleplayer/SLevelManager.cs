@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using TMPro;
 
 public class SLevelManager : MonoBehaviour 
 {
@@ -21,6 +22,10 @@ public class SLevelManager : MonoBehaviour
 
 	// Display the Game over text
 	public GameObject gameOverText;
+
+	// Display the countdown text
+	public TextMeshProUGUI countdownText;
+
 	
 	// -----------------------------------------------------------------------------------------------------------------------//	
 
@@ -57,27 +62,7 @@ public class SLevelManager : MonoBehaviour
 			
 		}
 		
-		// PLAYER 3
-		// if(managerObjects[2] != null)
-		// {
-		// 	GameObject player3 = Instantiate(managerObjects[2], spawns[2].position ,Quaternion.identity);
-		// 	player3.name = managerObjects[2].name;
-		// 	PlayerManager playerManager = player3.GetComponent<PlayerManager>();
-		// 	playerManager.spawnPosition = respawns[2];
-		
-		// }
-		
-		// PLAYER 4
-		// if(managerObjects[3] != null)
-		// {
-		// 	GameObject player4 = Instantiate(managerObjects[3], spawns[3].position ,Quaternion.identity);
-		// 	player4.name = managerObjects[3].name;
-	 	// 	PlayerManager playerManager = player4.GetComponent<PlayerManager>();
-		// 	playerManager.spawnPosition = respawns[3];
-		
-		// }
-
-		
+		StartCoroutine(StartLevel());
 
 	}
 
@@ -90,11 +75,32 @@ public class SLevelManager : MonoBehaviour
 		}
 	}
 
+	// Once game over has been reached, displayed victory text and load next scene.
 	IEnumerator GameOverAndChangeScene()
 	{
 		gameOverText.SetActive(true);
 		yield return new WaitForSecondsRealtime(4);
 		SceneManager.LoadScene("SEndResult");
+	}
+
+	// Level start countdown
+	IEnumerator StartLevel()
+	{
+		Time.timeScale = 0.0f;
+
+		countdownText.text = "3";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.text = "2";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.text = "1";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.text = "START!";
+		yield return new WaitForSecondsRealtime(1);
+		countdownText.gameObject.SetActive(false);
+
+
+		Time.timeScale = 1.0f;
+
 	}
 
 	

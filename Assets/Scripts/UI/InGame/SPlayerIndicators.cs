@@ -54,12 +54,12 @@ public class SPlayerIndicators : MonoBehaviour
 		{
 			playerHealthDisplays[i].text = playerHealths[i].health.ToString() + "%";
 
-			if(GameManager.instance.gameModeNumber == 0)
+			if(SGameManager.instance.gameModeNumber == 0)
 			{
 				playerLivesKillDisplay[i].text = "Lives: "+ playerManagers[i].lives.ToString();
 			}
 
-			if(GameManager.instance.gameModeNumber == 1)
+			if(SGameManager.instance.gameModeNumber == 1)
 			{
 				playerLivesKillDisplay[i].text = "Kills: "+ playerManagers[i].stats.kills.ToString();
 			}

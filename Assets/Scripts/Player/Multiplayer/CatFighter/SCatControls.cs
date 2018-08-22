@@ -55,7 +55,7 @@ public class SCatControls : MonoBehaviour
         if(playerMovement.player1)
         {
             // Two Punch Combo
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 OneTwoComboFirstHit();
                 
@@ -74,13 +74,13 @@ public class SCatControls : MonoBehaviour
             }
 
             // Two Side Attack
-            if(Input.GetKeyDown(KeyCode.O))
+            if(Input.GetKeyDown(KeyCode.K))
             {
                 TwoSideAttack();
             }
 
             // Spinning Kick
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 SpinKick();
             }

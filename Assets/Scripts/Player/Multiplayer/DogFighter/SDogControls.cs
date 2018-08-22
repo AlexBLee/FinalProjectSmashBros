@@ -62,7 +62,7 @@ public class SDogControls : MonoBehaviour
         if(playerMovement.player1)
         {
              // Two Kick Combo
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 thirdKick = false;
                 KickComboFirstHit();
@@ -90,7 +90,7 @@ public class SDogControls : MonoBehaviour
             }
 
             // Ki blast
-            if(Input.GetKeyDown(KeyCode.O))
+            if(Input.GetKeyDown(KeyCode.K))
             {
                 if(shotCounter <= 0)
                 {
@@ -100,7 +100,7 @@ public class SDogControls : MonoBehaviour
             }
 
             // Forward Kick
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 ForwardKick();
             }

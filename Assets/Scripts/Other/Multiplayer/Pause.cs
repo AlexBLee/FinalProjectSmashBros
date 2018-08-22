@@ -33,7 +33,7 @@ public class Pause : NetworkBehaviour
 
 			if(Input.GetKeyDown(KeyCode.Backspace))
 			{
-				NetworkManager.singleton.ServerChangeScene("CharacterSelect");
+				NetworkManager.singleton.ServerChangeScene("EndResult");
 			}
 		}
 

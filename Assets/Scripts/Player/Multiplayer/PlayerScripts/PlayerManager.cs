@@ -105,9 +105,13 @@ public class PlayerManager : NetworkBehaviour
         {
             cameraScript.players.RemoveAt(index);
             levelManager.syncPlayers.RemoveAt(index);
-            CmdAdd(stats);
-            RpcAdd(stats);
+            if(!isServer)
+                CmdAdd(stats);
+            else
+                RpcAdd(stats);
+
             Destroy(gameObject);
+
         }).AddTo(this);
 
         // Set spawn position depending on which player you are.
@@ -123,17 +127,6 @@ public class PlayerManager : NetworkBehaviour
             explosionPosition = transform.position;
 
             CmdSetStats();
-            if(playerHealth.koPlayer != null)
-            {
-                // Award kill to player.
-                playerHealth.koPlayer.GetComponent<PlayerManager>().stats.kills++;
-                
-                if(playerHealth.koPlayer.GetComponent<PlayerManager>().index == 0)
-                    GameManager.instance.p1Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().stats.kills;
-                else
-                    GameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<PlayerManager>().stats.kills;
-            }
-        
             CmdDeath();
 
             // Explode in certain directions.
@@ -226,16 +219,12 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdAdd(Stats stat)
     {
-        Debug.Log("yeet");
-        GameManager.instance.placeList.Add(stat);
         RpcAdd(stat);
     }
 
     [ClientRpc]
     public void RpcAdd(Stats stat)
     {
-        Debug.Log("yeetus");
-
         GameManager.instance.placeList.Add(stat);
     }
 
@@ -255,6 +244,18 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdSetStats()
     {
+        RpcSetStats();
+    }
+
+    [ClientRpc]
+    public void RpcSetStats()
+    {
+        if(playerHealth.koPlayer != null)
+        {
+            // Award kill to player.
+            playerHealth.koPlayer.GetComponent<PlayerManager>().stats.kills++;
+            
+        }
         // Subtract lives, add to deaths.
         playerHealth.health = 0;
         --lives;

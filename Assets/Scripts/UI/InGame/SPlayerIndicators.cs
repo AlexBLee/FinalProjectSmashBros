@@ -53,7 +53,16 @@ public class SPlayerIndicators : MonoBehaviour
 		for(int i = 0; i < players.Count; i++)
 		{
 			playerHealthDisplays[i].text = playerHealths[i].health.ToString() + "%";
-			playerLivesKillDisplay[i].text = message[i] + playerManagers[i].lives.ToString();
+
+			if(GameManager.instance.gameModeNumber == 0)
+			{
+				playerLivesKillDisplay[i].text = "Lives: "+ playerManagers[i].lives.ToString();
+			}
+
+			if(GameManager.instance.gameModeNumber == 1)
+			{
+				playerLivesKillDisplay[i].text = "Kills: "+ playerManagers[i].stats.kills.ToString();
+			}
 		}
 
 	}

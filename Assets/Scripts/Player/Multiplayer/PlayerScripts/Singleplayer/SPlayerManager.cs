@@ -11,6 +11,13 @@ public struct Stats
     public string name;
     public int kills;
     public int deaths;
+
+    public Stats(string nm, int kls, int dth)
+    {
+        name = nm;
+        kills = kls;
+        deaths = dth;
+    }
 }
 
 public class SPlayerManager : MonoBehaviour 

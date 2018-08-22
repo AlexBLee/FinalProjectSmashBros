@@ -52,9 +52,10 @@ public class LevelManager : NetworkBehaviour
 	private void Update() 
 	{
 		// Looking for two, as there is an extra object that is neccesary but isn't a player.
-		if(players.Count == 20)
+		if(players.Count == 2)
 		{
-			NetworkManager.singleton.ServerChangeScene("EndResult");
+			StartCoroutine(SwitchScene());
+			//NetworkManager.singleton.ServerChangeScene("EndResult");
 		}
 	}
 
@@ -101,6 +102,13 @@ public class LevelManager : NetworkBehaviour
 	void CmdAddToList(NetworkInstanceId id)
 	{
 		syncPlayers.Add(new ID(id));
+	}
+
+	IEnumerator SwitchScene()
+	{
+		yield return new WaitForSecondsRealtime(2);
+		NetworkManager.singleton.ServerChangeScene("EndResult");
+
 	}
 
 

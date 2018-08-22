@@ -64,7 +64,7 @@ public class PlayerIndicators : NetworkBehaviour
 
 			if(GameManager.instance.gameModeNumber == 1)
 			{
-				playerLivesKillDisplay[i].text = "Kills: "+ playerManagers[i].kills.ToString();
+				playerLivesKillDisplay[i].text = "Kills: "+ playerManagers[i].stats.kills.ToString();
 			}
 			
 		}

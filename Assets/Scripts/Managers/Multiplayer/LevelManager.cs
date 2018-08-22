@@ -41,6 +41,13 @@ public class LevelManager : NetworkBehaviour
 
 	// Where the player will respawn after death
 	public Transform[] respawns;
+
+	// For timer condition
+	public Timer timer;
+	[SyncVar]
+	public bool countdown;
+
+	
 	
 
 	// -----------------------------------------------------------------------------------------------------------------------//
@@ -49,19 +56,35 @@ public class LevelManager : NetworkBehaviour
 	{
 		// To stop the main menu music.
 		Destroy(GameObject.Find("Music"));
+		timer = FindObjectOfType<Timer>();
 
 		players = FindObjectOfType<CameraScript>().players;
+		countdown = true;
 		StartCoroutine(StartLevel());
 	}
 	
 	// When there is one more player remaining, end the game.
 	private void Update() 
 	{
+		if(countdown)
+			Time.timeScale = 0.0f;
+		else
+			Time.timeScale = 1.0f;
+
 		// Looking for two, as there is an extra object that is neccesary but isn't a player.
-		if(players.Count == 2)
+		if(GameManager.instance.gameModeNumber == 0)
 		{
-			StartCoroutine(SwitchScene());
-			//NetworkManager.singleton.ServerChangeScene("EndResult");
+			if(players.Count == 2)
+			{
+				StartCoroutine(SwitchScene());
+			}
+		}
+		else if(GameManager.instance.gameModeNumber == 1)
+		{
+			if(timer != null && timer.done)
+			{
+				StartCoroutine(SwitchScene());
+			}
 		}
 	}
 
@@ -121,7 +144,6 @@ public class LevelManager : NetworkBehaviour
 	// Level start countdown
 	IEnumerator StartLevel()
 	{
-		Time.timeScale = 0.0f;
 
 		countdownText.text = "3";
 		yield return new WaitForSecondsRealtime(1);
@@ -133,9 +155,11 @@ public class LevelManager : NetworkBehaviour
 		yield return new WaitForSecondsRealtime(1);
 		countdownText.gameObject.SetActive(false);
 
+		countdown = false;
 
-		Time.timeScale = 1.0f;
+
 	}
+
 
 
 

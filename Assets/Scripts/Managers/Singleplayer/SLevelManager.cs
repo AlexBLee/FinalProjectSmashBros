@@ -26,6 +26,9 @@ public class SLevelManager : MonoBehaviour
 	// Display the countdown text
 	public TextMeshProUGUI countdownText;
 
+	// For time win condition
+	public STimer timer;
+
 	
 	// -----------------------------------------------------------------------------------------------------------------------//	
 
@@ -33,6 +36,7 @@ public class SLevelManager : MonoBehaviour
 	{
 		// To stop the main menu music.
 		Destroy(GameObject.Find("Music"));
+		timer = FindObjectOfType<STimer>();
 
 		managerObjects = SGameManager.instance.players;
 
@@ -69,9 +73,19 @@ public class SLevelManager : MonoBehaviour
 	// When there is one more player remaining, end the game.
 	private void Update() 
 	{
-		if(players.Count == 1)
+		if(SGameManager.instance.gameModeNumber == 1)
 		{
-			StartCoroutine(GameOverAndChangeScene());
+			if(players.Count == 1)
+			{
+				StartCoroutine(GameOverAndChangeScene());
+			}
+		}
+		else if(SGameManager.instance.gameModeNumber == 0)
+		{
+			if(timer != null && timer.done)
+			{
+				StartCoroutine(GameOverAndChangeScene());
+			}
 		}
 	}
 

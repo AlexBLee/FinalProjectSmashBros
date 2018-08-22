@@ -11,6 +11,9 @@ public class STimer : MonoBehaviour
 	// Text
 	private TextMeshProUGUI text;
 
+	// Timer zero condition
+	public bool done;
+
     // --------------------------------------------------------------------------------------------------------- //    
 
 	void Awake()
@@ -37,6 +40,13 @@ public class STimer : MonoBehaviour
 
 		text.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
 
+		if(minutes < 0 && seconds < 0 && fraction < 0)
+		{
+			done = true;
+		}
+
 
 	}
+
+
 }

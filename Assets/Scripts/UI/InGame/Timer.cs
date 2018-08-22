@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using System;
 
 
-public class Timer : MonoBehaviour 
+public class Timer : NetworkBehaviour 
 {
 	// Text
 	private TextMeshProUGUI text;
+
+	// Timer zero condition
+	[SyncVar]
+	public bool done;
 
     // --------------------------------------------------------------------------------------------------------- //    
 
@@ -36,6 +41,11 @@ public class Timer : MonoBehaviour
 		int fraction = Mathf.Abs((int)(guiTime*10) % 10);
 
 		text.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+
+		if(minutes < 0 && seconds < 0 && fraction < 0)
+		{
+			done = true;
+		}
 
 
 	}

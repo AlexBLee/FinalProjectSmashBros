@@ -57,9 +57,6 @@ public class SPlayerManager : MonoBehaviour
     // Explosion death prefab.
     public GameObject explosion;
 
-    // Camera shake when death
-    public CameraShake cameraShake;
-
     // Audio
     private AudioSource source;
     public AudioClip death;
@@ -77,7 +74,6 @@ public class SPlayerManager : MonoBehaviour
     void Start()
     {
         cameraScript = FindObjectOfType<SCameraScript>();
-        cameraShake = FindObjectOfType<CameraShake>();
         levelManager = FindObjectOfType<SLevelManager>();
         playerHealth = GetComponent<SPlayerHealth>(); 
         playerMovement = GetComponent<SPlayerMovement>(); 
@@ -127,7 +123,6 @@ public class SPlayerManager : MonoBehaviour
     {
         if (collision.gameObject.tag == TAG_KILLZONE)
         {
-            StartCoroutine(cameraShake.Shake(.20f, .15f));
             playerHealth.health = 0;
             if(playerHealth.koPlayer != null)
             {

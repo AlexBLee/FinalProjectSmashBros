@@ -68,7 +68,7 @@ public class CatControls : NetworkBehaviour
         }
 
         
-        if (Input.GetKeyDown(KeyCode.U) || (mobileButtons != null && mobileButtons.A))
+        if (Input.GetKeyDown(KeyCode.J) || (mobileButtons != null && mobileButtons.A))
         {
             if (Time.time - lastClicked < 0.5)
             {
@@ -108,7 +108,7 @@ public class CatControls : NetworkBehaviour
         }
 
         // Two Side Attack
-        if(Input.GetKeyDown(KeyCode.O) || (mobileButtons != null && mobileButtons.C))
+        if(Input.GetKeyDown(KeyCode.K) || (mobileButtons != null && mobileButtons.C))
         {
             if(!isServer)
                 CmdTwoSideAttack();
@@ -123,7 +123,7 @@ public class CatControls : NetworkBehaviour
         }
 
         // Spinning Kick
-        if (Input.GetKeyDown(KeyCode.P) || (mobileButtons != null && mobileButtons.D))
+        if (Input.GetKeyDown(KeyCode.L) || (mobileButtons != null && mobileButtons.D))
         {
             if(!isServer)
                 CmdSpinKick();

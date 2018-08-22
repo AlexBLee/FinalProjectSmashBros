@@ -21,7 +21,7 @@ public class NetworkCustom : NetworkManager
         // If the player chose to host, start server, if they chose to join, connect to an IP.
         if(ConnectScreen.host)
         {
-            StartServer();
+            StartHost();
         }
         else
         {

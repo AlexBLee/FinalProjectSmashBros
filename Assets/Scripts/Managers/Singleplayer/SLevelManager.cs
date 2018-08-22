@@ -96,7 +96,6 @@ public class SLevelManager : MonoBehaviour
 	// Once game over has been reached, displayed victory text and load next scene.
 	IEnumerator GameOverAndChangeScene()
 	{
-		source.PlayOneShot(audio);
 		gameOverText.SetActive(true);
 		yield return new WaitForSecondsRealtime(4);
 		SceneManager.LoadScene("SEndResult");

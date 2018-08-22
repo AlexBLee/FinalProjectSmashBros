@@ -139,7 +139,6 @@ public class LevelManager : NetworkBehaviour
 
 	IEnumerator SwitchScene()
 	{
-		source.PlayOneShot(audio);
 		gameOverText.SetActive(true);
 		yield return new WaitForSecondsRealtime(4);
 		NetworkManager.singleton.ServerChangeScene("EndResult");

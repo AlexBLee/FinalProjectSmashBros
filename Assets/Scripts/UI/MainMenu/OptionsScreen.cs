@@ -30,7 +30,7 @@ public class OptionsScreen : MonoBehaviour
         if (toggle != null) toggle.onValueChanged.AddListener(SetFullScreen);
 
         GetResolutions();
-        GetQualityLevel();
+        // GetQualityLevel();
         IsFullscreen();
 
 

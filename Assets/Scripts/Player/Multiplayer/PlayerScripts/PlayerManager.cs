@@ -168,18 +168,6 @@ public class PlayerManager : NetworkBehaviour
             playerMovement.enabled = false;
             CmdDisable();
 
-            // Figure out who to give the deaths to.
-            if(index == 0)
-            {
-                GameManager.instance.p1Deaths = stats.deaths;
-            }
-
-            if(index == 1)
-            {
-                GameManager.instance.p2Deaths = stats.deaths;
-            }
-
-            // Disable controls.
         }
     }
 

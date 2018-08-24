@@ -61,6 +61,9 @@ public class SPlayerManager : MonoBehaviour
     private AudioSource source;
     public AudioClip death;
 
+    // To check for timer condition
+    public Timer timer;
+
     // Is the player dead or alive?
     public bool dead = false;
 
@@ -107,7 +110,7 @@ public class SPlayerManager : MonoBehaviour
 
         // If the player is dead, remove them from the camera script list.
         Observable.EveryUpdate()
-        .Where(_ => lives == 0 || levelManager.players.Count == 1)
+        .Where(_ => SGameManager.instance.gameModeNumber == 0 && (lives == 0 || levelManager.players.Count == 1))
         .Subscribe(_ =>
         {
             cameraScript.players.RemoveAt(index);
@@ -128,11 +131,6 @@ public class SPlayerManager : MonoBehaviour
             {
                 // Award kill to player.
                 playerHealth.koPlayer.GetComponent<SPlayerManager>().stats.kills++;
-                
-                if(playerHealth.koPlayer.GetComponent<SPlayerManager>().index == 0)
-                    SGameManager.instance.p1Kills = playerHealth.koPlayer.GetComponent<SPlayerManager>().stats.kills;
-                else
-                    SGameManager.instance.p2Kills = playerHealth.koPlayer.GetComponent<SPlayerManager>().stats.kills;
             }
         
             // Subtract lives, add to deaths.
@@ -168,16 +166,6 @@ public class SPlayerManager : MonoBehaviour
             transform.position = spawnPosition.position;
             playerMovement.enabled = false;
 
-            // Figure out who to give the deaths to.
-            if(index == 0)
-            {
-                SGameManager.instance.p1Deaths = stats.deaths;
-            }
-
-            if(index == 1)
-            {
-                SGameManager.instance.p2Deaths = stats.deaths;
-            }
 
             // Disable controls.
             if(dogControls != null)

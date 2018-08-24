@@ -41,12 +41,14 @@ public class SResults : MonoBehaviour
 	private void Update() {
 		if(Input.GetKeyDown(KeyCode.Return))
 		{
+			SGameManager.instance.ResetValues();
 			SceneManager.LoadScene("SCharacterSelect");	
 		}
 
 		#if UNITY_ANDROID
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
+				SGameManager.instance.ResetValues();
 				SceneManager.LoadScene("SCharacterSelect");	
             }
         #endif

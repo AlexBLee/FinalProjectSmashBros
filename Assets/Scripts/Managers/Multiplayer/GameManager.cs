@@ -62,18 +62,6 @@ public class GameManager : NetworkBehaviour
 	// From going from In-Game to results screen
 	public SyncListStats placeList = new SyncListStats();
 
-	[SyncVar]
-	public int p1Kills;
-
-	[SyncVar]
-	public int p2Kills;
-	
-	[SyncVar]
-	public int p1Deaths;
-	[SyncVar]
-	public int p2Deaths;
-
-
 
 	// -----------------------------------------------------------------------------------------------------------------------//
 
@@ -89,6 +77,26 @@ public class GameManager : NetworkBehaviour
 		}
 
 		DontDestroyOnLoad(gameObject);
+
+	}
+
+	public void ResetValues()
+	{
+		gameModeNumber = 0;
+		players.Clear();
+		for(int i = 0; i < 2; i++)
+		{
+			players.Add(null);
+		}
+		
+		ready = false;
+
+		playerNumber = 2;
+
+		lives = 5;
+		timeInSeconds = 5;
+
+		placeList.Clear();
 
 	}
 	

@@ -36,11 +36,6 @@ public class SGameManager : MonoBehaviour
 	// From going from In-Game to results screen
 	public List<Stats> placeList;
 	
-	public int p1Kills;
-	public int p2Kills;
-	
-	public int p1Deaths;
-	public int p2Deaths;
 
 	// -----------------------------------------------------------------------------------------------------------------------//
 
@@ -66,6 +61,29 @@ public class SGameManager : MonoBehaviour
 		{
 			Application.Quit();
 		}
+	}
+
+	public void ResetValues()
+	{
+		gameModeNumber = 0;
+
+		players.Clear();
+		
+		for(int i = 0; i < 2; i++)
+		{
+			players.Add(null);
+		}
+
+		ready = false;
+
+		p1Number = 0;
+		p2Number = 0;
+
+		lives = 5;
+		timeInSeconds = 5;
+
+		placeList.Clear();
+
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------------//

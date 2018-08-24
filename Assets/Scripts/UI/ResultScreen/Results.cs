@@ -43,6 +43,7 @@ public class Results : NetworkBehaviour
 	private void Update() {
 		if(Input.GetKeyDown(KeyCode.Return))
 		{
+			GameManager.instance.ResetValues();
 			NetworkManager.singleton.ServerChangeScene("CharacterSelect");
 
 		}
@@ -50,6 +51,7 @@ public class Results : NetworkBehaviour
 		#if UNITY_ANDROID
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             {
+				GameManager.instance.ResetValues();
 				NetworkManager.singleton.ServerChangeScene("CharacterSelect");
             }
         #endif
